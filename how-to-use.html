@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/colors.css">
+<link rel="stylesheet" href="/css/table.css">
+<link rel="stylesheet" href="/css/slick.css">
+<link rel="stylesheet" href="/css/slick-theme.css">
+<script type="text/javascript" src="/js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="/js/slick.js"></script>
+<script type="text/javascript" src="/js/carousel.js"></script>
+<title>Prism</title>
+</head> 
+<body>
+	<header>	
+	<ul id="topHead" class="color-primary-0">
+		<li><a href="index.html"><img src="/img/logo.png" alt="Prism logo"> Prism</a></li>
+		<li><a href="how-to-use.html">How to use</a></li>
+		<li><a href="samples.html">Samples</a></li>
+		<li><a href="authors.html">Authors</a></li>
+	</ul>
+</header>
+	<main>
+		<h1>Prism NuGet Packages</h1>
+		<p>The easiest way to start using <b>Prism</b> is install a NuGet Package</p>
+		<h2>Core Packages</h2>
+		<p>These are the base packages for each platform, together with the Prism's Core assembly as a cross-platform PCL.</p>
+		<table>
+			<thead>
+				<tr>
+					<th>Platform</th>
+					<th>Assembly</th>
+					<th>Package</th>
+					<th>Version</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>PCL</td>
+					<td>Prism.dll</td>
+					<td><a href="https://www.nuget.org/packages/Prism.Core/">Prism.Core</a></td>
+					<td><a href="https://www.nuget.org/packages/Prism.Core/"><img src="https://camo.githubusercontent.com/556437b91360d359f7479de5aa4a384caa07b9b8/68747470733a2f2f696d672e736869656c64732e696f2f6e756765742f767072652f507269736d2e436f72652e737667" alt="21" data-canonical-src="https://img.shields.io/nuget/vpre/Prism.Core.svg" style="max-width:100%;"></a></td>
+				</tr>
+				<tr>
+					<td>WPF</td>
+					<td>Prism.Wpf.dll</td>
+					<td><a href="https://www.nuget.org/packages/Prism.Wpf/">Prism.Wpf</a></td>
+					<td><a href="https://www.nuget.org/packages/Prism.Wpf/"><img src="https://camo.githubusercontent.com/c2fd37f4ebd8a52c95a2de0d2e125136871fbca1/68747470733a2f2f696d672e736869656c64732e696f2f6e756765742f767072652f507269736d2e5770662e737667" alt="22" data-canonical-src="https://img.shields.io/nuget/vpre/Prism.Wpf.svg" style="max-width:100%;"></a></td>
+				</tr>
+				<tr>
+					<td>Xamarin.Forms</td>
+					<td>Prism.Forms.dll</td>
+					<td><a href="https://www.nuget.org/packages/Prism.Forms/">Prism.Forms</a></td>
+					<td><a href="https://www.nuget.org/packages/Prism.Forms/"><img src="https://camo.githubusercontent.com/84da1957d4e8cd6fbbd7dab0ded13499b507a6c8/68747470733a2f2f696d672e736869656c64732e696f2f6e756765742f767072652f507269736d2e466f726d732e737667" alt="23" data-canonical-src="https://img.shields.io/nuget/vpre/Prism.Forms.svg" style="max-width:100%;"></a></td>
+				</tr>
+				<tr>
+					<td>Windows 10 UWP</td>
+					<td>Prism.Windows.dll</td>
+					<td><a href="https://www.nuget.org/packages/Prism.Windows/">Prism.Windows</a></td>
+					<td><a href="https://www.nuget.org/packages/Prism.Windows/"><img src="https://camo.githubusercontent.com/0d74e0ec57f3da94a1c31dce2db333fd84679126/68747470733a2f2f696d672e736869656c64732e696f2f6e756765742f767072652f507269736d2e57696e646f77732e737667" alt="24" data-canonical-src="https://img.shields.io/nuget/vpre/Prism.Windows.svg" style="max-width:100%;"></a></td>
+				</tr>
+			</tbody>
+		</table>
+		<h2>Container-specific packages</h2>
+		<p>Each supported IoC container has its own package assisting in the setup and usage of that container together with Prism. The assembly is named using this convention: <i>Prism.Container.Platform.dll</i>, e.g. <b>Prism.Unity.Wpf.dll</b>. </p>
+		<p>Following matrix shows the platform specific support currently available.</p>		
+		<table>
+			<thead>
+				<tr>
+					<th>Package</th>
+					<th>Version</th>
+					<th align="center">WPF</th>
+					<th align="center">Win10 UWP</th>
+					<th align="center">Xamarin.Forms</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><a href="https://www.nuget.org/packages/Prism.Unity/">Prism.Unity</a> <sup>(*)</sup></td>
+					<td><a href="https://www.nuget.org/packages/Prism.Unity/"><img src="https://camo.githubusercontent.com/7fe2712554b2b0e8deeb65944396139cfdd5287a/68747470733a2f2f696d672e736869656c64732e696f2f6e756765742f767072652f507269736d2e556e6974792e737667" alt="25" data-canonical-src="https://img.shields.io/nuget/vpre/Prism.Unity.svg" style="max-width:100%;"></a></td>
+					<td align="center">X</td>
+					<td align="center">X</td>
+					<td align="center"></td>
+				</tr>
+				<tr>
+					<td><a href="https://www.nuget.org/packages/Prism.Unity.Forms/">Prism.Unity.Forms</a></td>
+					<td><a href="https://www.nuget.org/packages/Prism.Unity.Forms/"><img src="https://camo.githubusercontent.com/709fd2a23b7675bb66f11291ffd20e81fdb43f5c/68747470733a2f2f696d672e736869656c64732e696f2f6e756765742f767072652f507269736d2e556e6974792e466f726d732e737667" alt="30" data-canonical-src="https://img.shields.io/nuget/vpre/Prism.Unity.Forms.svg" style="max-width:100%;"></a></td>
+					<td align="center"></td>
+					<td align="center"></td>
+					<td align="center">X</td>
+				</tr>
+				<tr>
+					<td><a href="https://www.nuget.org/packages/Prism.Mef/">Prism.Mef</a>  <sup>(**)</sup></td>
+					<td><a href="https://www.nuget.org/packages/Prism.Mef/"><img src="https://camo.githubusercontent.com/3487c8eadcf54beceee04953f165618ec386bc2c/68747470733a2f2f696d672e736869656c64732e696f2f6e756765742f767072652f507269736d2e4d65662e737667" alt="26" data-canonical-src="https://img.shields.io/nuget/vpre/Prism.Mef.svg" style="max-width:100%;"></a></td>
+					<td align="center">X</td>
+					<td align="center">-</td>
+					<td align="center">-</td>
+				</tr>
+				<tr>
+					<td><a href="https://www.nuget.org/packages/Prism.Autofac/">Prism.Autofac</a></td>
+					<td><a href="https://www.nuget.org/packages/Prism.Autofac/"><img src="https://camo.githubusercontent.com/478b46ecb31e6d695e5b0cabc68dd98cf5d300b4/68747470733a2f2f696d672e736869656c64732e696f2f6e756765742f767072652f507269736d2e4175746f6661632e737667" alt="27" data-canonical-src="https://img.shields.io/nuget/vpre/Prism.Autofac.svg" style="max-width:100%;"></a></td>
+					<td align="center">X</td>
+					<td align="center">X</td>
+					<td align="center"></td>
+				</tr>
+				<tr>
+					<td><a href="https://www.nuget.org/packages/Prism.StructureMap/">Prism.StructureMap</a></td>
+					<td><a href="https://www.nuget.org/packages/Prism.StructureMap/"><img src="https://camo.githubusercontent.com/5af501dc74e08b90c2ff6cbe00bfc898026102a0/68747470733a2f2f696d672e736869656c64732e696f2f6e756765742f767072652f507269736d2e5374727563747572654d61702e737667" alt="28" data-canonical-src="https://img.shields.io/nuget/vpre/Prism.StructureMap.svg" style="max-width:100%;"></a></td>
+					<td align="center">X</td>
+					<td align="center"></td>
+					<td align="center"></td>
+				</tr>
+				<tr>
+					<td><a href="https://www.nuget.org/packages/Prism.Ninject/">Prism.Ninject</a></td>
+					<td><a href="https://www.nuget.org/packages/Prism.Ninject/"><img src="https://camo.githubusercontent.com/28020ff45d80a80043ed92d6ab1531a12186fbbf/68747470733a2f2f696d672e736869656c64732e696f2f6e756765742f767072652f507269736d2e4e696e6a6563742e737667" alt="29" data-canonical-src="https://img.shields.io/nuget/vpre/Prism.Ninject.svg" style="max-width:100%;"></a></td>
+					<td align="center">X</td>
+					<td align="center"></td>
+					<td align="center">X</td>
+				</tr>
+			</tbody>
+		</table>
+		<p><sup>(*)</sup> As Xamarin Forms also supports UWP now, adding Prism.Unity puts in some incorrect dependencies. Therefore we created a new Prism.Unity.Forms package. </p>
+		<p><sup>(**)</sup> MEF is supported with WPF for compatibility with previous versions. It will not be added to Windows 10 UWP or Xamarin Forms.</p>
+		<p>Note that adding the container-specific package to your project, will also pull in the correct platform-specific package and the core PCL library. E.g. when you'd like to use Unity in a WPF project, add the Prism.Unity package and the rest will be pulled in as well.</p>
+		<p><a href="img/NuGetPackageTree.png" target="_blank"><img src="img/NuGetPackageTree.png" alt="NuGet package tree" style="max-width:100%;"></a></p>
+		<p>A detailed overview of each assembly per package is available <a href="https://github.com/PrismLibrary/Prism/blob/master/Documentation/DownloadandSetupPrism.md#overview-of-assemblies">here</a>.</p>
+		
+		<h1>Prism Template Pack</h1>
+		<p>Prism now integrates with Visual Studio and Xamarin Studio to enable a highly productive developer workflow for creating WPF, UWP, and native iOS and Android applications using Xamarin.Forms. Jump start your Prism apps with code snippets, item templates, and project templates for your IDE of choice.</p>
+		<h2>Visual Studio Gallery</h2>
+		<p>The Prism Template Pack is available on the <a href="https://visualstudiogallery.msdn.microsoft.com/e7b6bde2-ba59-43dd-9d14-58409940ffa0">Visual Studio Gallery</a>.  To install, just go to Visual Studio -&gt; Tools -&gt; Extensions and Updates... then search for <strong>Prism</strong> in the online gallery:</p>
+		<img src="img/PrismVisualStudioGallery.jpg">
+		<h2>Xamarin Studio Addin</h2>
+		<p>Installation is straightforward if you've installed Xamarin Add-ins before, just go to  Xamarin Studio -&gt; Add-In Manager...  from the Menu and then search for  <strong>Prism</strong>  from the Gallery:</p>
+		<img src="img/PrismXamarinAddin.jpg">
+		
+	</main>	
+    <footer class="bColor-secondary-1">
+<p>Created by <a href="https://github.com/ganchito55">Ganchito55</a>. <b>Prism 2016</b></p>
+</footer>
+</body>
+</html>
