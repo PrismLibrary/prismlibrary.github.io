@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/colors.css">
+<link rel="stylesheet" href="/css/table.css">
+<link rel="stylesheet" href="/css/slick.css">
+<link rel="stylesheet" href="/css/slick-theme.css">
+<script type="text/javascript" src="/js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="/js/slick.js"></script>
+<script type="text/javascript" src="/js/carousel.js"></script>
+<title>Prism</title>
+</head> 
+<body>
+	<header>	
+	<ul id="topHead" class="color-primary-0">
+		<li><a href="index.html"><img src="/img/logo.png" alt="Prism logo"> Prism</a></li>
+		<li><a href="how-to-use.html">How to use</a></li>
+		<li><a href="samples.html">Samples</a></li>
+		<li><a href="authors.html">Authors</a></li>
+	</ul>
+</header>
+	<main>
+		<h1>Prism Samples</h1>
+		<h2>Prism Samples WPF</h2>
+		<p>Samples that demostrate how to use various Prism features with WPF.</p>
+		<h3>Hello World</h3>
+		<div class="carousel">
+			<div><img src="img/wpf/HelloWorld.png"></div>	
+		</div>		
+
+		<p><a href="https://github.com/PrismLibrary/Prism-Samples-Wpf/tree/master/HelloWorld">This sample</a> shows how to create a module, how to load it and how to embed it in a view.</p>
+		<h3>Interactivity Quickstart</h3>		
+		<div class="carousel">
+			<div><img src="img/wpf/interactivity/1.png"></div>
+			<div><img src="img/wpf/interactivity/2.png"></div>
+			<div><img src="img/wpf/interactivity/3.png"></div>
+			<div><img src="img/wpf/interactivity/4.png"></div>
+		</div>				
+		<p><a href="https://github.com/PrismLibrary/Prism-Samples-Wpf/tree/master/InteractivityQuickstart">This sample</a> shows how to use DelegeteCommands, notifications and pop-ups. </p>
+		<h3>Modularity</h3>
+		<div class="carousel">
+			<div><img src="img/wpf/modularity/1.png"></div>
+			<div><img src="img/wpf/modularity/2.png"></div>
+			<div><img src="img/wpf/modularity/3.png"></div>
+			<div><img src="img/wpf/modularity/4.png"></div>
+		</div>
+		<p><a href="https://github.com/PrismLibrary/Prism-Samples-Wpf/tree/master/Modularity/ModularityWithMef">This sample</a> demonstrates the discovery and loading of independent modules using Prism with Managed Extensibility Framework (MEF).</p>
+		<p>In this example different modules are discovered by direct reference, directory sweep, or configuration. Hover over a module to see a tooltip describing how it is initialized.</p>
+		<p>There is also <a href="https://github.com/PrismLibrary/Prism-Samples-Wpf/tree/master/Modularity/ModularityWithUnity">an example</a> using Unity instead of MEF.</p>
+		<h3>StockTraderRI</h3>
+		<div class="carousel">
+			<div><img src="img/wpf/stockTrader/1.png"></div>
+			<div><img src="img/wpf/stockTrader/2.png"></div>
+			<div><img src="img/wpf/stockTrader/3.png"></div>
+			<div><img src="img/wpf/stockTrader/4.png"></div>
+		</div>
+		<p><a href="https://github.com/PrismLibrary/Prism-Samples-Wpf/tree/master/StockTraderRI">This sample</a> shows how to use MEF, a modularity user interface, MVVM and region-based navigation.</p>
+		<p>The reference implementation is not a real-world application; however, it is based on real-world challenges customers are facing. When you look at this application, do not look at it as a reference point for building a stock trader application—instead, look at is as a reference for building a composite application. </p>
+		<h3>View-Switching Navigation</h3>
+		<div class="carousel">
+			<div><img src="img/wpf/viewSwitching/1.png"></div>
+			<div><img src="img/wpf/viewSwitching/2.png"></div>
+			<div><img src="img/wpf/viewSwitching/3.png"></div>
+			<div><img src="img/wpf/viewSwitching/4.png"></div>
+			<div><img src="img/wpf/viewSwitching/5.png"></div>
+			<div><img src="img/wpf/viewSwitching/6.png"></div>
+		</div>
+		<p><a href="https://github.com/PrismLibrary/Prism-Samples-Wpf/tree/master/View-Switching%20Navigation_Desktop">This sample</a> demonstrates how to use the Prism Region Navigation API with the Model-View-ViewModel (MVVM) pattern. The Prism Region Navigation utilizes a Uniform Resource Identifier (URI) approach to switch between views. The QuickStart simulates the navigation of a simple email, contacts, and calendar application. The left region provides navigation to each of the main views. The views demonstrate backward navigation and asynchronous dialog interactions.</p>
+		<p>The View-Switching Navigation QuickStart is more complex than a typical QuickStart because it demonstrates multiple navigation scenarios. Navigation supports just-in-time view creation, and therefore, interacts with the dependency injection container. Additionally, to be compatible with the Model-View-ViewModel (MVVM) approach, navigation interacts with views and with view models (via the DataContext property).</p>
+		<p>This demonstrates the following navigation capabilities:</p>
+		<ul>
+          <li>Navigating to a view in a region</li>
+          <li>Navigating to a view in a region contained in another view (nested navigation)</li>
+          <li>Navigation journal support</li>
+          <li>Just-in-time view creation</li>
+          <li>Passing contextual information when navigating to a view</li>
+          <li>Views and view models participating in navigation, including confirming or canceling navigation</li>
+          <li>Using navigation as part of an application built through modularity and user interface (UI) composition</li>
+        </ul>
+	</main>
+    <footer class="bColor-secondary-1">
+<p>Created by <a href="https://github.com/ganchito55">Ganchito55</a>. <b>Prism 2016</b></p>
+</footer>
+</body>
+</html>
