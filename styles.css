@@ -1,0 +1,64 @@
+/*styling for the main "body"*/
+.body {
+
+  /*margin: 0 auto;*/
+
+  line-height: 1.5;
+  /*padding: 4em 1em;*/
+  color: #555;
+ background-image: url(images/background-image.jpg);
+ background-size: cover;
+ background-repeat: no-repeat;
+}
+/*navbar styling*/
+
+#navbarprismlogo{
+   max-width: 35%;
+
+}
+
+#aboutprism{
+
+      color: #050505;
+    font-family: 'Lato', sans-serif;
+        word-wrap: break-word;
+} 
+.titlecontainer {
+
+    margin: 100px auto;
+ 
+}
+.title {
+    width: 50px;
+    margin-left: 130px; 
+    margin-top: -90px;
+    font-family: 'Lato', sans-serif;
+   font-size: 450% 
+}
+
+#header {
+ 
+  margin: 1px auto;  
+  max-width: 50em;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  line-height: 1.2;
+  padding: 1vw 5vh 2em;
+  text-align: center top;
+}
+
+
+.headerA {
+  border: 5px solid #00A5F2;
+  background-position: center top;
+  border-radius: 500000px;
+  color: #292929;
+  font-size: 1.2em;
+  letter-spacing: 0.2em;
+  padding: 1em 2em;
+  text-transform: uppercase;
+  text-decoration: none;
+font-family: 'Lato', sans-serif;
+
+}
