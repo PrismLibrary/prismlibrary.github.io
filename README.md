@@ -7,6 +7,7 @@ Frameworks
 ----------------
 
 [CakePHP](https://book.cakephp.org/2.0/en/index.html) - PHP framework
+
 [Unsemantic](https://unsemantic.com/) - CSS framework
 
 Languages
@@ -20,10 +21,17 @@ To translate sentences, edit the following file:
 /app/Locale/{language}/LC_MESSAGES/core.po
 ```
 
-Tmp files
+Note: after any change on core.po, make sure you clean tmp files located in `/app/tmp/cache/persistent/`
+
+Cautions
 ------------
 
+**Files you can not change**
+All the website's content (pages, images etc.) are located in `/app/` directory and you should only handle files are in this directory.
+Do not modificate any file nor directory outsite `/app/`.
+
+**Tmp files**
 It is needed to set written permission on **tmp** directory and on any file and directory located in:
 ```
-/app/tmp
+/app/tmp/
 ```
