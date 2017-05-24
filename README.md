@@ -13,12 +13,16 @@ Frameworks
 Languages
 ------------
 
-The website is available in English and Japanese.
-The default language is English and all the HTML code has to be written first in English.
-
+The website is available in English and Japanese. The default language is English and all the HTML code has to be written first in English. 
 To translate sentences, edit the following file:
 ```
 /app/Locale/{language}/LC_MESSAGES/core.po
+```
+
+For example, if you want to translate "Home" to portuguese:
+```
+msgid "Home"
+msgstr "Início"
 ```
 
 Note: after any change on core.po, make sure you clean tmp files located in `/app/tmp/cache/persistent/`
@@ -35,3 +39,8 @@ It is needed to set written permission on **tmp** directory and on any file and 
 ```
 /app/tmp/
 ```
+
+Credits
+------------
+
+The website was originally design by [Rian Dutra](http://riandutra.com).
