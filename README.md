@@ -31,10 +31,12 @@ Cautions
 ------------
 
 **Files you can not change**
+
 All the website's content (pages, images etc.) are located in `/app/` directory and you should only handle files are in this directory.
 Do not modificate any file nor directory outsite `/app/`.
 
 **Tmp files**
+
 It is needed to set written permission on **tmp** directory and on any file and directory located in:
 ```
 /app/tmp/
