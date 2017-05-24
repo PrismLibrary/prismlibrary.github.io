@@ -13,7 +13,7 @@ Frameworks
 Languages
 ------------
 
-The website is available in English and Japanese. The default language is English and all the HTML code has to be written first in English. 
+The website is available in English and Japanese. The default language is English and all the HTML code has to be write first in English. 
 To translate sentences, edit the following file:
 ```
 /app/Locale/{language}/LC_MESSAGES/core.po
