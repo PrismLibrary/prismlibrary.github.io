@@ -1,0 +1,68 @@
+escape_char	/
+comment_char %
+abday	"<D><o><m>";/
+	"<S><e><g>";/
+	"<T><e><r>";/
+	"<Q><u><a>";/
+	"<Q><u><i>";/
+	"<S><e><x>";/
+	"<S><a><b>"
+day	"<D><o><m><i><n><g><o>";/
+	"<S><e><g><u><n><d><a>";/
+	"<T><e><r><ç><a>";/
+	"<Q><u><a><r><t><a>";/
+	"<Q><u><i><n><t><a>";/
+	"<S><e><x><t><a>";/
+	"<S><á><b><a><d><o>"
+
+week    7;19971130;7
+first_weekday	1
+first_workday	2
+abmon	"<J><a><n>";/
+	"<F><e><v>";/
+	"<M><a><r>";/
+	"<A><b><r>";/
+	"<M><a><i>";/
+	"<J><u><n>";/
+	"<J><u><l>";/
+	"<A><g><o>";/
+	"<S><e><t>";/
+	"<O><u><t>";/
+	"<N><o><v>";/
+	"<D><e><z>"
+mon	"<J><a><n><e><i><r><o>";/
+	"<F><e><v><e><r><e><i><r><o>";/
+	"<M><a><r><ç><o>";/
+	"<A><b><r><i><l>";/
+	"<M><a><i><o>";/
+	"<J><u><n><h><o>";/
+	"<J><u><l><h><o>";/
+	"<A><g><o><s><t><o>";/
+	"<S><e><t><e><m><b><r><o>";/
+	"<O><u><t><u><b><r><o>";/
+	"<N><o><v><e><m><b><r><o>";/
+	"<D><e><z><e><m><b><r><o>"
+% Appropriate date and time representation (%c)
+%	"%a %d %b %Y %r %Z"
+d_t_fmt "<U0025><U0061><U0020><U0025><U0064><U0020><U0025><U0062><U0020><U0025><U0059><U0020><U0025><U0072><U0020><U0025><U005A>"
+%
+% Appropriate date representation (%x)
+%	"%d/%m/%Y"
+d_fmt   "<U0025><U0064><U002F><U0025><U006D><U002F><U0025><U0059>"
+%
+% Appropriate time representation (%X)
+%	"%r"
+t_fmt   "<U0025><U0072>"
+%
+% Appropriate AM/PM time representation (%r)
+%	"%I:%M:%S %p"
+t_fmt_ampm "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070>"
+%
+% Strings for AM/PM
+%
+am_pm	"<A><M>";"<P><M>"
+%
+% Appropriate date representation (date(1))   "%a %b %e %H:%M:%S %Z %Y"
+date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
+<U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
+<U0025><U005A><U0020><U0025><U0059>"

@@ -1,0 +1,65 @@
+msgid "Home"
+msgstr "自宅"
+
+msgid "Documentation"
+msgstr "ドキュメンテーション"
+
+msgid "Learn"
+msgstr "学ぶ"
+
+msgid "Discuss"
+msgstr "話し合います"
+
+msgid "Build easily applications in WPF, Windows 10 UWP and Xamarin Forms."
+msgstr "WPF、Windows 10 UWP、およびXamarinフォームで簡単にアプリケーションを構築できます。"
+
+msgid "Go to Home"
+msgstr "家に帰る"
+
+msgid "<strong>Prism is a framework for building loosely coupled, maintainable, and testable XAML applications in WPF, Windows 10 UWP, and Xamarin Forms.</strong> Separate releases are available for each platform and those will be developed on independent timelines. Prism provides an implementation of a collection of design patterns that are helpful in writing well-structured and maintainable XAML applications, including MVVM, dependency injection, commands, EventAggregator, and others. Prism's core functionality is a shared code base in a Portable Class Library targeting these platforms."
+msgstr "<strong>Prismは、WPF、Windows 10 UWP、およびXamarinフォームで、疎結合、保守可能、およびテスト可能なXAMLアプリケーションを構築するためのフレームワークです。</strong> 個別のリリースは各プラットフォームで利用でき、それらは独立したタイムラインで開発されます。 Prismは、MVVM、依存関係注入、コマンド、EventAggregatorなどを含む、構造化され、保守しやすいXAMLアプリケーションを記述するのに役立つ一連の設計パターンの実装を提供します。 Prismのコア機能は、これらのプラットフォームを対象としたポータブルクラスライブラリの共有コードベースです。"
+
+msgid "Those things that need to be platform specific are implemented in the respective libraries for the target platform. Prism also provides great integration of these patterns with the target platform. For example, Prism for UWP and Xamarin Forms allows you to use an abstraction for navigation that is unit testable, but that layers on top of the platform concepts and APIs for navigation so that you can fully leverage what the platform itself has to offer, but done in the MVVM way."
+msgstr "プラットフォーム特有である必要があるものは、ターゲットプラットフォーム用のそれぞれのライブラリに実装されています。 プリズムはまた、これらのパターンとターゲットプラットフォームとの優れた統合も提供します。 たとえば、Prism for UWPとXamarin Formsでは、ユニットテスト可能なナビゲーションに抽象化を使用できますが、プラットフォームの概念とAPIの上にレイヤーを配置して、プラットフォーム自体が提供するものを十分に活用できるようにします MVVMの方法で行われます。"
+
+msgid "Join our Slack Channel"
+msgstr "Slackのチャンネルに参加する"
+
+msgid "Getting Started"
+msgstr "入門"
+
+msgid "Step"
+msgstr "ステップ"
+
+msgid "Install the Template Pack"
+msgstr "テンプレートパックをインストールする"
+
+msgid "Create a project"
+msgstr "プロジェクトを作成する"
+
+msgid "Run the code"
+msgstr "コードを実行する"
+
+msgid "Prism Template Pack"
+msgstr "Prismテンプレートパック"
+
+msgid "The Prism Template Pack is available on the <a href="https://visualstudiogallery.msdn.microsoft.com/e7b6bde2-ba59-43dd-9d14-58409940ffa0" target="_blank">Visual Studio Gallery</a>. To install, just go to Visual Studio -> Tools -> Extensions and Updates. Then search for Prism in the online gallery:"
+msgstr "Prism Template Packは、<a href="https://visualstudiogallery.msdn.microsoft.com/e7b6bde2-ba59-43dd-9d14-58409940ffa0" target="_blank">Visual Studio Gallery</a>で利用できます。 インストールするには、Visual Studio - >ツール - >拡張機能と更新を選択します。 次に、オンラインギャラリーでPrismを検索します。"
+
+msgid "Watch videos and check out our Pluralsight courses."
+msgstr "ビデオを見て、Pluralsightコースをチェックしてください。"
+
+msgid "This project is part of the"
+msgstr "このプロジェクトは、"
+
+msgid "View on GitHub"
+msgstr "GitHubでの表示"
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
