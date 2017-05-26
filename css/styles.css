@@ -308,7 +308,7 @@
 	}
 	a.linkBoxGitHub span {
 		padding: 15px 0 15px 40px;
-		background-image: url('../img/icon-github@2x.png');
+		background-image: url('../images/icon-github@2x.png');
 		background-repeat: no-repeat;
 		background-size:  32px 32px;
 		background-position: 0;
@@ -324,7 +324,7 @@
 	}
 	a.linkBoxDocumentation span {
 		padding: 15px 0 15px 40px;
-		background-image: url('../img/icon-documentation@2x.png');
+		background-image: url('../images/icon-documentation@2x.png');
 		background-repeat: no-repeat;
 		background-size:  32px 32px;
 		background-position: 0;
@@ -370,7 +370,7 @@
 	/** Content above footer **/
 	.aboveFooter {
 		margin-top: 100px;
-		background: #0182e1 url(../img/bg-cont-blue.jpg) top center no-repeat;
+		background: #0182e1 url(../images/bg-cont-blue.jpg) top center no-repeat;
 		background-size: 100% 100%;
 		color: #fff;
 		padding:  40px 0;
