@@ -1,0 +1,50 @@
+{
+	
+	"en": {
+		"langdesc": "English",
+		"l_documentation": "Documentation",
+		"l_learn": "Learn",
+		"l_build_easily_applications": "Build easily applications in WPF, Windows 10 UWP and Xamarin Forms.",
+		"l_view_on_github": "View on GitHub",
+		"l_prism_is_a": "Prism is a framework for building loosely coupled, maintainable, and testable XAML applications in WPF, Windows 10 UWP, and Xamarin Forms.</strong> Separate releases are available for each platform and those will be developed on independent timelines. Prism provides an implementation of a collection of design patterns that are helpful in writing well-structured and maintainable XAML applications, including MVVM, dependency injection, commands, EventAggregator, and others. Prism's core functionality is a shared code base in a Portable Class Library targeting these platforms.",
+		"l_those_things_that": "Those things that need to be platform specific are implemented in the respective libraries for the target platform. Prism also provides great integration of these patterns with the target platform. For example, Prism for UWP and Xamarin Forms allows you to use an abstraction for navigation that is unit testable, but that layers on top of the platform concepts and APIs for navigation so that you can fully leverage what the platform itself has to offer, but done in the MVVM way.",
+		"l_join_our_slack": "Join our Slack Channel",
+		"l_getting_started": "Getting Started",
+		"l_step": "Step",
+		"l_install_the_template": "Install the Template Pack",
+		"l_create_a_project": "Create a project",
+		"l_run_the_code": "Run the code",
+		"l_prism_template_pack": "Prism Template Pack",
+		"l_is_available_on": "The Prism Template Pack is available on the",
+		"l_visual_studio_gallery": "Visual Studio Gallery",
+		"l_to_install_just": "To install, just go to Visual Studio -> Tools -> Extensions and Updates. Then search for Prism in the online gallery:",
+		"l_watch_videos_and": "Watch videos and check out our Pluralsight courses.",
+		"l_prism_library": "Prism Library",
+		"l_net_foundation": ".NET Foundation"
+	},
+	
+	
+	"jp": {
+		"langdesc": "日本語 (Japanese)",
+		"l_documentation": "ドキュメンテーション",		
+		"l_learn": "学ぶ",
+		"l_build_easily_applications": "WPF、Windows 10 UWP、およびXamarinフォームで簡単にアプリケーションを構築できます。",
+		"l_view_on_github": "GitHubで見る",
+		"l_prism_is_a": "Prismは、WPF、Windows 10 UWP、およびXamarin Formsで疎結合、保守可能、およびテスト可能なXAMLアプリケーションを構築するためのフレームワークです。</ strong>別々のリリースが各プラットフォームで使用でき、それらは独立したタイムラインで開発されます。 Prismは、MVVM、依存関係注入、コマンド、EventAggregatorなどを含む、構造化され保守しやすいXAMLアプリケーションを記述するのに役立つ一連の設計パターンの実装を提供します。 Prismのコア機能は、これらのプラットフォームを対象としたポータブルクラスライブラリの共有コードベースです。",
+		"l_those_things_that": "プラットフォーム特有である必要があるものは、ターゲットプラットフォーム用のそれぞれのライブラリに実装されています。 プリズムはまた、これらのパターンとターゲットプラットフォームとの優れた統合も提供します。 たとえば、Prism for UWPとXamarin Formsでは、ユニットテスト可能なナビゲーションに抽象化を使用できますが、プラットフォーム概念とAPIの上にレイヤーを配置することで、プラットフォーム自体が提供するものを十分に活用できるようになります MVVMの方法で行われます。",
+		"l_join_our_slack": "スラックチャンネルに参加",
+		"l_getting_started": "入門",
+		"l_step": "ステップ",
+		"l_install_the_template": "テンプレートパックをインストールする",
+		"l_create_a_project": "プロジェクトを作成する",
+		"l_run_the_code": "コードを実行する",
+		"l_prism_template_pack": "プリズムテンプレートパック",
+		"l_is_available_on": "プリズムテンプレートパックは、",
+		"l_visual_studio_gallery": "Visual Studioギャラリー",
+		"l_to_install_just": "インストールするには、Visual Studio - >ツール - >拡張機能と更新を選択します。 次に、オンラインギャラリーでPrismを検索します。",
+		"l_watch_videos_and": "ビデオを見て、Pluralsightコースをチェックしてください。",
+		"l_prism_library": "プリズムライブラリ",
+		"l_net_foundation": ".NET基盤"
+	}
+	
+}
