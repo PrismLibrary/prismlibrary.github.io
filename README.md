@@ -1,46 +1,33 @@
 Website for Prism Library project
 =======
 
-The website for Prism Library project was developed under the CakePHP Framework 2.0 and its responsive design is helped by the Unsemantic CSS framework.
-
-Frameworks
-----------------
-
-[CakePHP](https://book.cakephp.org/2.0/en/index.html) - PHP framework
-
-[Unsemantic](https://unsemantic.com/) - CSS framework
+The website for Prism Library project was written in HTML with a javascript translator script (english/japanese).
 
 Languages
 ------------
 
-The website is available in English and Japanese. The default language is English and all the HTML code has to be write first in English. 
+The website is available in English and Japanese.
+
 To translate sentences, edit the following file:
 ```
-/app/Locale/{language}/LC_MESSAGES/core.po
+/lang/languages.json
 ```
 
-For example, if you want to translate "Home" to portuguese:
+Every new word or setence added to the HTML page has to be also added to **languages.json** file. For example, if you add the word "Home", it should be translated to all languages:
 ```
-msgid "Home"
-msgstr "Início"
+"en": {
+	...
+	"l_home": "Home",
+	...
+},
+"jp": {
+	...
+	"l_home": "ホーム",
+	...
+}
 ```
 
-Note: after any change on core.po, make sure you clean tmp files located in `/app/tmp/cache/persistent/`
-
-Cautions
-------------
-
-**Files you can not change**
-
-All the website's content (pages, images etc.) are located in `/app/` directory and you should only handle files are in this directory.
-Do not modificate any file nor directory outsite `/app/`.
-
-**Tmp files**
-
-It is needed to set written permission on **tmp** directory and on any file and directory located in:
-```
-/app/tmp/
-```
+Note: to maintain a pattern, the reference code has to begin with "l_". If the reference code has more than 2 word, if should be limited to 3 word. For example, for the sentence "It is a great clean website" should be `l_it_is_a`. If there is already the same code, use the next words (eg: `l_great_clean_website`)
 
 Credits
 ------------

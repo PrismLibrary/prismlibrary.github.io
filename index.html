@@ -1,0 +1,322 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="expires" content="0" />
+	<meta name="description" content="" />
+	<meta name="language" content="EN" />
+	<meta name="author" content="Rian Design" />
+	<meta name="copyright" content="©2017 Prism Library" />
+	<meta name="robots" content="index, follow" />
+	<meta name="revisit-after" content="7 days" />
+	<meta name="reply-to" content="contato@riandesign.com.br" />
+	<meta name="rating" content="general" />
+	<meta name="keywords" content="" />
+	
+	<title>Prism Library</title>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800" rel="stylesheet">
+    
+    <!--[if lt IE 9]>
+        <script src="js/html5.js"></script>
+    <![endif]-->
+    
+    <!--[if (gt IE 8) | (IEMobile)]><!-->
+        <link rel="stylesheet" href="css/unsemantic-grid-responsive.css">
+    <!--<![endif]-->
+    
+    <!--[if (lt IE 9) & (!IEMobile)]>
+		<link rel="stylesheet" href="css/ie.css">
+		<link rel="stylesheet" href="css/ie-styles.css">
+    <![endif]-->
+    
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles-menu-mobile.css">
+    
+	<script src="js/jquery-1.11.0.min.js"></script>
+	<script src="js/translator.js"></script>
+	<script src="js/translator_init.js"></script>
+	
+</head>
+<!-- onLoad() in js/translator_init.js -->
+<body onload="onLoad()">
+
+<!-- <select name="listlanguages" onchange="langSelectChange(this)"></select> -->
+
+<script>
+$(document).ready(function(){
+	
+	// Mobile menu
+	$('.menu-anchor').on('click touchstart', function(e){
+		$('html').toggleClass('menu-active');
+	  	e.preventDefault();
+	});
+	
+})
+</script>
+
+
+
+<!-- Mobile menu -->
+<div class="hide-on-desktop">
+	<div class="menuMobile">
+		<menu>
+			<ul>
+				<li>
+					<a href="http://prismlibrary.readthedocs.io/en/latest/" target="_blank">
+						<span id="l_documentation">Documentation</span>
+					</a>
+				</li>
+				<li>
+					<a href="http://www.pluralsight.com/authors/brian-lagunas" target="_blank">
+						<span id="l_learn">Learn</span>
+					</a>
+				</li>
+			</ul>
+		</menu>		
+	</div>
+</div>
+
+
+<header>
+	<div class="grid-container">
+		<div class="grid-100">
+			<div class="positionRelative">
+				
+				<!-- Mobile menu anchor -->
+				<span class="menu-anchor"></span>
+				
+				<!-- Languages flags -->
+				<div class="languageFlags">
+					<ul>
+						<li>
+							<a href="#" onClick="langChange('jp'); return false;" title="日本語 (Japanese)">
+								<img src="img/icon-language-jp@2x.jpg" alt="日本語">
+							</a>
+						</li>
+						<li>
+							<a href="#" onClick="langChange('en'); return false;" title="English">
+								<img src="img/icon-language-en@2x.jpg" alt="English">
+							</a>
+						</li>
+					</ul>
+				</div>
+				
+				<!-- Prism logo -->
+				<div class="logo">
+					<div class="hide-on-mobile">
+						<img src="img/logo-prism-symbol@2x.png" alt="Prism Library">
+					</div>
+					<div class="hide-on-desktop">
+						<img src="img/logo-prism@2x.png" alt="Prism Library">
+					</div>
+				</div>
+				
+				<!-- Desktop nav -->
+				<div class="menuDesktop hide-on-mobile">
+					<menu>
+						<ul>
+							<li>
+								<a href="http://prismlibrary.readthedocs.io/en/latest/" target="_blank">
+									<span id="l_documentation">Documentation</span>
+								</a>
+							</li>
+							<li>
+								<a href="http://www.pluralsight.com/authors/brian-lagunas" target="_blank">
+									<span id="l_learn">Learn</span>
+								</a>
+							</li>
+						</ul>
+					</menu>	
+				</div>
+				
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+<main>
+	
+	<div class="welcomeCont">
+		<div class="grid-container">
+			<div class="grid-100 textAlignCenter">
+				<img src="img/logo-prism@2x.png" alt="Prism Library" class="logo hide-on-mobile">
+
+				<div class="fontSize16 grey999 marginTop40 marginBottom40">
+					<strong id="l_build_easily_applications">Build easily applications in WPF, Windows 10 UWP and Xamarin Forms.</strong>
+				</div>
+
+				<div class="marginBottom60">
+					<a href="https://github.com/PrismLibrary/Prism" class="linkBox linkBoxGitHub" target="_blank">
+						<span id="l_view_on_github">View on GitHub</span>
+					</a>
+					<a href="http://prismlibrary.readthedocs.io/en/latest/" class="linkBox linkBoxDocumentation" target="_blank">
+						<span id="l_documentation">Documentation</span>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div style="border-top:  1px solid #dedede; padding-top:  40px">
+			<div class="grid-container">
+				<div>
+					<div class="grid-40 prefix-10">
+						<span id="l_prism_is_a">Prism is a framework for building loosely coupled, maintainable, and testable XAML applications in WPF, Windows 10 UWP, and Xamarin Forms.</strong> Separate releases are available for each platform and those will be developed on independent timelines. Prism provides an implementation of a collection of design patterns that are helpful in writing well-structured and maintainable XAML applications, including MVVM, dependency injection, commands, EventAggregator, and others. Prism's core functionality is a shared code base in a Portable Class Library targeting these platforms.</span>
+					</div>
+
+					<div class="grid-40 suffix-10">
+						<br class="hide-on-desktop">
+						<span id="l_those_things_that">Those things that need to be platform specific are implemented in the respective libraries for the target platform. Prism also provides great integration of these patterns with the target platform. For example, Prism for UWP and Xamarin Forms allows you to use an abstraction for navigation that is unit testable, but that layers on top of the platform concepts and APIs for navigation so that you can fully leverage what the platform itself has to offer, but done in the MVVM way.</span>
+					</div>
+
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+
+	<!-- Main content -->
+	<div class="grid-container">        
+		<div class="grid-100">
+			<div class="highlightedCont slackCont">
+				<a href="https://prismslack.herokuapp.com/" target="_blank">
+					<img src="img/logo-slack@2x.png" class="imgInline logo" alt="Logo Slack">
+					<br class="hide-on-desktop">
+					<span id="l_join_our_slack">Join our Slack Channel</span>
+				</a>
+			</div>
+		</div>
+
+		<div class="installSteps">
+			<div class="grid-100">
+				<h2 id="l_getting_started">Getting Started</h2>
+			</div>
+
+			<div class="grid-33 mobile-marginBottom40">
+				<div class="marginBottom20">
+					<strong>
+						<span class="labelBlue"><span id="l_step">Step</span> 1</span>
+						<span id="l_install_the_template">Install the Template Pack</span>
+					</strong>
+				</div>
+				
+				<img src="img/install-step-1.jpg" class="img-100 borderGrey boxShadow" alt="Install the Template Pack">
+			</div>
+
+			<div class="grid-33 mobile-marginBottom40">
+				<div class="marginBottom20">
+					<strong>
+						<span class="labelBlue"><span id="l_step">Step</span> 2</span>
+						<span id="l_create_a_project">Create a project</span>
+					</strong>
+				</div>
+				
+				<img src="img/install-step-2.jpg" class="img-100 borderGrey boxShadow" alt="Create a project">
+			</div>
+
+			<div class="grid-33 mobile-marginBottom40">
+				<div class="marginBottom20">
+					<strong>
+						<span class="labelBlue"><span id="l_step">Step</span> 3</span>
+						<span id="l_run_the_code">Run the code</span>
+					</strong>
+				</div>
+				
+				<img src="img/install-step-3.jpg" class="img-100 borderGrey boxShadow" alt="Run the code">
+			</div>
+
+			<div class="clear"></div>
+		</div>
+	</div>
+	<!-- End Main content-->
+	
+	
+	
+	
+	
+	<div class="aboveFooter">
+		<div class="grid-container">
+
+			<div class="grid-45 suffix-5">
+				<h2 class="white">
+					<a href="https://visualstudiogallery.msdn.microsoft.com/e7b6bde2-ba59-43dd-9d14-58409940ffa0" target="_blank">
+						<span id="l_prism_template_pack">Prism Template Pack</span>
+					</a>
+				</h2>
+
+				<a href="https://visualstudiogallery.msdn.microsoft.com/e7b6bde2-ba59-43dd-9d14-58409940ffa0" target="_blank">
+					<img src="img/screenshot-prism-template-pack@2x.jpg" class="img-100 boxShadow" alt="Prism Template Pack">
+				</a>
+
+				<p class="marginTop20">
+					<span id="l_is_available_on">The Prism Template Pack is available on the</span>
+					<a href="https://visualstudiogallery.msdn.microsoft.com/e7b6bde2-ba59-43dd-9d14-58409940ffa0" target="_blank" id="l_visual_studio_gallery">Visual Studio Gallery</a>.
+					<span id="l_to_install_just">To install, just go to Visual Studio -> Tools -> Extensions and Updates. Then search for Prism in the online gallery:</span>
+				</p>
+			</div>
+
+			<div class="grid-45 suffix-5">
+				<h2 class="white">
+					<a href="http://www.pluralsight.com/authors/brian-lagunas" target="_blank">
+						<span id="l_learn">Learn</span>
+					</a>
+				</h2>
+				
+				<a href="http://www.pluralsight.com/authors/brian-lagunas" target="_blank">
+					<img src="img/banner-pluralsight@2x.jpg" class="img-100 boxShadow" alt="Learn">
+				</a>
+
+				<p class="marginTop20">
+					<a href="http://www.pluralsight.com/authors/brian-lagunas" target="_blank" id="l_watch_videos_and">Watch videos and check out our Pluralsight courses.</a>
+				</p>
+			</div>
+
+			<div class="clear"></div>
+		</div>
+	</div>
+	
+</main>
+
+
+<!-- Footer -->
+<footer>
+	<div class="grid-container">
+		<div class="grid-60">
+			<div class="info">
+				<img src="img/logo-prism-grey@2x.png" class="logo" alt="Logo">
+				<Strong id="l_prism_library">Prism Library</Strong><br>
+				This project is part of the
+				<a href="http://www.dotnetfoundation.org/projects" target="_blank" id="l_net_foundation">.NET Foundation</a>.
+				<div class="clear"></div>
+			</div>
+		</div>
+		
+		<div class="grid-40 RianDesign">
+			<div class="hide-on-mobile">
+				<a href="http://riandesign.com.br/en" target="_blank" title="Rian Design">
+					<img src="img/logo-rian-design@2x.png" alt="Rian Design">
+				</a>
+			</div>
+			<div class="hide-on-desktop">
+				<a href="http://riandesign.com.br/en" target="_blank" title="Rian Design">
+					Rian Design
+				</a>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+</body>
+</html>
