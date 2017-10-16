@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Using the Page Dialog Service | Prism </title>
+    <title>Using the EventToCommandBehavior | Prism </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Using the Page Dialog Service | Prism ">
+    <meta name="title" content="Using the EventToCommandBehavior | Prism ">
     <meta name="generator" content="docfx 2.25.2.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -91,13 +91,13 @@
                         
                         <ul class="nav level2">
                           <li class="">
-                            <a href="../Getting-Started/Download-and-Setup-Prism.html" title="Download and Setup Prism" class="">Download and Setup Prism</a>
+                            <a href="../getting-started/Download-and-Setup-Prism.html" title="Download and Setup Prism" class="">Download and Setup Prism</a>
                           </li>
                           <li class="">
-                            <a href="../Getting-Started/NuGet-Packages.html" title="NuGet Packages" class="">NuGet Packages</a>
+                            <a href="../getting-started/NuGet-Packages.html" title="NuGet Packages" class="">NuGet Packages</a>
                           </li>
                           <li class="">
-                            <a href="../Getting-Started/Assembly-Versioning.html" title="Assembly Versioning" class="">Assembly Versioning</a>
+                            <a href="../getting-started/Assembly-Versioning.html" title="Assembly Versioning" class="">Assembly Versioning</a>
                           </li>
                         </ul>  </li>
                     <li class="">
@@ -157,25 +157,25 @@
                         
                         <ul class="nav level2">
                           <li class="">
-                            <a href="../Xamarin-Forms/1-Getting-Started.html" title="Getting Started" class="">Getting Started</a>
+                            <a href="../xamarin-forms/Getting-Started.html" title="Getting Started" class="">Getting Started</a>
                           </li>
                           <li class="">
-                            <a href="../Xamarin-Forms/2-ViewModelLocator.html" title="ViewModelLocator" class="">ViewModelLocator</a>
+                            <a href="../xamarin-forms/ViewModelLocator.html" title="ViewModelLocator" class="">ViewModelLocator</a>
                           </li>
                           <li class="">
-                            <a href="../Xamarin-Forms/3-Navigation-Service.html" title="Navigation Service" class="">Navigation Service</a>
+                            <a href="../xamarin-forms/Navigation-Service.html" title="Navigation Service" class="">Navigation Service</a>
+                          </li>
+                          <li class="">
+                            <a href="../xamarin-forms/Page-Dialog-Service.html" title="Page Dialog Service" class="">Page Dialog Service</a>
+                          </li>
+                          <li class="">
+                            <a href="../xamarin-forms/Dependency-Service.html" title="Dependency Service" class="">Dependency Service</a>
                           </li>
                           <li class="active">
-                            <a href="../Xamarin-Forms/4-Page-Dialog-Service.html" title="Page Dialog Service" class="active">Page Dialog Service</a>
+                            <a href="../xamarin-forms/EventToCommandBehavior.html" title="EventToCommandBehavior" class="active">EventToCommandBehavior</a>
                           </li>
                           <li class="">
-                            <a href="../Xamarin-Forms/5-Dependency-Service.html" title="Dependency Service" class="">Dependency Service</a>
-                          </li>
-                          <li class="">
-                            <a href="../Xamarin-Forms/6-EventToCommandBehavior.html" title="EventToCommandBehavior" class="">EventToCommandBehavior</a>
-                          </li>
-                          <li class="">
-                            <a href="../Xamarin-Forms/7-Working-With-TabbedPages.html" title="Working with TabbedPages" class="">Working with TabbedPages</a>
+                            <a href="../xamarin-forms/Working-With-TabbedPages.html" title="Working with TabbedPages" class="">Working with TabbedPages</a>
                           </li>
                         </ul>  </li>
                   </ul>        </div>
@@ -186,61 +186,101 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="using-the-page-dialog-service">Using the Page Dialog Service</h1>
+<h1 id="using-the-eventtocommandbehavior">Using the EventToCommandBehavior</h1>
 
-<p>Displaying an alert or asking a user to make a choice is a common UI task. Xamarin.Forms has two methods on the Page class for interacting with the user via a pop-up: DisplayAlert and DisplayActionSheet.  Prism provides a single <strong>IPageDialogService</strong> that abstracts away the Xamarin.Forms Page object dependency required for these actions and keeps your ViewModels clean and testable.  Simply request this service via the constructor of your ViewModel, and call either the DisplayAlert, or DisplayActionSheet to invoke the desired notification.</p>
-<pre><code class="lang-cs">public MainPageViewModel(IPageDialogService dialogService)
-{
-    _dialogService = dialogService;
-}
-</code></pre><h2 id="displayalertasync">DisplayAlertAsync</h2>
-<p>The <strong>DisplayAlertAsync</strong> method shows a modal pop-up to alert the user or ask simple questions of them. To display these alerts with Prism&#39;s <strong>IPageDialogService</strong>, use the <strong>DisplayAlertAsync</strong> method. The following line of code shows a simple message to the user:</p>
-<pre><code class="lang-cs">_dialogService.DisplayAlertAsync(&quot;Alert&quot;, &quot;You have been alerted&quot;, &quot;OK&quot;);
-</code></pre><p><img src="images/pagedialogservice_01.png" alt="Alert dialog on the 3 major platforms"></p>
-<p>This example does not collect information from the user. The alert displays modally and once dismissed the user continues interacting with the application. DisplayAlertAsync can also be used to capture a user&#39;s response by presenting two buttons and returning a boolean.</p>
-<p>To get a response from an alert, supply text for both buttons and await the method. After the user selects one of the options the answer will be returned to your code. Note the async and await keywords in the sample code below:</p>
-<pre><code class="lang-cs">var alertButton2 = new Button { Text = &quot;DisplayAlert Yes/No&quot; }; // triggers alert
-alertButton2.Clicked += async (sender, e) =&gt; 
-{
-    var answer = await DisplayAlertAsync (&quot;Question?&quot;, &quot;Would you like to play a game&quot;, &quot;Yes&quot;, &quot;No&quot;);
-    Debug.WriteLine(&quot;Answer: &quot; + answer); // writes true or false to the console
-};
-</code></pre><p><img src="images/pagedialogservice_02.png" alt="Question dialog on the 3 major platforms"></p>
-<h2 id="displayactionsheetasync">DisplayActionSheetAsync</h2>
-<p>The UIActionSheet is a common UI element in iOS. The <strong>IPageDialogService.DisplayActionSheetAsync</strong> lets you include this control in cross-platforms apps, rendering native alternatives in Android and Windows Phone.</p>
-<p>To display an action sheet, await <strong>DisplayActionSheetAsync</strong> in any ViewModel, passing the message and button labels as strings. The method returns the string label of the button that was clicked by the user. A simple example is shown here:</p>
-<pre><code class="lang-cs">var actionButton1 = new Button { Text = &quot;ActionSheet Simple&quot; };
-actionButton1.Clicked += async (sender, e) =&gt; 
-{
-    var action = await DisplayActionSheetAsync (&quot;ActionSheet: Send to?&quot;, &quot;Cancel&quot;, null, &quot;Email&quot;, &quot;Twitter&quot;, &quot;Facebook&quot;);
-    Debug.WriteLine(&quot;Action: &quot; + action); // writes the selected button label to the console
-};
-</code></pre><p><img src="images/pagedialogservice_03.png" alt="Action dialog on the 3 major platforms"></p>
-<p>The destroy button is rendered differently than the others, and can be left null or specified as the third string parameter. This example uses the destroy button:</p>
-<pre><code class="lang-cs">var actionButton2 = new Button { Text = &quot;ActionSheet&quot; };
-actionButton2.Clicked += async (sender, e) =&gt; 
-{
-    var action = await DisplayActionSheetAsync (&quot;ActionSheet: Save Photo?&quot;, &quot;Cancel&quot;, &quot;Delete&quot;, &quot;Photo Roll&quot;, &quot;Email&quot;);
-    Debug.WriteLine(&quot;Action: &quot; + action); // writes the selected button label to the console
-};
-</code></pre><p><img src="images/pagedialogservice_04.png" alt="Another action dialog on the 3 major platforms"></p>
-<p>Additionally, Prism provides another option which accepts an array of <strong>IActionSheetButton</strong> that allow you to specificy the title of the buttons, as well as the <strong>DelegateCommand</strong> that should be executed when the option is selected by the user.  This eliminates the need to capture a string result, perform a logical check against the result, and then execute a method or logic in response.</p>
-<p>To create an IActionSheetButton, use one of the three factory methods off of the <strong>ActionSheetButton</strong> class.</p>
+<p>The <code>EventToCommandBehavior</code> class provide a convenient way to, in XAML, &quot;bind&quot; events to <code>ICommand</code> according to MVVM paradigm to avoid code behind.</p>
+<h3 id="usage">Usage</h3>
+<p>The <code>EventToCommandBehavior</code> expose the following properties</p>
 <ul>
-<li>ActionSheetButton.CreateButton</li>
-<li>ActionSheetButton.CreateCancelButton</li>
-<li>ActionSheetButton.CreateDestroyButton</li>
+<li><strong>EventName</strong> The name of the event to listen to. For example <em>ItemTapped</em></li>
+<li><strong>Command</strong> The <code>ICommand</code> that will be executed when the event is raised</li>
+<li><strong>CommandParameter</strong> The parameter that will be sent to the <code>ICommand.Execute(object)</code> method</li>
+<li><strong>EventArgsConverter</strong> Instance of <code>IValueConverter</code> that allows operating on the <code>EventArgs</code> type for the <em>EventName</em></li>
+<li><strong>EventArgsConverterParameter</strong> The parameter that will be sent as the <em>parameter</em> argument to <code>IValueConverter.Convert</code> method</li>
+<li><strong>EventArgsParameterPath</strong> Parameter path to extract property from <code>EventArgs</code> that will be passed to <code>ICommand.Execute(object)</code></li>
 </ul>
-<pre><code class="lang-cs">IActionSheetButton selectAAction = ActionSheetButton.CreateButton(&quot;Select A&quot;, new DelegateCommand(() =&gt; { Debug.WriteLine(&quot;Select A&quot;); }));
-IActionSheetButton cancelAction = ActionSheetButton.CreateCancelButton(&quot;Cancel&quot;, new DelegateCommand(() =&gt; { Debug.WriteLine(&quot;Cancel&quot;); }));
-IActionSheetButton destroyAction = ActionSheetButton.CreateDestroyButton(&quot;Destroy&quot;, new DelegateCommand(() =&gt; { Debug.WriteLine(&quot;Destroy&quot;); }));
+<p>First declare the namespace and assembly in where <code>EventToCommandBehavior</code> is declared and declare a XML-namespace.</p>
+<p><code>xmlns:b=&quot;clr-namespace:Prism.Behaviors;assembly=Prism.Forms&quot;</code></p>
+<h3 id="commandparameter">CommandParameter</h3>
+<p>Bind or declare a parameter that will be sent to the <code>ICommand.Execute(object)</code> method.</p>
+<pre><code class="lang-xml">&lt;ContentPage xmlns=&quot;http://xamarin.com/schemas/2014/forms&quot; 
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot; 
+             x:Class=&quot;MyNamespace.ContentPage&quot;
+             xmlns:b=&quot;clr-namespace:Prism.Behaviors;assembly=Prism.Forms&quot;&gt;
+    &lt;ListView&gt;
+        &lt;ListView.Behaviors&gt;
+            &lt;b:EventToCommandBehavior EventName=&quot;ItemTapped&quot; 
+                                      Command=&quot;{Binding ItemTappedCommand}&quot;
+                                      CommandParameter=&quot;MyParameter&quot; /&gt;
+        &lt;/ListView.Behaviors&gt;
+    &lt;/ListView&gt;
+&lt;/ContentPage&gt;
+</code></pre><h3 id="eventargsconverter">EventArgsConverter</h3>
+<p>Using the <strong>EventArgsConverter</strong> to retrieve the <code>ItemTappedEventArgs.Item</code> property.</p>
+<pre><code class="lang-c#">using System;
+using System.Globalization;
+using Xamarin.Forms;
 
-void ShowActionSheet()
+namespace Prism.Converters
 {
-    _pageDialogService.DisplayActionSheetAsync(&quot;My Action Sheet&quot;, selectAAction, cancelAction, destroyAction);
+    public class ItemTappedEventArgsConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var itemTappedEventArgs = value as ItemTappedEventArgs;
+            if (itemTappedEventArgs == null)
+            {
+                throw new ArgumentException(&quot;Expected value to be of type ItemTappedEventArgs&quot;, nameof(value));
+            }
+            return itemTappedEventArgs.Item;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
-</code></pre><p><em>Note: The order in which you pass in the IActionSheetButton parameters does not matter. The IPageDialogService will make sure the parameters are handled properly for you.</em></p>
-</article>
+</code></pre><p>The XAML need a reference to the converter and the converter resource need to be defined</p>
+<pre><code class="lang-xml">&lt;ContentPage xmlns=&quot;http://xamarin.com/schemas/2014/forms&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+             x:Class=&quot;MyNamespace.ContentPage&quot;
+             xmlns:b=&quot;clr-namespace:Prism.Behaviors;assembly=Prism.Forms&quot;
+             xmlns:c=&quot;clr-namespace:Prism.Converters;assembly=Prism.Forms&quot;&gt;
+    &lt;ContentPage.Resources&gt;
+        &lt;ResourceDictionary&gt;
+            &lt;c:ItemTappedEventArgsConverter x:Key=&quot;itemTappedEventArgsConverter&quot; /&gt;
+        &lt;/ResourceDictionary&gt;
+    &lt;/ContentPage.Resources&gt;
+    &lt;ListView&gt;
+        &lt;ListView.Behaviors&gt;
+            &lt;b:EventToCommandBehavior EventName=&quot;ItemTapped&quot; 
+                                      Command=&quot;{Binding ItemTappedCommand}&quot;
+                                      EventArgsConverter=&quot;{StaticResource itemTappedEventArgsConverter}&quot; /&gt;
+        &lt;/ListView.Behaviors&gt;
+    &lt;/ListView&gt;
+&lt;/ContentPage&gt;
+</code></pre><h3 id="eventargsparameterpath">EventArgsParameterPath</h3>
+<p>Attach the command to <strong>ItemTapped</strong> event will raise the <code>itemTappedEventArgs</code> event.</p>
+<pre><code class="lang-c#">public class ItemTappedEventArgs : EventArgs
+{
+    public object Item { get; }
+    public object Group { get; }
+}
+</code></pre><p>Setting <code>EventArgsParameterPath</code> to <strong>Item</strong> will extract the property value and pass it to the <code>ICommand.Execute(object)</code> method</p>
+<pre><code class="lang-xml">&lt;ContentPage xmlns=&quot;http://xamarin.com/schemas/2014/forms&quot; 
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot; 
+             x:Class=&quot;MyNamespace.ContentPage&quot;
+             xmlns:b=&quot;clr-namespace:Prism.Behaviors;assembly=Prism.Forms&quot;&gt;
+    &lt;ListView&gt;
+        &lt;ListView.Behaviors&gt;
+            &lt;b:EventToCommandBehavior EventName=&quot;ItemTapped&quot; 
+                                      Command=&quot;{Binding ItemTappedCommand}&quot;
+                                      EventArgsParameterPath=&quot;Item&quot; /&gt;
+        &lt;/ListView.Behaviors&gt;
+    &lt;/ListView&gt;
+&lt;/ContentPage&gt;
+</code></pre></article>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
@@ -248,7 +288,7 @@ void ShowActionSheet()
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/Xamarin-Forms/4-Page-Dialog-Service.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/xamarin-forms/EventToCommandBehavior.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
