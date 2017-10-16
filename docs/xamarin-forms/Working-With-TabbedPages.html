@@ -1,0 +1,335 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Working with TabbedPage's (or any MultiPage) | Prism </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Working with TabbedPage's (or any MultiPage) | Prism ">
+    <meta name="generator" content="docfx 2.25.2.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc">
+    <meta property="docfx:tocrel" content="../toc">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+                <ul class="nav level1 navbar-nav">
+                  <li class="">
+                    <a href="http://prismlibrary.github.io/" title="Home" class="">Home</a>
+                  </li>
+                  <li class="active">
+                    <a href="../../docs/index.html" title="Documentation" class="active">Documentation</a>
+                  </li>
+                  <li class="">
+                    <a href="https://www.pluralsight.com/authors/brian-lagunas/" title="Learn" class="">Learn</a>
+                  </li>
+                </ul>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div>
+              <div class="sidefilter">
+                <form class="toc-filter">
+                  <span class="glyphicon glyphicon-filter filter-icon"></span>
+                  <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+                </form>
+              </div>
+              <div class="sidetoc">
+                <div class="toc" id="toc">
+                  
+                  <ul class="nav level1">
+                    <li class="">
+                      <a href="../index.html" title="Introduction" class="">Introduction</a>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a class="">Getting Started</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="../getting-started/Download-and-Setup-Prism.html" title="Download and Setup Prism" class="">Download and Setup Prism</a>
+                          </li>
+                          <li class="">
+                            <a href="../getting-started/NuGet-Packages.html" title="NuGet Packages" class="">NuGet Packages</a>
+                          </li>
+                          <li class="">
+                            <a href="../getting-started/Assembly-Versioning.html" title="Assembly Versioning" class="">Assembly Versioning</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a class="">WPF</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="../wpf/Introduction.html" title="Introduction" class="">Introduction</a>
+                          </li>
+                          <li class="">
+                            <a href="../wpf/Initializing.html" title="Initializing" class="">Initializing</a>
+                          </li>
+                          <li class="">
+                            <a href="../wpf/Managing-Dependencies.html" title="Managing-Dependencies" class="">Managing-Dependencies</a>
+                          </li>
+                          <li class="">
+                            <a href="../wpf/Modules.html" title="Modules" class="">Modules</a>
+                          </li>
+                          <li class="">
+                            <a href="../wpf/Implementing-MVVM.html" title="Implementing-MVVM" class="">Implementing-MVVM</a>
+                          </li>
+                          <li class="">
+                            <a href="../wpf/Advanced-MVVM.html" title="Advanced-MVVM" class="">Advanced-MVVM</a>
+                          </li>
+                          <li class="">
+                            <a href="../wpf/Composing-the-UI.html" title="Composing-the-UI" class="">Composing-the-UI</a>
+                          </li>
+                          <li class="">
+                            <a href="../wpf/Navigation.html" title="Navigation" class="">Navigation</a>
+                          </li>
+                          <li class="">
+                            <a href="../wpf/Communication.html" title="Communication" class="">Communication</a>
+                          </li>
+                          <li class="">
+                            <a href="../wpf/Deploying.html" title="Deploying" class="">Deploying</a>
+                          </li>
+                          <li class="">
+                            <a href="../wpf/Appendix-A-Glossary.html" title="Appendix-A-Glossary" class="">Appendix-A-Glossary</a>
+                          </li>
+                          <li class="">
+                            <a href="../wpf/Appendix-B-Patterns.html" title="Appendix-B-Patterns" class="">Appendix-B-Patterns</a>
+                          </li>
+                          <li class="">
+                            <a href="../wpf/Appendix-C-Prism-Library.html" title="Appendix-C-Prism-Library" class="">Appendix-C-Prism-Library</a>
+                          </li>
+                          <li class="">
+                            <a href="../wpf/Appendix-D-Extending-Prism.html" title="Appendix-D-Extending-Prism" class="">Appendix-D-Extending-Prism</a>
+                          </li>
+                          <li class="">
+                            <a href="../wpf/Appendix-E-Click-Once.html" title="Appendix-E-Click-Once" class="">Appendix-E-Click-Once</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a class="">Xamarin.Forms</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="../xamarin-forms/Getting-Started.html" title="Getting Started" class="">Getting Started</a>
+                          </li>
+                          <li class="">
+                            <a href="../xamarin-forms/ViewModelLocator.html" title="ViewModelLocator" class="">ViewModelLocator</a>
+                          </li>
+                          <li class="">
+                            <a href="../xamarin-forms/Navigation-Service.html" title="Navigation Service" class="">Navigation Service</a>
+                          </li>
+                          <li class="">
+                            <a href="../xamarin-forms/Page-Dialog-Service.html" title="Page Dialog Service" class="">Page Dialog Service</a>
+                          </li>
+                          <li class="">
+                            <a href="../xamarin-forms/Dependency-Service.html" title="Dependency Service" class="">Dependency Service</a>
+                          </li>
+                          <li class="">
+                            <a href="../xamarin-forms/EventToCommandBehavior.html" title="EventToCommandBehavior" class="">EventToCommandBehavior</a>
+                          </li>
+                          <li class="active">
+                            <a href="../xamarin-forms/Working-With-TabbedPages.html" title="Working with TabbedPages" class="active">Working with TabbedPages</a>
+                          </li>
+                        </ul>  </li>
+                  </ul>        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="working-with-tabbedpages-or-any-multipaget">Working with TabbedPage&#39;s (or any MultiPage<t>)</t></h1>
+
+<h2 id="initialization">Initialization</h2>
+<p>Currently Initialization largely left up to the developer to handle. Prism will pass NavigationParameters to the Selected Child page of a TabbedPage if included in Navigation Uri like <code>NavigationService.NavigateAsync(&quot;MyTabbedPage/ViewA&quot;)</code>. However the other child pages will not have a chance to initialize with the NavigationParameters. There is a full example showing different techniques for handling View Initialization in the <a href="https://github.com/PrismLibrary/Prism-Samples-Forms">samples</a> repo.</p>
+<pre><code class="lang-cs">public class ChildViewAModel : BindableBase, INavigatingAware
+{
+    protected bool HasInitialized { get; set; }
+
+    private string _message;
+    public string Message
+    {
+        get { return _message; }
+        set { SetProperty(ref _message, value); }
+    }
+
+    public void OnNavigatingTo(NavigationParameters parameters)
+    {
+        if(HasInitialized) return;
+        HasInitialized = true;
+
+        Message = parameters.GetValue&lt;string&gt;(&quot;message&quot;);
+    }
+}
+</code></pre><p>You will notice in the example code that we checked the value for <code>HasInitialzied</code> and if it was true we simply return, otherwise we continue with our initialization logic. This will prevent any issues with double initialization as previously mentioned. To initialize the children we must implement <code>INavigatingAware</code> in our actual TabbedPage as follows:</p>
+<pre><code class="lang-cs">public partial class MyTabbedPage : TabbedPage, INavigatingAware
+{
+    public MyTabbedPage()
+    {
+        InitializedComponent();
+    }
+
+    public void OnNavigatingTo(NavigationParameters parameters)
+    {
+        foreach(var child in Children)
+        {
+            PageUtilities.OnNavigatingTo(child, parameters);
+        }
+    }
+}
+</code></pre><h2 id="iactiveaware">IActiveAware</h2>
+<p>Prism Forms 6.3.0&#39;s introduction of Behaviors, also introduced the <code>MutliPageActiveAwareBehavior</code>, with an implementation for <code>CarouselPage</code> and <code>TabbedPage</code>. Each of these page types automatically get this behavior attached by the Navigation Service. This behavior will help you determine when to handle activation or deactivation events in the ViewModels of your Child Pages.</p>
+<p>The following code shows a possible way to handle a Child Page that will be initialized with <code>NavigationParameters</code> and then handle <code>IActiveAware.IsActive</code>. There is more than one way to do this, and this should not be taken as &quot;The way it has to be done&quot;. It is also worth noting that the Behavior, will only set <code>IsActive</code> to <code>true</code> or <code>false</code>. While using the Event Handler is one possible implementation, you could just as easily bypass it&#39;s use.</p>
+<pre><code class="lang-cs">public abstract class ChildViewModelBase : BindableBase, IActiveAware, INavigatingAware, IDestructible
+{
+    protected bool HasInitialized { get; set; }
+
+    public event EventHandler IsActiveChanged;
+
+    private bool _isActive;
+    public bool IsActive
+    {
+        get { return _isActive; }
+        set { SetProperty(ref _isActive, value, RaiseIsActiveChanged); }
+    }
+
+    public virtual void OnNavigatingTo(NavigationParameters parameters)
+    {
+
+    }
+
+    public virtual void Destroy()
+    {
+
+    }
+
+    protected virtual void RaiseIsActiveChanged()
+    {
+        IsActiveChanged?.Invoke(this, EventArgs.Empty);
+    }
+}
+
+public class ChildViewA : ChildViewModelBase
+{
+    public ChildViewA()
+    {
+        IsActiveChanged += HandleIsActiveTrue;
+        IsActiveChanged += HandleIsActiveFalse;
+    }
+
+    public override void OnNavigatingTo(NavigationParameters parameters)
+    {
+        if(HasInitialized) return;
+
+        HasInitialized = true;
+
+        // Implement your implementation logic here...
+    }
+
+    private void HandleIsActiveTrue(object sender, EventArgs args)
+    {
+        if(IsActive == false) return;
+
+        // Handle Logic Here
+    }
+
+    private void HandleIsActiveFalse(object sender, EventArgs args)
+    {
+        if(IsActive == true) return;
+
+        // Handle Logic Here
+    }
+
+    public override void Destroy()
+    {
+        IsActiveChanged -= HandleIsActiveTrue;
+        IsActiveChanged -= HandleIsActiveFalse;
+    }
+}
+</code></pre></article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/xamarin-forms/Working-With-TabbedPages.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright 2017 Prism
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
