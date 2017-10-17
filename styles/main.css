@@ -1,0 +1,78 @@
+.toc li a {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+.connect-links, .connect-widget ul {
+    margin-left: 30px
+}
+
+.connect-links > li, .connect-widget ul > li {
+    position: relative
+}
+
+.connect-links > li:hover .image, .connect-widget ul > li:hover .image {
+    opacity: 1
+}
+
+.connect-links > li .image, .connect-widget ul > li .image {
+    background-image: url("../docs/sidebar-sprite.svg");
+    width: 1.6rem;
+    height: 1.8rem;
+    background-size: 9rem 1.6rem;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: -30px;
+    opacity: .8
+}
+
+.connect-links > li .github, .connect-widget ul > li .github {
+    background-position: 0% 50%
+}
+
+.connect-links > li .stackoverflow, .connect-widget ul > li .stackoverflow {
+    background-position: 20.5% 50%;
+    width: 1.4rem
+}
+
+.connect-links > li .twitterhandle, .connect-widget ul > li .twitterhandle {
+    background-position: 40% 50%
+}
+
+.connect-links > li .uservoice, .connect-widget ul > li .uservoice {
+    background-position: 61% 50%
+}
+
+.connect-links > li .rssfeed, .connect-widget ul > li .rssfeed {
+    background-position: 81.7% 50%;
+    width: 1.5rem
+}
+
+.connect-links > li .youtube, .connect-widget ul > li .youtube {
+    background-position: 102% 50%
+}
+
+.connect-widget {
+    margin-top: 30px
+}
+
+.connect-widget ul {
+    list-style: none;
+    padding-left: 10px
+}
+
+.connect-widget ul > li {
+    margin: 0;
+    padding-top: 8px;
+    padding-bottom: 8px
+}
+
+.connect-widget ul a {
+    text-decoration: none;
+    font-size: 12px
+}
+
+.connect-widget ul span {
+    display: block
+}
