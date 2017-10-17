@@ -4,6 +4,7 @@
     line-height: 28px;
 }
 
+
 .connect-links, .connect-widget ul {
     margin-left: 30px
 }
@@ -17,9 +18,9 @@
 }
 
 .connect-links > li .image, .connect-widget ul > li .image {
-    background-image: url("../docs/sidebar-sprite.svg");
-    width: 1.6rem;
-    height: 1.8rem;
+    background-image: url("../images/connect-widget-sprite.svg");
+    width: 16px;
+    height: 18px;
     background-size: 9rem 1.6rem;
     background-repeat: no-repeat;
     position: absolute;
@@ -40,21 +41,9 @@
     background-position: 40% 50%
 }
 
-.connect-links > li .uservoice, .connect-widget ul > li .uservoice {
-    background-position: 61% 50%
-}
-
-.connect-links > li .rssfeed, .connect-widget ul > li .rssfeed {
-    background-position: 81.7% 50%;
-    width: 1.5rem
-}
-
-.connect-links > li .youtube, .connect-widget ul > li .youtube {
-    background-position: 102% 50%
-}
-
 .connect-widget {
-    margin-top: 30px
+    margin-top: 15px;
+    margin-bottom: 25px;
 }
 
 .connect-widget ul {
