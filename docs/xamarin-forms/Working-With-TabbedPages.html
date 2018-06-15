@@ -8,7 +8,7 @@
     <title>Working with TabbedPage's (or any MultiPage) | Prism </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Working with TabbedPage's (or any MultiPage) | Prism ">
-    <meta name="generator" content="docfx 2.25.2.0">
+    <meta name="generator" content="docfx 2.36.1.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -20,7 +20,7 @@
     
     
   </head>
-  <body data-spy="scroll" data-target="#affix">
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
         
@@ -177,6 +177,9 @@
                           <li class="active">
                             <a href="../xamarin-forms/Working-With-TabbedPages.html" title="Working with TabbedPages" class="active">Working with TabbedPages</a>
                           </li>
+                          <li class="">
+                            <a href="../xamarin-forms/Xaml-Navigation.html" title="Xaml Navigation" class="">Xaml Navigation</a>
+                          </li>
                         </ul>  </li>
                   </ul>        </div>
               </div>
@@ -188,6 +191,20 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="working-with-tabbedpages-or-any-multipaget">Working with TabbedPage&#39;s (or any MultiPage<t>)</t></h1>
 
+<h2 id="navigating-to-tabbedpages">Navigating To TabbedPage&#39;s</h2>
+<p>Prism 7.0 introduced some major changes to the NavigationParameters that now allow Prism to more fully support querystring navigation. This is most noticeable with TabbedPage&#39;s as you can now dynamically add tabs to a TabbedPage as part of your navigation.</p>
+<p>To get started you will need to register the TabbedPage you wish to use (which can be the base Xamarin.Forms.TabbedPage), and any Views that you may wish to add as a Tab in your App&#39;s RegisterTypes method as shown below:</p>
+<pre><code class="lang-cs">protected override void RegisterTypes(IContainerRegistry containerRegistry)
+{
+    containerRegistry.RegisterForNavigation&lt;TabbedPage&gt;();
+    containerRegistry.RegisterForNavigation&lt;ViewA&gt;();
+    containerRegistry.RegisterForNavigation&lt;ViewB&gt;();
+}
+</code></pre><p>You will need to pass in the name using the Known Navigation Parameter <a href="https://github.com/PrismLibrary/Prism/blob/master/Source/Xamarin/Prism.Forms/Navigation/KnownNavigationParameters.cs">createTab</a> as shown here:</p>
+<pre><code class="lang-cs">navigationService.NavigateAsync(&quot;TabbedPage?createTab=ViewA&amp;createTab=ViewB&quot;);
+</code></pre><p>NOTE: Dynamic tab creation is only supported from the querystring at this time, and is not supported if you were to add it to the <code>INavigationParameters</code> passed in to <code>NavigateAsync</code>.</p>
+<h3 id="initially-display-tab">Initially Display Tab</h3>
+<p>The initial tab displayed in a Xamarin.Forms TabbedPage will always be the first Tab added. In Prism 6, you could select a different tab through deep linking like: <code>MyTabbedPage/ViewB</code>. In Prism 7 we have made a BREAKING CHANGE in favor of querystring based navigation. This also uses a <a href="https://github.com/PrismLibrary/Prism/blob/master/Source/Xamarin/Prism.Forms/Navigation/KnownNavigationParameters.cs">Known Navigation Parameter</a> The resulting navigation Uri would now look like: <code>MyTabbedPage?selectedTab=ViewB</code>.</p>
 <h2 id="initialization">Initialization</h2>
 <p>Currently Initialization largely left up to the developer to handle. Prism will pass NavigationParameters to the Selected Child page of a TabbedPage if included in Navigation Uri like <code>NavigationService.NavigateAsync(&quot;MyTabbedPage/ViewA&quot;)</code>. However the other child pages will not have a chance to initialize with the NavigationParameters. There is a full example showing different techniques for handling View Initialization in the <a href="https://github.com/PrismLibrary/Prism-Samples-Forms">samples</a> repo.</p>
 <pre><code class="lang-cs">public class ChildViewAModel : BindableBase, INavigatingAware
@@ -232,6 +249,7 @@
 {
     protected bool HasInitialized { get; set; }
 
+    // NOTE: Prism.Forms only sets IsActive, and does not do anything with the event.
     public event EventHandler IsActiveChanged;
 
     private bool _isActive;
@@ -253,6 +271,7 @@
 
     protected virtual void RaiseIsActiveChanged()
     {
+        // NOTE: You must either subscribe to the event or handle the logic here.
         IsActiveChanged?.Invoke(this, EventArgs.Empty);
     }
 }
@@ -311,9 +330,19 @@ public class ChildViewA : ChildViewModelBase
                           <div class="image stackoverflow"></div>Ask questions
                       </a>
                   </li>
-          		<li id="connect-twitter">
+                  <li id="connect-twitter">
+                      <a href="https://twitter.com/prismlib" target="_blank">
+                          <div class="image twitterhandle"></div>Follow @PrismLib
+                      </a>
+                  </li>
+                  <li id="connect-twitter">
                       <a href="https://twitter.com/brianlagunas" target="_blank">
                           <div class="image twitterhandle"></div>Follow @BrianLagunas
+                      </a>
+                  </li>
+                  <li id="connect-twitter">
+                      <a href="https://twitter.com/danjsiegel" target="_blank">
+                          <div class="image twitterhandle"></div>Follow @DanJSiegel
                       </a>
                   </li>
                 </ul>

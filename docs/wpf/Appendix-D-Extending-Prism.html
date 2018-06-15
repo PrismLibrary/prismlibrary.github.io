@@ -8,7 +8,7 @@
     <title>Extending the Prism Library 5.0 for WPF | Prism </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Extending the Prism Library 5.0 for WPF | Prism ">
-    <meta name="generator" content="docfx 2.25.2.0">
+    <meta name="generator" content="docfx 2.36.1.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -20,7 +20,7 @@
     
     
   </head>
-  <body data-spy="scroll" data-target="#affix">
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
         
@@ -177,6 +177,9 @@
                           <li class="">
                             <a href="../xamarin-forms/Working-With-TabbedPages.html" title="Working with TabbedPages" class="">Working with TabbedPages</a>
                           </li>
+                          <li class="">
+                            <a href="../xamarin-forms/Xaml-Navigation.html" title="Xaml Navigation" class="">Xaml Navigation</a>
+                          </li>
                         </ul>  </li>
                   </ul>        </div>
               </div>
@@ -243,7 +246,7 @@
 <pre><code class="lang-cs">[Export(&quot;FriendlyName&quot;)]
 public class MyViewType { ... }
 </code></pre><p>The Prism Library ships with <strong>UnityRegionNavigationContentLoader</strong> and <strong>MefRegionNavigationContentLoader</strong> that override the base <strong>GetCandidatesFromRegion</strong> method providing special handling necessary to find view types based on possible friendly name registration. If you are not using either <strong>UnityRegionNavigationContentLoader</strong> or <strong>MefRegionNavigationContentLoader</strong>, then make sure to add handling to a subclass of <strong>RegionNavigationContentLoader</strong> specific to the dependency injection container you are using.</p>
-<h2 id="container-and-bootstrapper">Container and Bootstrapper</h2>
+<h2 id="container-and-bootstrapper-1">Container and Bootstrapper</h2>
 <p>The Prism Library contains the <strong>Bootstrapper</strong> base class. The Unity and MEF components derive from this class as <strong>UnityBootstrapper</strong> and <strong>MefBootstrapper</strong>, respectively. The <strong>Bootstrapper</strong> base class defines an abstract <strong>Run</strong> method that leaves the exact sequencing of the process up to the derived classes. Almost every method is marked as virtual, allowing you to override individual methods to customize and extend the bootstrapping process.</p>
 <p>For most type instantiation, a bootstrapper will use the dependency injection container. However, there are some parts of the bootstrapping process that cannot use the container:</p>
 <ul>
@@ -326,7 +329,7 @@ protected override void ConfigureContainer()
 }
 </code></pre><h3 id="changing-dependency-injection-containers">Changing Dependency Injection Containers</h3>
 <p>If you want to use Prism with a container other than Unity or MEF in your application, there are several things you need to do. First, you need to write a Service Locator adapter for your container. You can use the <strong>MefServiceLocatorAdapter</strong> and the <strong>UnityServiceLocatorAdapter</strong> as examples of how this can be done. You will also need to write a container-specific bootstrapper class. Next, you need to create a new container-specific bootstrapper, derived from the <strong>Bootstrapper</strong> class, and implement the necessary methods, using the <strong>MefBootstrapper</strong> and <strong>UnityBootstrapper</strong> as examples.</p>
-<h2 id="logging">Logging</h2>
+<h2 id="logging-1">Logging</h2>
 <p>The Prism Library is designed to log messages throughout the library. To do this logging in a way that is not tied to a specific logging library, the Prism Library uses a logging façade, <strong>ILoggerFacade</strong>, to log its messages. This interface contains a single method named <strong>Log</strong> that logs messages. By default, the <strong>UnityBootstrapper</strong> and <strong>MefBoostrapper</strong> create a <strong>TextLogger</strong> as the designated logger.</p>
 <p>There are three steps for creating and integrating a custom logger:</p>
 <ol>
@@ -373,7 +376,7 @@ public class ApplicationBootstrapper : UnityBootstrapper
         return new CustomLogger();
     }
 }
-</code></pre><h2 id="modules">Modules</h2>
+</code></pre><h2 id="modules-1">Modules</h2>
 <p>The following sections describe how the modularity features can be extended during registration, assembly discovery, type discovery, and module initialization.</p>
 <h3 id="adding-features-to-the-module-catalog">Adding Features to the Module Catalog</h3>
 <p>The Prism Library provides <strong>ModuleCatalog</strong> as both a class you can populate directly through the <strong>AddModule</strong> methods, or you can derive from add methods to populate the <strong>Items</strong> property.</p>
@@ -458,7 +461,7 @@ public override IEnumerable&lt;IModuleTypeLoader&gt; ModuleTypeLoaders
 <pre><code>**Replace IModuleIntializer**. If you need to change how module types are instantiated and initialized, replace **IModuleIntializer**.
 
 **Write a custom IModuleTypeLoader**. If you need to change how assemblies are loaded and module types discovered within assemblies, write a custom **IModuleTypeLoader**. For more information, see the section, [Retrieving and Loading Modules from a Custom Assembly Source](#retrieving-and-loading-modules-from-a-custom-assembly-source).
-</code></pre><h2 id="regions">Regions</h2>
+</code></pre><h2 id="regions-1">Regions</h2>
 <p>The following sections describe how the region management features of the Prism Library can be extended when regions are attached to controls, how regions behave, and how a region discovers its views.</p>
 <h3 id="region-adapters">Region Adapters</h3>
 <p>Region adapters control how items placed in a region interact with the host control. The following sections describe how to extend this behavior by creating a custom region adapter and controlling the registration of the adapters.</p>
@@ -578,7 +581,7 @@ region.Behaviors.Add(&quot;MyBehavior&quot;, new MyRegion());
 <li><strong>Custom RegionViewRegistry</strong>. If you want to have extra control over registration of types (for example, scoping the registry) or control over the creation of your types, you should derive from this class.</li>
 <li><strong>Custom AutoPopulateBehavior</strong>. If you want to change where the region discovers its registered views (if you do not want to use the <strong>RegionViewRegistry</strong>) or if you want to change which views are actually added to the region (for example, if you want to provide the ability to filter), you can create a custom <strong>AutoPopulateBehavior</strong> for a single region or change the default for all regions.</li>
 </ul>
-<h2 id="region-navigation">Region Navigation</h2>
+<h2 id="region-navigation-1">Region Navigation</h2>
 <p>The following sections describe how to extend the region navigation features of the Prism Library.</p>
 <h3 id="changing-your-logical-navigation-structure">Changing Your Logical Navigation Structure</h3>
 <p>The region navigation features in the Prism Library use the type name of each view as the navigation Uniform Resource Identifier (URI). Your application may want to expose a URI navigation scheme independent of the view type names.</p>
@@ -661,9 +664,19 @@ ViewModelLocationProvider.SetDefaultViewModelFactory((t) =&gt; _container.Resolv
                           <div class="image stackoverflow"></div>Ask questions
                       </a>
                   </li>
-          		<li id="connect-twitter">
+                  <li id="connect-twitter">
+                      <a href="https://twitter.com/prismlib" target="_blank">
+                          <div class="image twitterhandle"></div>Follow @PrismLib
+                      </a>
+                  </li>
+                  <li id="connect-twitter">
                       <a href="https://twitter.com/brianlagunas" target="_blank">
                           <div class="image twitterhandle"></div>Follow @BrianLagunas
+                      </a>
+                  </li>
+                  <li id="connect-twitter">
+                      <a href="https://twitter.com/danjsiegel" target="_blank">
+                          <div class="image twitterhandle"></div>Follow @DanJSiegel
                       </a>
                   </li>
                 </ul>
