@@ -191,7 +191,7 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="xaml-navigation">Xaml Navigation</h1>
 
-<p>Prism allows you to declare your navigation directly inside your Xaml via a Markup Extension if you would prefer to keep navigation logic out of your ViewModel. This approach really helps with basic navigation scenarios, and really help clean up your ViewModels.</p>
+<p>Prism allows you to declare your navigation directly inside your Xaml via a <a href="https://docs.microsoft.com/en-us/xamarin/xamarin-forms/xaml/markup-extensions/">Markup Extension</a>. This approach really helps with basic navigation scenarios, and can also help clean up your ViewModels.</p>
 <h2 id="defining-your-navigation-path-in-xaml">Defining your navigation path in Xaml</h2>
 <p>To define navigation from within your Xaml, simply add the prism namespace to your Page</p>
 <pre><code class="lang-xml">&lt;Page xmlns:prism=&quot;clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms&quot;&gt;
@@ -230,14 +230,14 @@
 <pre><code class="lang-xml">&lt;Button Command=&quot;{prism:NavigateTo &#39;path/to/navigate&#39;}&quot;&gt;
     &lt;Button.CommandParameter&gt;
         &lt;prism:NavigationParameters&gt;
-            &lt;prism:NavigationParameter Key=&quot;Foo&quot; Value=&quot;Some Bar Value&quot;&gt;
+            &lt;prism:NavigationParameter Key=&quot;Foo&quot; Value=&quot;{Binding SomeBarValue}&quot;&gt;
             &lt;prism:NavigationParameter Key=&quot;Fizz&quot; Value=&quot;Some Buzz Value&quot;&gt;
         &lt;/prism:NavigationParameters&gt;
     &lt;/Button.CommandParameter&gt;
 &lt;/Button&gt;
 </code></pre><p><em>note: you can also optionally specify a BindingContext on either your <code>NavigationParameters</code> or <code>NavigationParameter</code>.</em></p>
 <h2 id="controlling-cannavigate">Controlling <code>CanNavigate</code></h2>
-<p>You can control whether or not the user <code>CanNavigate</code> via an attached property. This attached property can be set on any parent object, and Prism will walk the tree until it finds the value. If Prism cannot find a <code>CanNavigate</code> property, it simply assumes <code>true</code> with a single caviat. In order to prevent double-tap issues, Prism&#39;s Xaml Navigation tracks if the user has already initiated navigation, if they have, then it prevents them from initiating it again.</p>
+<p>You can control whether or not the user <code>CanNavigate</code> via an <a href="https://docs.microsoft.com/en-us/xamarin/xamarin-forms/xaml/attached-properties">attached property</a>. This attached property can be set on any parent object, and Prism will walk the tree until it finds the value. If Prism cannot find a <code>CanNavigate</code> property, it simply assumes <code>true</code> with a single caviat. In order to prevent double-tap issues, Prism&#39;s Xaml Navigation tracks if the user has already initiated navigation, if they have, then it prevents them from initiating it again.</p>
 <pre><code class="lang-xml">&lt;Page&gt;
     &lt;StackLayout prism:Navigation.CanNavigate=&quot;{Binding MyCanNavigateProperty}&quot;&gt;
         &lt;ContentView&gt;
@@ -249,7 +249,7 @@
 </code></pre><h2 id="defining-your-source-page">Defining your Source Page</h2>
 <p>In the rare case that you need to tell the <code>NavigationService</code> to use a different Page from the one that Xamarin Forms passes into the Markup Extension, you can override the <code>SourcePage</code></p>
 <pre><code class="lang-xml">&lt;Button Command=&quot;{prism:NavigateTo &#39;path/to/navigate&#39;, SourcePage={x:Reference SomeOtherPage}}&quot; /&gt;
-</code></pre><p>One possible scenario is is one which you want your Master to use a NavigationPage for the aesthetics of having a title bar, and want to make sure that your Navigation references are navigating from the MasterDetailPage rather than inside of the NavigationPage. In order to achieve this, you&#39;ll give your <code>MasterDetailPage</code> an <code>x:Name</code> and supply that to the <code>SourcePage</code> property of the <code>NavigateTo</code> extension.</p>
+</code></pre><p>One possible scenario is one which you want your Master to use a NavigationPage for the aesthetics of having a title bar, and want to make sure that your Navigation references are navigating from the MasterDetailPage rather than inside of the NavigationPage. In order to achieve this, you&#39;ll give your <code>MasterDetailPage</code> an <code>x:Name</code> and supply that to the <code>SourcePage</code> property of the <code>NavigateTo</code> extension.</p>
 <pre><code class="lang-xml">&lt;MasterDetailPage x:Name=&quot;mdp&quot;&gt;
   &lt;MasterDetailPage.Master&gt;
     &lt;NavigationPage Title=&quot;Menu&quot;&gt;
@@ -262,6 +262,16 @@
     &lt;/NavigationPage&gt;
   &lt;/MasterDetailPage.Master&gt;
 &lt;/MasterDetailPage&gt;
+</code></pre><h2 id="extending-the-markup-extensions">Extending the markup extensions</h2>
+<p>If you wish to add additional functionality to your xaml navigation, Prism has made it easy for you to extend both the <code>NavigateTo</code> and <code>GoBack</code> extensions. Some reasons you might want to do this would be to add additional options or simply add debug logging.</p>
+<pre><code class="lang-csharp">public class ExNavigateToExtension : NavigateToExtension
+{
+    protected override async Task HandleNavigation(INavigationParameters parameters, INavigationService navigationService)
+    {
+        Debug.WriteLine($&quot;Navigating to: {Name}&quot;);
+        await base.HandleNavigation(parameters, navigationService);
+    }
+}
 </code></pre></article>
           </div>
           
