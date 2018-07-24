@@ -259,13 +259,19 @@ navParameters.Add(&quot;name&quot;, &quot;brian&quot;);
 _navigationService.NavigateAsync(new Uri(&quot;MainPage?id=3&quot;, UriKind.Relative), navParameters);
 </code></pre><p>Getting to this data in the target View that is being navigated to, can be achieved by using the <strong>INavigationAware</strong> interface on the corresponding ViewModel.</p>
 <h2 id="inavigationaware">INavigationAware</h2>
-<p>The ViewModel of the target navigation Page can participate in the navigation process by implementing the <strong>INavigationAware</strong> interface.  This interface adds two methods to your ViewModel so you can intercept when the ViewModel is navigated to, or navigated away from.</p>
+<p>The ViewModel of the target navigation Page can participate in the navigation process by implementing the <strong>INavigationAware</strong> interface.  This interface adds three methods to your ViewModel so you can intercept before the View is navigated to <strong>(OnNavigatingTo)</strong>, once it is navigated to <strong>(OnNavigatedTo)</strong>, and once it is navigated away from <strong>(OnNavigatedFrom)</strong>.</p>
 <p>Example:</p>
 <pre><code class="lang-cs">public class ContactPageViewModel : INavigationAware
 {
   private Contact _contact;
+  private DateTime _dateTime;
 
   public void OnNavigatedTo(NavigationParameters parameters)
+  {
+    _dateTime = DateTime.Now;
+  }
+
+  public void OnNavigatingTo(NavigationParameters parameters)
   {
     _contact = (Contact)parameters[&quot;model&quot;];
   }
@@ -275,7 +281,8 @@ _navigationService.NavigateAsync(new Uri(&quot;MainPage?id=3&quot;, UriKind.Rela
 
   }
 }
-</code></pre><h2 id="iconfirmnavigation">IConfirmNavigation</h2>
+</code></pre><p><strong>Note: **OnNavigatingTo</strong> is not called when using device hardware or software back button.* </p>
+<h2 id="iconfirmnavigation">IConfirmNavigation</h2>
 <p>A ViewModel can determine whether or not it can perform a navigation operation. When a ViewModel implements the <strong>IConfirmNavigation</strong> or the <strong>IConfirmNavigationAsync</strong> interface, the navigation process looks to see what the result of this method is.  If <em>true</em>, a navigation process can be invoked, meaning a call to <code>NavigationService.NavigateAsync(&quot;target&quot;)</code> can be made.  If <em>false</em>, the ViewModel cannot invoke the navigation process. </p>
 <pre><code class="lang-cs">public class ContactPageViewModel : IConfirmNavigation 
 {
