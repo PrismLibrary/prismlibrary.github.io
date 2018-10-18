@@ -8,7 +8,7 @@
     <title>Getting started with Prism for Xamarin.Forms | Prism </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Getting started with Prism for Xamarin.Forms | Prism ">
-    <meta name="generator" content="docfx 2.39.2.0">
+    <meta name="generator" content="docfx 2.40.0.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -163,19 +163,46 @@
                             <a href="../xamarin-forms/ViewModelLocator.html" title="ViewModelLocator" class="">ViewModelLocator</a>
                           </li>
                           <li class="">
-                            <a href="../xamarin-forms/Navigation-Service.html" title="Navigation Service" class="">Navigation Service</a>
+                            <span class="expand-stub"></span>
+                            <a class="">Navigation</a>
+                              
+                              <ul class="nav level3">
+                                <li class="">
+                                  <a href="../xamarin-forms/navigation/navigation/navigation-basics.md" title="Navigation Basics" class="">Navigation Basics</a>
+                                </li>
+                                <li class="">
+                                  <a href="../xamarin-forms/navigation/navigation/passing-parameters.md" title="Passing Parameters" class="">Passing Parameters</a>
+                                </li>
+                                <li class="">
+                                  <a href="../xamarin-forms/navigation/navigation/confirming-navigation.md" title="Confirming Navigation" class="">Confirming Navigation</a>
+                                </li>
+                                <li class="">
+                                  <a href="../xamarin-forms/navigation/navigation/deep-linking.md" title="Deep Linking" class="">Deep Linking</a>
+                                </li>
+                                <li class="">
+                                  <a href="../xamarin-forms/navigation/navigation/working-with-masterdetailpages.md" title="Working with MasterDetailPages" class="">Working with MasterDetailPages</a>
+                                </li>
+                                <li class="">
+                                  <a href="../xamarin-forms/navigation/navigation/working-with-navigationpages.md" title="Working with NavigationPages" class="">Working with NavigationPages</a>
+                                </li>
+                                <li class="">
+                                  <a href="../xamarin-forms/navigation/navigation/working-with-tabbedpages.md" title="Working with TabbedPages" class="">Working with TabbedPages</a>
+                                </li>
+                                <li class="">
+                                  <a href="../xamarin-forms/navigation/navigation/xaml-navigation.md" title="XAML Navigation" class="">XAML Navigation</a>
+                                </li>
+                              </ul>  </li>
+                          <li class="">
+                            <a href="../xamarin-forms/application-lifecycle.html" title="Application Lifecycle" class="">Application Lifecycle</a>
+                          </li>
+                          <li class="">
+                            <a href="../xamarin-forms/page-lifecycle.html" title="Page Lifecycle" class="">Page Lifecycle</a>
                           </li>
                           <li class="">
                             <a href="../xamarin-forms/Page-Dialog-Service.html" title="Page Dialog Service" class="">Page Dialog Service</a>
                           </li>
                           <li class="">
                             <a href="../xamarin-forms/EventToCommandBehavior.html" title="EventToCommandBehavior" class="">EventToCommandBehavior</a>
-                          </li>
-                          <li class="">
-                            <a href="../xamarin-forms/Working-With-TabbedPages.html" title="Working with TabbedPages" class="">Working with TabbedPages</a>
-                          </li>
-                          <li class="">
-                            <a href="../xamarin-forms/Xaml-Navigation.html" title="Xaml Navigation" class="">Xaml Navigation</a>
                           </li>
                         </ul>  </li>
                   </ul>        </div>
@@ -254,7 +281,7 @@ If there is only one iOS device attached to the PC it&#39;ll select the one. Whe
 </code></pre><pre><code class="lang-cs">public class MainPageViewModel : BindableBase, INavigationAware
 </code></pre><p>The MainPageViewModel inherits from <code>BindableBase</code> and implements the <code>INavigationAware</code> interface. </p>
 <p>The <code>BindableBase</code> class implements the <a href="https://msdn.microsoft.com/en-us/library/system.componentmodel.inotifypropertychanged%28v=vs.110%29.aspx">INotifyPropertyChanged</a> interface which allows for the view to be able to databind to properties created here. <code>BindableBase</code> also provides a protected <code>SetProperty</code> method to simplify creating these properties. </p>
-<p>The <code>INavigationAware</code> interface allows for the view model to be notified when it is being navigated from or being navigated to. See the <a href="Navigation-Service.html">INavigationAware documentation</a> for more information.</p>
+<p>The <code>INavigationAware</code> interface allows for the view model to be notified when it is being navigated from or being navigated to. See the <a href="Navigation-Service.md">INavigationAware documentation</a> for more information.</p>
 <pre><code class="lang-cs">private string _title;
 public string Title
 {
@@ -269,7 +296,7 @@ public string Title
 public void OnNavigatedTo(NavigationParameters parameters)
 {
 ...
-</code></pre><p>These methods are called with the view model is navigated from or to. Here it expects a string via the NavigationParameters parameter and modifies the Title property with the string&#39;s value. See the <a href="Navigation-Service.html">INavigationAware documentation</a> for more information.</p>
+</code></pre><p>These methods are called with the view model is navigated from or to. Here it expects a string via the NavigationParameters parameter and modifies the Title property with the string&#39;s value. See the <a href="Navigation-Service.md">INavigationAware documentation</a> for more information.</p>
 <h2 id="adding-a-new-page-view-and-viewmodel">Adding a new Page (View) and ViewModel</h2>
 <p>Now that we have a basic understanding of how project is setup with Prism for Xamarin.Forms, let&#39;s add to it and create a new Page (View) and ViewModel. We&#39;ll create a page with a text entry field and a button similar to the wireframe below. Later we&#39;ll add functionality to make the phone speak the text that&#39;s entered into the text field.</p>
 <p><img src="images/GettingStarted_ViewSketch.png" alt="Sketch of a view with a text entry field and button."></p>
@@ -383,7 +410,7 @@ private void NavigateToSpeakPage()
 }
 </code></pre><p>Tells the navigation service to navigate to the SpeakPage.</p>
 <p>With navigation all wired up and the &quot;Navigate to speak page&quot; button is pressed in the view the NavigateToSpeakPageCommand will be called on the view model, the command will execute the NavigateToSpeakPage method, and finally the Navigation Service will perform the navigation to the SpeakPage.</p>
-<p>For more information on the navigation service see the <a href="Navigation-Service.html">navigation service documentation</a></p>
+<p>For more information on the navigation service see the <a href="Navigation-Service.md">navigation service documentation</a></p>
 </article>
           </div>
           
