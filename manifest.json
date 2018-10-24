@@ -1,0 +1,1356 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/GitHub/Prism-Documentation",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html",
+          "hash": "DQK4hjnN7IV3qO8q2kh++w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/getting-started/Assembly-Versioning.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/getting-started/Assembly-Versioning.html",
+          "hash": "dTGPb+ssPWedMDO2BPHVzQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/getting-started/Download-and-Setup-Prism.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/getting-started/Download-and-Setup-Prism.html",
+          "hash": "GHJ8m7TWbBh9IhzQiwi1FA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/getting-started/NuGet-Packages.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/getting-started/NuGet-Packages.html",
+          "hash": "iiE42zeDds2JCesM8to9BQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/getting-started/images/NuGetPackageTree.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/getting-started/images/NuGetPackageTree.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/index.html",
+          "hash": "oQ/5Yby+pNMNuM3OCoYcDA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/wpf/Advanced-MVVM.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/wpf/Advanced-MVVM.html",
+          "hash": "rAZJ3vKCVDeSXbA/IT/HYw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/wpf/Appendix-A-Glossary.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/wpf/Appendix-A-Glossary.html",
+          "hash": "MrKJqsCOSVhKQ/aTa+1s+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/wpf/Appendix-B-Patterns.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/wpf/Appendix-B-Patterns.html",
+          "hash": "tvlHOxA86eMAN+umhFjdig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/wpf/Appendix-C-Prism-Library.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/wpf/Appendix-C-Prism-Library.html",
+          "hash": "STBWIEeaxwmEWCjHXmCPGg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/wpf/Appendix-D-Extending-Prism.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/wpf/Appendix-D-Extending-Prism.html",
+          "hash": "vPwxAa0Y+yaKE5tTi64R/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/wpf/Appendix-E-Click-Once.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/wpf/Appendix-E-Click-Once.html",
+          "hash": "l6ay1Epv0ily20+yoePSBg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/wpf/Communication.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/wpf/Communication.html",
+          "hash": "+e1hAs2sEs2wR838LIkCnA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/wpf/Composing-the-UI.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/wpf/Composing-the-UI.html",
+          "hash": "4eQ3xXDiDVRshyv6KPe5mQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/wpf/Deploying.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/wpf/Deploying.html",
+          "hash": "izMcWocwBIh+H+VgiJa0rw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/wpf/Implementing-MVVM.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/wpf/Implementing-MVVM.html",
+          "hash": "sartAtcyICHGtg9G3WOjsw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/wpf/Initializing.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/wpf/Initializing.html",
+          "hash": "Q8yU1ZTI9Q1WjNEPriG10g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/wpf/Introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/wpf/Introduction.html",
+          "hash": "dM8WpaOG+4kMeTTyYj+PWg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/wpf/Managing-Dependencies.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/wpf/Managing-Dependencies.html",
+          "hash": "p2dLqgFbLTP2VPBpVszB1Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/wpf/Modules.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/wpf/Modules.html",
+          "hash": "a9XlnPYXoC3zcAZT9KEDaA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/wpf/Navigation.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/wpf/Navigation.html",
+          "hash": "gEM6vZMfAhS7/H9mp+hKcQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/BlendCreateSampleData.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/BlendCreateSampleData.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch10DeployingFig1.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch10DeployingFig1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch12PatternsFig1.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch12PatternsFig1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch12PatternsFig2.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch12PatternsFig2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch13LibraryFig1.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch13LibraryFig1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch1IntroFig1.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch1IntroFig1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch1IntroFig2.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch1IntroFig2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch1IntroFig3.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch1IntroFig3.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch1IntroFig4.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch1IntroFig4.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch1IntroFig5.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch1IntroFig5.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch1IntroFig6.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch1IntroFig6.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch2BootstrapperFig1.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch2BootstrapperFig1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch3DIFig1.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch3DIFig1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch4ModularityFig1.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch4ModularityFig1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch4ModularityFig2.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch4ModularityFig2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch4ModularityFig3.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch4ModularityFig3.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch4ModularityFig4.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch4ModularityFig4.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch4ModularityFig5.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch4ModularityFig5.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch5MvvmFig1.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch5MvvmFig1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch6AdvMVVMFig1.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch6AdvMVVMFig1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch6AdvMVVMFig2.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch6AdvMVVMFig2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch6AdvMVVMFig3.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch6AdvMVVMFig3.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch6AdvMVVMFig4.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch6AdvMVVMFig4.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch6AdvMVVMFig6.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch6AdvMVVMFig6.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch6AdvMVVMFig7.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch6AdvMVVMFig7.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch7UIFig1.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch7UIFig1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch7UIFig10.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch7UIFig10.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch7UIFig11.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch7UIFig11.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch7UIFig12.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch7UIFig12.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch7UIFig13.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch7UIFig13.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch7UIFig16.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch7UIFig16.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch7UIFig17.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch7UIFig17.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch7UIFig19.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch7UIFig19.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch7UIFig2.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch7UIFig2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch7UIFig3.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch7UIFig3.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch7UIFig4.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch7UIFig4.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch7UIFig6.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch7UIFig6.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch7UIFig8.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch7UIFig8.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch7UIFig9.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch7UIFig9.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch8NavigationFig1.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch8NavigationFig1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch8NavigationFig2.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch8NavigationFig2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch8NavigationFig3.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch8NavigationFig3.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch8NavigationFig4.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch8NavigationFig4.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch8NavigationFig5.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch8NavigationFig5.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch8NavigationFig6.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch8NavigationFig6.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch9CommunicationsFig1.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch9CommunicationsFig1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Ch9CommunicationsFig2.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Ch9CommunicationsFig2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/DeploymentHOLFigure1.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/DeploymentHOLFigure1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/DeploymentHOLFigure10.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/DeploymentHOLFigure10.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/DeploymentHOLFigure11.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/DeploymentHOLFigure11.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/DeploymentHOLFigure12.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/DeploymentHOLFigure12.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/DeploymentHOLFigure13.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/DeploymentHOLFigure13.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/DeploymentHOLFigure14.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/DeploymentHOLFigure14.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/DeploymentHOLFigure1a.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/DeploymentHOLFigure1a.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/DeploymentHOLFigure1b.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/DeploymentHOLFigure1b.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/DeploymentHOLFigure2.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/DeploymentHOLFigure2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/DeploymentHOLFigure3.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/DeploymentHOLFigure3.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/DeploymentHOLFigure4.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/DeploymentHOLFigure4.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/DeploymentHOLFigure5.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/DeploymentHOLFigure5.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/DeploymentHOLFigure6.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/DeploymentHOLFigure6.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/DeploymentHOLFigure7.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/DeploymentHOLFigure7.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/DeploymentHOLFigure8.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/DeploymentHOLFigure8.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/DeploymentHOLFigure9.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/DeploymentHOLFigure9.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/No.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/No.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/StockTraderRI.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/StockTraderRI.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/StockTraderRIExpressionBlend.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/StockTraderRIExpressionBlend.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/wpf/images/Yes.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/wpf/images/Yes.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/xamarin-forms/Dependency-Service.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/xamarin-forms/Dependency-Service.html",
+          "hash": "rxtwJyXxSQp1AY85kCep2w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/xamarin-forms/EventToCommandBehavior.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/xamarin-forms/EventToCommandBehavior.html",
+          "hash": "F6qHCV9oB3X1F7WBV1kMuw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/xamarin-forms/Getting-Started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/xamarin-forms/Getting-Started.html",
+          "hash": "4hsODUl1HUepGUb6t2/5pw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/xamarin-forms/Page-Dialog-Service.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/xamarin-forms/Page-Dialog-Service.html",
+          "hash": "cIeVs7Y5NFUnMxgi4K5QZQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/xamarin-forms/ViewModelLocator.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/xamarin-forms/ViewModelLocator.html",
+          "hash": "ylvsWOZjjXeHeJ42fai7gQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/xamarin-forms/application-lifecycle.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/xamarin-forms/application-lifecycle.html",
+          "hash": "YosCFOWUFDylt7C/LLEthw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/xamarin-forms/images/GettingStarted_SolutionExplorer.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/xamarin-forms/images/GettingStarted_SolutionExplorer.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/xamarin-forms/images/GettingStarted_ViewSketch.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/xamarin-forms/images/GettingStarted_ViewSketch.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/xamarin-forms/images/dependencyservice_01.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/xamarin-forms/images/dependencyservice_01.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/xamarin-forms/images/pagedialogservice_01.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/xamarin-forms/images/pagedialogservice_01.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/xamarin-forms/images/pagedialogservice_02.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/xamarin-forms/images/pagedialogservice_02.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/xamarin-forms/images/pagedialogservice_03.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/xamarin-forms/images/pagedialogservice_03.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs/xamarin-forms/images/pagedialogservice_04.png",
+      "output": {
+        "resource": {
+          "relative_path": "docs/xamarin-forms/images/pagedialogservice_04.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/xamarin-forms/navigation/confirming-navigation.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/xamarin-forms/navigation/confirming-navigation.html",
+          "hash": "HKQBhb+193OhSroipmTS/Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/xamarin-forms/navigation/deep-linking.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/xamarin-forms/navigation/deep-linking.html",
+          "hash": "E6YkpQXn6/VBRyTjEW8ZuQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/xamarin-forms/navigation/navigation-basics.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/xamarin-forms/navigation/navigation-basics.html",
+          "hash": "fa+LFxpwMp9AoM8AZxmwgg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/xamarin-forms/navigation/passing-parameters.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/xamarin-forms/navigation/passing-parameters.html",
+          "hash": "5liyJ5jZD3qIa4rWn4K96g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/xamarin-forms/navigation/working-with-masterdetailpages.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/xamarin-forms/navigation/working-with-masterdetailpages.html",
+          "hash": "W5eg7AUv/8QBRKnHa20p6w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/xamarin-forms/navigation/working-with-navigationpages.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/xamarin-forms/navigation/working-with-navigationpages.html",
+          "hash": "yxZlCIxtxC97V/0IeXdc5g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/xamarin-forms/navigation/working-with-tabbedpages.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/xamarin-forms/navigation/working-with-tabbedpages.html",
+          "hash": "Zj6E+sbTxsYCuxockrZMbw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/xamarin-forms/navigation/xaml-navigation.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/xamarin-forms/navigation/xaml-navigation.html",
+          "hash": "UK0u6cRFPXh/FNRGN+uagQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/xamarin-forms/page-lifecycle.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/xamarin-forms/page-lifecycle.html",
+          "hash": "M5M6YoWWwRMCUggwEbCc1Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/connect-widget-sprite.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/connect-widget-sprite.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/docs-home.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/docs-home.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/logo-prism-symbol@2x.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo-prism-symbol@2x.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/prism-logo.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/prism-logo.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/prism-logo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/prism-logo.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/xf-iapplicationlifecycleaware-debug-location.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/xf-iapplicationlifecycleaware-debug-location.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build"
+      },
+      "processors": {
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build"
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing"
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
