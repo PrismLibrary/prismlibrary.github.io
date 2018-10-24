@@ -1,67 +1,128 @@
-.toc li a {
+::-moz-selection {
+    color: #fff;
+    background: #0099ff; }
+  
+::selection {
+    color: #fff;
+    background: #0099ff; }
+  
+html, .root {
     font-size: 16px;
-    font-weight: 400;
-    line-height: 28px;
+    line-height: 24px;
+    -webkit-font-smoothing: antialiased; }
+
+html, body {
+    font-family: 'aktiv-grotesk', sans-serif;
+    height: 100%;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #585858;
+  }
+
+/******************* NavBar *******************/
+
+.navbar-brand {
+    font-size: inherit;
+    padding: 5px;
+    padding: 0;
+    float: left;
+    height: 65px;
+    font-size: 18px;
+    line-height: 20px
+  }
+
+.navbar-brand > img {
+    display: block;
+    height: 57px;
 }
 
-
-.connect-links, .connect-widget ul {
-    margin-left: 30px
+.navbar-nav {
+    margin: 7.5px -5px;
+    float: left;
 }
 
-.connect-links > li, .connect-widget ul > li {
-    position: relative
+.navbar-inverse {
+    background-color: #fff;
+    border-color: #101010
 }
 
-.connect-links > li:hover .image, .connect-widget ul > li:hover .image {
-    opacity: 1
+.navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
+    color: #00a5f2;
+    background-color: transparent
 }
 
-.connect-links > li .image, .connect-widget ul > li .image {
-    background-image: url("../images/connect-widget-sprite.svg");
-    width: 16px;
-    height: 18px;
-    background-size: 9rem 1.6rem;
-    background-repeat: no-repeat;
-    position: absolute;
-    left: -30px;
-    opacity: .8
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    color: #fff;
+    background-color: #00a5f2
 }
 
-.connect-links > li .github, .connect-widget ul > li .github {
-    background-position: 0% 50%
+/******************* TOC *******************/
+
+.toc {
+    overflow-x: hidden;
+    padding-left: 10px;
 }
 
-.connect-links > li .stackoverflow, .connect-widget ul > li .stackoverflow {
-    background-position: 20.5% 50%;
-    width: 1.4rem
+.toc .nav > li > a {
+    color: #585858;
+    display: block;
+    position: relative;
+    padding: 0;
 }
 
-.connect-links > li .twitterhandle, .connect-widget ul > li .twitterhandle {
-    background-position: 40% 50%
+.toc .nav .level3 > li > a {
+    font-size: 14px
 }
 
-.connect-widget {
-    margin-top: 15px;
-    margin-bottom: 25px;
+.toc .nav > li > a:hover,
+.toc .nav > li > a:focus {
+    color: #0099ff;
+    background: none;
+    text-decoration: inherit;
 }
 
-.connect-widget ul {
-    list-style: none;
-    padding-left: 10px
+.toc .nav > li.active > a {
+    color: #337ab7;
 }
 
-.connect-widget ul > li {
+.toc .nav > li.active > a:hover,
+.toc .nav > li.active > a:focus {
+    color: #23527c;
+}
+
+.toc .nav .nav {
     margin: 0;
-    padding-top: 8px;
-    padding-bottom: 8px
+    padding-left: 10px;
 }
 
-.connect-widget ul a {
-    text-decoration: none;
-    font-size: 12px
+.sidetoc.shiftup {
+    bottom: 0px;
 }
 
-.connect-widget ul span {
-    display: block
+.sidefilter{
+ padding-top: 30px;   
+}
+
+/******************* Affix *******************/
+
+.sideaffix {
+    overflow: visible;
+}
+
+/******************* Media Queries *******************/
+
+@media (min-width: 768px){
+    .container {
+        width: 100%;
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+
+    .breadcrumb {
+        padding-left: 25px;
+    }
+
+    #autocollapse .navbar-header {
+        margin-left: 15px;
+    }
 }
