@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Introduction to Prism | Prism </title>
+    <title>Event Aggregator | Prism </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Introduction to Prism | Prism ">
+    <meta name="title" content="Event Aggregator | Prism ">
     <meta name="generator" content="docfx 2.40.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -83,8 +83,8 @@
                 <div class="toc" id="toc">
                   
                   <ul class="nav level1">
-                    <li class="active">
-                      <a href="index.html" title="Introduction" class="active">Introduction</a>
+                    <li class="">
+                      <a href="index.html" title="Introduction" class="">Introduction</a>
                     </li>
                     <li class="">
                       <span class="expand-stub"></span>
@@ -107,8 +107,8 @@
                     <li class="">
                       <a href="composite-commands.html" title="Composite Commands" class="">Composite Commands</a>
                     </li>
-                    <li class="">
-                      <a href="event-aggregator.html" title="Event Aggregator" class="">Event Aggregator</a>
+                    <li class="active">
+                      <a href="event-aggregator.html" title="Event Aggregator" class="active">Event Aggregator</a>
                     </li>
                     <li class="">
                       <a href="viewmodel-locator.html" title="ViewModelLocator" class="">ViewModelLocator</a>
@@ -223,12 +223,178 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="introduction-to-prism">Introduction to Prism</h1>
+<h1 id="event-aggregator">Event Aggregator</h1>
 
-<p>Prism is a framework for building loosely coupled, maintainable, and testable XAML applications in WPF, Windows 10 UWP, and Xamarin Forms. Separate releases are available for each platform and those will be developed on independent timelines. Prism provides an implementation of a collection of design patterns that are helpful in writing well-structured and maintainable XAML applications, including MVVM, dependency injection, commands, EventAggregator, and others. Prism&#39;s core functionality is a shared code base in a Portable Class Library targeting these platforms. Those things that need to be platform specific are implemented in the respective libraries for the target platform. Prism also provides great integration of these patterns with the target platform. For example, Prism for UWP and Xamarin Forms allows you to use an abstraction for navigation that is unit testable, but that layers on top of the platform concepts and APIs for navigation so that you can fully leverage what the platform itself has to offer, but done in the MVVM way.</p>
-<p>Prism 6 is a fully open source version of the Prism guidance <a href="http://blogs.msdn.com/b/dotnet/archive/2015/03/19/prism-grows-up.aspx">originally produced by Microsoft patterns &amp; practices</a>. The core team members were all part of the p&amp;p team that developed Prism 1 through 5, and the effort has now been turned over to the open source community to keep it alive and thriving to support the .NET community. There are thousands of companies who have adopted previous versions of Prism for WPF, Silverlight, and Windows Runtime, and we hope they will continue to move along with us as we continue to evolve and enhance the framework to keep pace with current platform capabilities and requirements.</p>
-<p>At the current time we have no plans to create new versions of the library for Silverlight or for Windows 8/8.1/WP8.1. For those you can still use the previous releases from Microsoft p&amp;p <a href="https://msdn.microsoft.com/en-us/library/Gg430869%28v=PandP.40%29.aspx">here</a> and <a href="http://prismwindowsruntime.codeplex.com/">here</a>. If there is enough interest and contributors to do the work, we can consider it, but it is not on our roadmap for now.</p>
-</article>
+<p>The Prism Library provides an event mechanism that enables communications between loosely coupled components in the application. This mechanism, based on the event aggregator service, allows publishers and subscribers to communicate through events and still do not have a direct reference to each other.</p>
+<p>The <code>EventAggregator</code> provides multicast publish/subscribe functionality. This means there can be multiple publishers that raise the same event and there can be multiple subscribers listening to the same event. Consider using the <code>EventAggregator</code> to publish an event across modules and when sending a message between business logic code, such as controllers and presenters.</p>
+<p>Events created with the Prism Library are typed events. This means you can take advantage of compile-time type checking to detect errors before you run the application. In the Prism Library, the <code>EventAggregator</code> allows subscribers or publishers to locate a specific <code>EventBase</code>. The event aggregator also allows for multiple publishers and multiple subscribers, as shown in the following illustration.</p>
+<p><img src="images/event-aggregator-1.png" alt="Using the event aggregator"></p>
+<h2 id="ieventaggregator">IEventAggregator</h2>
+<p>The <code>EventAggregator</code> class is offered as a service in the container and can be retrieved through the <code>IEventAggregator</code>interface. The event aggregator is responsible for locating or building events and for keeping a collection of the events in the system.</p>
+<pre><code class="lang-cs">public interface IEventAggregator
+{
+    TEventType GetEvent&lt;TEventType&gt;() where TEventType : EventBase;
+}
+</code></pre><p>The <code>EventAggregator</code> constructs the event on its first access if it has not already been constructed. This relieves the publisher or subscriber from needing to determine whether the event is available.</p>
+<h2 id="pubsubevent">PubSubEvent</h2>
+<p>The real work of connecting publishers and subscribers is done by the <code>PubSubEvent</code> class. This is the only implementation of the <code>EventBase</code> class that is included in the Prism Library. This class maintains the list of subscribers and handles event dispatching to the subscribers.</p>
+<p>The <code>PubSubEvent</code> class is a generic class that requires the payload type to be defined as the generic type. This helps enforce, at compile time, that publishers and subscribers provide the correct methods for successful event connection. The following code shows a partial definition of the PubSubEvent class.</p>
+<div class="NOTE"><h5>Note</h5><p><code>PubSubEvent</code> can be found in the Prism.Events namespace which is located in the Prism.Core NuGet package.</p>
+</div>
+<h2 id="creating-an-event">Creating an Event</h2>
+<p>The <code>PubSubEvent&lt;TPayload&gt;</code> is intended to be the base class for an application&#39;s or module&#39;s specific events. <code>TPayLoad</code> is the type of the event&#39;s payload. The payload is the argument that will be passed to subscribers when the event is published.</p>
+<p>For example, the following code shows the <code>TickerSymbolSelectedEvent</code>. The payload is a string containing the company symbol. Notice how the implementation for this class is empty.</p>
+<pre><code class="lang-cs">public class TickerSymbolSelectedEvent : PubSubEvent&lt;string&gt;{}
+</code></pre><div class="NOTE"><h5>Note</h5><p>In a composite application, the events are frequently shared between multiple modules, so they are defined in a common place. It is common practice to deinfe these events in a shared assembly such as a &quot;Core&quot; or &quot;Infrastructure&quot; project.</p>
+</div>
+<h2 id="publishing-an-event">Publishing an Event</h2>
+<p>Publishers raise an event by retrieving the event from the <code>EventAggregator</code> and calling the <code>Publish</code> method. To access the <code>EventAggregator</code>, you can use dependency injection by adding a parameter of type <code>IEventAggregator</code> to the class constructor.</p>
+<pre><code class="lang-cs">public class MainPageViewModel
+{
+    IEventAggregator _eventAggregator;
+    public MainPageViewModel(IEventAggregator ea)
+    {
+        _eventAggregator = ea;
+    }
+}
+</code></pre><p>The following code demonstrates publishing the TickerSymbolSelectedEvent.</p>
+<pre><code class="lang-cs">_eventAggregator.GetEvent&lt;TickerSymbolSelectedEvent&gt;().Publish(&quot;STOCK0&quot;);
+</code></pre><h2 id="subscribing-to-events">Subscribing to Events</h2>
+<p>Subscribers can enlist with an event using one of the <code>Subscribe</code> method overloads available on the <code>PubSubEvent</code> class. </p>
+<pre><code class="lang-cs">public class MainPageViewModel
+{
+    public MainPageViewModel(IEventAggregator ea)
+    {
+        ea.GetEvent&lt;TickerSymbolSelectedEvent&gt;().Subscribe(ShowNews);
+    }
+
+    void ShowNews(string companySymbol)
+    {
+        //implement logic
+    }
+}
+</code></pre><p>There are several ways to subscribe to <code>PubSubEvents</code>. Use the following criteria to help determine which option best suits your needs:</p>
+<ul>
+<li>If you need to be able to update UI elements when an event is received, subscribe to receive the event on the UI thread.</li>
+<li>If you need to filter an event, provide a filter delegate when subscribing.</li>
+<li>If you have performance concerns with events, consider using strongly referenced delegates when subscribing and then manually unsubscribe from the PubSubEvent.</li>
+<li>If none of the preceding is applicable, use a default subscription.</li>
+</ul>
+<p>The following sections describe these options.</p>
+<h3 id="subscribing-on-the-ui-thread">Subscribing on the UI Thread</h3>
+<p>Frequently, subscribers will need to update UI elements in response to events. In WPF, only a UI thread can update UI elements.</p>
+<p>By default, the subscriber receives the event on the publisher&#39;s thread. If the publisher sends the event from the UI thread, the subscriber can update the UI. However, if the publisher&#39;s thread is a background thread, the subscriber may be unable to directly update UI elements. In this case, the subscriber would need to schedule the updates on the UI thread using the Dispatcher class.</p>
+<p>The <code>PubSubEvent</code> provided with the Prism Library can assist by allowing the subscriber to automatically receive the event on the UI thread. The subscriber indicates this during subscription, as shown in the following code example.</p>
+<pre><code class="lang-cs">public class MainPageViewModel
+{
+    public MainPageViewModel(IEventAggregator ea)
+    {
+        ea.GetEvent&lt;TickerSymbolSelectedEvent&gt;().Subscribe(ShowNews, ThreadOption.UIThread);
+    }
+
+    void ShowNews(string companySymbol)
+    {
+        //implement logic
+    }
+}
+</code></pre><p>The following options are available for <code>ThreadOption</code>:</p>
+<ul>
+<li><code>PublisherThread</code>: Use this setting to receive the event on the publishers&#39; thread. This is the default setting.</li>
+<li><code>BackgroundThread</code>: Use this setting to asynchronously receive the event on a .NET Framework thread-pool thread.</li>
+<li><code>UIThread</code>: Use this setting to receive the event on the UI thread.</li>
+</ul>
+<div class="NOTE"><h5>Note</h5><p>In order for <code>PubSubEvent</code> to publish to subscribers on the UI thread, the <code>EventAggregator</code> must initially be constructed on the UI thread.</p>
+</div>
+<h3 id="subscription-filtering">Subscription Filtering</h3>
+<p>Subscribers may not need to handle every instance of a published event. In these cases, the subscriber can use the filter parameter. The filter parameter is of type <code>System.Predicate&lt;TPayLoad&gt;</code> and is a delegate that gets executed when the event is published to determine if the payload of the published event matches a set of criteria required to have the subscriber callback invoked. If the payload does not meet the specified criteria, the subscriber callback is not executed.</p>
+<p>Frequently, this filter is supplied as a lambda expression, as shown in the following code example.</p>
+<pre><code class="lang-cs">public class MainPageViewModel
+{
+    public MainPageViewModel(IEventAggregator ea)
+    {
+        TickerSymbolSelectedEvent tickerEvent = ea.GetEvent&lt;TickerSymbolSelectedEvent&gt;();
+        tickerEvent.Subscribe(ShowNews, ThreadOption.UIThread, false, 
+                              companySymbol =&gt; companySymbol == &quot;STOCK0&quot;);
+    }
+
+    void ShowNews(string companySymbol)
+    {
+        //implement logic
+    }
+}
+</code></pre><div class="NOTE"><h5>Note</h5><p>The <code>Subscribe</code> method returns a subscription token of type <code>Prism.Events.SubscriptionToken</code> that can be used to remove a subscription to the event later. This token is particularly useful when you are using anonymous delegates or lambda expressions as the callback delegate or when you are subscribing the same event handler with different filters.</p>
+</div>
+<div class="NOTE"><h5>Note</h5><p>It is not recommended to modify the payload object from within a callback delegate because several threads could be accessing the payload object simultaneously. You could have the payload be immutable to avoid concurrency errors.</p>
+</div>
+<h3 id="subscribing-using-strong-references">Subscribing Using Strong References</h3>
+<p>If you are raising multiple events in a short period of time and have noticed performance concerns with them, you may need to subscribe with strong delegate references. If you do that, you will then need to manually unsubscribe from the event when disposing the subscriber.</p>
+<p>By default, <code>PubSubEvent</code> maintains a weak delegate reference to the subscriber&#39;s handler and filter on subscription. This means the reference that <code>PubSubEvent</code> holds on to will not prevent garbage collection of the subscriber. Using a weak delegate reference relieves the subscriber from the need to unsubscribe and allows for proper garbage collection.</p>
+<p>However, maintaining this weak delegate reference is slower than a corresponding strong reference. For most applications, this performance will not be noticeable, but if your application publishes a large number of events in a short period of time, you may need to use strong references with PubSubEvent. If you do use strong delegate references, your subscriber should unsubscribe to enable proper garbage collection of your subscribing object when it is no longer used.</p>
+<p>To subscribe with a strong reference, use the <code>keepSubscriberReferenceAlive</code> parameter on the <code>Subscribe</code> method, as shown in the following code example.</p>
+<pre><code class="lang-cs">public class MainPageViewModel
+{
+    public MainPageViewModel(IEventAggregator ea)
+    {
+        bool keepSubscriberReferenceAlive = true;
+        TickerSymbolSelectedEvent tickerEvent = ea.GetEvent&lt;TickerSymbolSelectedEvent&gt;();
+        tickerEvent.Subscribe(ShowNews, ThreadOption.UIThread, keepSubscriberReferenceAlive, 
+                              companySymbol =&gt; companySymbol == &quot;STOCK0&quot;);
+    }
+
+    void ShowNews(string companySymbol)
+    {
+        //implement logic
+    }
+}
+</code></pre><p>The <code>keepSubscriberReferenceAlive</code> parameter is of type <code>bool</code>:</p>
+<ul>
+<li>When set to <code>true</code>, the event instance keeps a strong reference to the subscriber instance, thereby not allowing it to get garbage collected. For information about how to unsubscribe, see the section Unsubscribing from an Event later in this topic.</li>
+<li>When set to <code>false</code> (the default value when this parameter omitted), the event maintains a weak reference to the subscriber instance, thereby allowing the garbage collector to dispose the subscriber instance when there are no other references to it. When the subscriber instance gets collected, the event is automatically unsubscribed.</li>
+</ul>
+<h2 id="unsubscribing-from-an-event">Unsubscribing from an Event</h2>
+<p>If your subscriber no longer wants to receive events, you can unsubscribe by using your subscriber&#39;s handler or you can unsubscribe by using a subscription token.</p>
+<p>The following code example shows how to directly unsubscribe to the handler.</p>
+<pre><code class="lang-cs">public class MainPageViewModel
+{
+    TickerSymbolSelectedEvent _event;
+    public MainPageViewModel(IEventAggregator ea)
+    {
+        _event = ea.GetEvent&lt;TickerSymbolSelectedEvent&gt;();
+        _event.Subscribe(ShowNews);
+    }
+
+    void Unsubscribe()
+    {
+        _event.Unsubscribe(ShowNews);
+    }
+
+    void ShowNews(string companySymbol)
+    {
+        //implement logic
+    }
+}
+</code></pre><p>The following code example shows how to unsubscribe with a subscription token. The token is supplied as a return value from the <code>Subscribe</code> method.</p>
+<pre><code class="lang-cs">public class MainPageViewModel
+{
+    TickerSymbolSelectedEvent _event;
+    SubscriptionToken _token;
+    public MainPageViewModel(IEventAggregator ea)
+    {
+        _event = ea.GetEvent&lt;TickerSymbolSelectedEvent&gt;();
+        _token = _event.Subscribe(ShowNews);
+    }
+
+    void Unsubscribe()
+    {
+        _event.Unsubscribe(_token);
+    }
+
+    void ShowNews(string companySymbol)
+    {
+        //implement logic
+    }
+}
+</code></pre></article>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
@@ -236,7 +402,7 @@
               <div class="connect-widget">
                 <ul class="connect-links">
           		<li id="connect-github">
-          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/index.md/#L1" target="_blank">
+          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/event-aggregator.md/#L1" target="_blank">
           				<div class="image github"></div>Edit on GitHub
           			</a>
                   </li>
