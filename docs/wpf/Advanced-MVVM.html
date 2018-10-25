@@ -325,13 +325,13 @@ commandProxy.CancelAllOrdersCommand.RegisterCommand(
 <h3 id="retrieving-data-and-interacting-with-web-services">Retrieving Data and Interacting with Web Services</h3>
 <p>When interacting with web services or other remote access technologies, you will often encounter the <strong>IAsyncResult</strong> pattern. In this pattern, instead of invoking a method, such as <strong>GetQuestionnaire</strong>, you use the pair of methods <strong>BeginGetQuestionnaire</strong> and <strong>EndGetQuestionnaire</strong>. To initiate the asynchronous call, you call <strong>BeginGetQuestionnaire</strong>. To get the results or determine if there was an exception when invoking the target method, you call <strong>EndGetQuestionnaire</strong> when the call is complete.</p>
 <p>To determine when to call <strong>EndGetQuestionnaire</strong>, you can either poll for completion or (preferably) specify a callback during the call to <strong>BeginGetQuestionnaire</strong>. With the callback approach, your callback method will be called when the execution of the target method is complete, allowing you to call <strong>EndGetQuestionnaire</strong> from there, as shown here.</p>
-<pre><code class="lang-cs">IAsyncResult asyncResult = this.service.BeginGetQuestionnaire(GetQuestionnaireCompleted, null // object state, not used in this example);
+<pre><code class="lang-cs">IAsyncResult asyncResult = this.service.BeginGetQuestionnaire(GetQuestionnaireCompleted, null); // object state, not used in this example
 
 private void GetQuestionnaireCompleted(IAsyncResult result)
 {
     try
     {
-        questionnaire = this.service.EndGetQuestionnaire(ar);
+        questionnaire = this.service.EndGetQuestionnaire(result);
     }
     catch (Exception ex)
     {
@@ -625,7 +625,7 @@ helper.ValidatePropertyChange(
     2,
     NotifyDataErrorInfoBehavior.FiresErrorsChanged);
 </code></pre><h3 id="testing-asynchronous-service-calls">Testing Asynchronous Service Calls</h3>
-<p>When implementing the MVVM pattern, view models usually invoke operations on services, often asynchronously. Tests for code that invokes these operations typically use mocks or stubs as replacements for the actual services</p>
+<p>When implementing the MVVM pattern, view models usually invoke operations on services, often asynchronously. Tests for code that invokes these operations typically use mocks or stubs as replacements for the actual services.</p>
 <p>The standard patterns used to implement asynchronous operations provide different guarantees regarding the thread in which notifications about the status of an operation occur. Although the <a href="http://msdn.microsoft.com/en-us/library/wewwczdw.aspx">Event-based Asynchronous design pattern</a> guarantees that handlers for the events are invoked on a thread that is appropriate for the application, the <a href="http://msdn.microsoft.com/en-us/library/ms228963.aspx">IAsyncResult design pattern</a> does not provide any such guarantees forcing the view model code that originates the call to ensure any changes that would affect the view are posted to the UI thread.</p>
 <p>Dealing with threading concerns requires more complicated, and, therefore, usually harder to test, code. It also usually requires the tests themselves to be asynchronous. When notifications are guaranteed to occur in the UI thread, either because the standard event-based asynchronous pattern is used or because view models rely on a service access layer to marshal notifications to the appropriate thread, tests can be simplified and can essentially play the role of a &quot;dispatcher for the UI thread.&quot;</p>
 <p>The way services are mocked depends on the asynchronous event pattern used to implement their operations. If a method-based based pattern is used, mocks for the service interface created using a standard mocking framework are usually enough, but if the event-based pattern is used, mocks based on a custom class that implements the methods to add and remove handlers for the service events are usually preferred.</p>
