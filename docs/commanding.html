@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Introduction to Prism | Prism </title>
+    <title>Commanding | Prism </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Introduction to Prism | Prism ">
+    <meta name="title" content="Commanding | Prism ">
     <meta name="generator" content="docfx 2.40.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -83,8 +83,8 @@
                 <div class="toc" id="toc">
                   
                   <ul class="nav level1">
-                    <li class="active">
-                      <a href="index.html" title="Introduction" class="active">Introduction</a>
+                    <li class="">
+                      <a href="index.html" title="Introduction" class="">Introduction</a>
                     </li>
                     <li class="">
                       <span class="expand-stub"></span>
@@ -101,8 +101,8 @@
                             <a href="getting-started/Assembly-Versioning.html" title="Assembly Versioning" class="">Assembly Versioning</a>
                           </li>
                         </ul>  </li>
-                    <li class="">
-                      <a href="commanding.html" title="Commanding" class="">Commanding</a>
+                    <li class="active">
+                      <a href="commanding.html" title="Commanding" class="active">Commanding</a>
                     </li>
                     <li class="">
                       <a href="composite-commands.html" title="Composite Commands" class="">Composite Commands</a>
@@ -223,12 +223,164 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="introduction-to-prism">Introduction to Prism</h1>
+<h1 id="commanding">Commanding</h1>
 
-<p>Prism is a framework for building loosely coupled, maintainable, and testable XAML applications in WPF, Windows 10 UWP, and Xamarin Forms. Separate releases are available for each platform and those will be developed on independent timelines. Prism provides an implementation of a collection of design patterns that are helpful in writing well-structured and maintainable XAML applications, including MVVM, dependency injection, commands, EventAggregator, and others. Prism&#39;s core functionality is a shared code base in a Portable Class Library targeting these platforms. Those things that need to be platform specific are implemented in the respective libraries for the target platform. Prism also provides great integration of these patterns with the target platform. For example, Prism for UWP and Xamarin Forms allows you to use an abstraction for navigation that is unit testable, but that layers on top of the platform concepts and APIs for navigation so that you can fully leverage what the platform itself has to offer, but done in the MVVM way.</p>
-<p>Prism 6 is a fully open source version of the Prism guidance <a href="http://blogs.msdn.com/b/dotnet/archive/2015/03/19/prism-grows-up.aspx">originally produced by Microsoft patterns &amp; practices</a>. The core team members were all part of the p&amp;p team that developed Prism 1 through 5, and the effort has now been turned over to the open source community to keep it alive and thriving to support the .NET community. There are thousands of companies who have adopted previous versions of Prism for WPF, Silverlight, and Windows Runtime, and we hope they will continue to move along with us as we continue to evolve and enhance the framework to keep pace with current platform capabilities and requirements.</p>
-<p>At the current time we have no plans to create new versions of the library for Silverlight or for Windows 8/8.1/WP8.1. For those you can still use the previous releases from Microsoft p&amp;p <a href="https://msdn.microsoft.com/en-us/library/Gg430869%28v=PandP.40%29.aspx">here</a> and <a href="http://prismwindowsruntime.codeplex.com/">here</a>. If there is enough interest and contributors to do the work, we can consider it, but it is not on our roadmap for now.</p>
-</article>
+<p>In addition to providing access to the data to be displayed or edited in the view, the ViewModel will likely define one or more actions or operations that can be performed by the user. Actions or operations that the user can perform through the UI are typically defined as commands. Commands provide a convenient way to represent actions or operations that can be easily bound to controls in the UI. They encapsulate the actual code that implements the action or operation and help to keep it decoupled from its actual visual representation in the view.</p>
+<p>Commands can be visually represented and invoked in many different ways by the user as they interact with the view. In most cases, they are invoked as a result of a mouse click, but they can also be invoked as a result of shortcut key presses, touch gestures, or any other input events. Controls in the view are data bound to the ViewModels&#39;s commands so that the user can invoke them using whatever input event or gesture the control defines. Interaction between the UI controls in the view and the command can be two-way. In this case, the command can be invoked as the user interacts with the UI, and the UI can be automatically enabled or disabled as the underlying command becomes enabled or disabled.</p>
+<p>The ViewModel can implement commands as a <strong>Command Object</strong> (an object that implements the <code>ICommand</code> interface). The view&#39;s interaction with the command can be defined declaratively without requiring complex event handling code in the view&#39;s code-behind file. For example, certain controls inherently support commands and provide a <code>Command</code> property that can be data bound to an <code>ICommand</code> object provided by the ViewModel. In other cases, a command behavior can be used to associate a control with a command method or command object provided by the ViewModel.</p>
+<p>Implementing the <code>ICommand</code> interface is straightforward. Prism provides the <code>DelegateCommand</code> implementation of this interface that you can readily use in your applications.</p>
+<div class="NOTE"><h5>Note</h5><p><code>DelegateCommand</code> can be found in the Prism.Commands namespace which is located in the Prism.Core NuGet package.</p>
+</div>
+<h2 id="creating-a-delegatecommand">Creating a DelegateCommand</h2>
+<p>The Prism <code>DelegateCommand</code> class encapsulates two delegates that each reference a method implemented within your ViewModel class. It implements the <code>ICommand</code> interface&#39;s <code>Execute</code> and <code>CanExecute</code> methods by invoking these delegates. You specify the delegates to your ViewModel methods in the <code>DelegateCommand</code> class constructor. For example, the following code example shows how a <code>DelegateCommand</code> instance, which represents a Submit command, is constructed by specifying delegates to the OnSubmit and CanSubmit ViewModel methods. The command is then exposed to the view via a read-only property that returns a reference to the <code>DelegateCommand</code>.</p>
+<pre><code class="lang-cs">public class ArticleViewModel
+{
+    public DelegateCommand SubmitCommand { get; private set; }
+
+    public ArticleViewModel()
+    {
+        SubmitCommand = new DelegateCommand&lt;object&gt;(Submit, CanSubmit);
+    }
+
+    void Submit(object parameter)
+    {
+        //implement logic
+    }
+
+    bool CanSubmit(object parameter)
+    {
+        return true;
+    }
+}
+</code></pre><p>When the Execute method is called on the <code>DelegateCommand</code> object, it simply forwards the call to the method in your ViewModel class via the delegate that you specified in the constructor. Similarly, when the <code>CanExecute</code> method is called, the corresponding method in your ViewModel class is called. The delegate to the <code>CanExecute</code> method in the constructor is optional. If a delegate is not specified, <code>DelegateCommand</code> will always return <code>true</code> for <code>CanExecute</code>.</p>
+<p>The <code>DelegateCommand</code> class is a generic type. The type argument specifies the type of the command parameter passed to the <code>Execute</code> and <code>CanExecute</code> methods. In the preceding example, the command parameter is of type <code>object</code>. A <strong>non-generic</strong> version of the <code>DelegateCommand</code> class is also provided by Prism for use when a command parameter is not required, and is defined as follows:</p>
+<pre><code class="lang-cs">public class ArticleViewModel
+{
+    public DelegateCommand SubmitCommand { get; private set; }
+
+    public ArticleViewModel()
+    {
+        SubmitCommand = new DelegateCommand(Submit, CanSubmit);
+    }
+
+    void Submit()
+    {
+        //implement logic
+    }
+
+    bool CanSubmit()
+    {
+        return true;
+    }
+}
+</code></pre><div class="NOTE"><h5>Note</h5><p>The <code>DelegateCommand</code> deliberately prevents the use of value types (int, double, bool, etc). Because <code>ICommand</code> takes an <code>object</code>, having a value type for <code>T</code> would cause unexpected behavior when <code>CanExecute(null)</code> is called during XAML initialization for command bindings. Using <code>default(T)</code> was considered and rejected as a solution because the implementor would not be able to distinguish between a valid and defaulted values. If you wish to use a value type as a parameter, you must make it nullable by using <code>DelegateCommand&lt;Nullable&lt;int&gt;&gt;</code> or the shorthand <code>?</code> syntax (<code>DelegateCommand&lt;int?&gt;</code>).</p>
+</div>
+<h2 id="invoking-delegatecommands-from-the-view">Invoking DelegateCommands from the View</h2>
+<p>There are a number of ways in which a control in the view can be associated with a command object provided by the ViewModel. Certain WPF, Xamarin.Forms, and UWP controls can be easily data bound to a command object through the <code>Command</code> property.</p>
+<pre><code class="lang-xml">&lt;Button Command=&quot;{Binding SubmitCommand}&quot; CommandParameter=&quot;OrderId&quot;/&gt;
+</code></pre><p>A command parameter can also be optionally defined using the <code>CommandParameter</code> property. The type of the expected argument is specified in the <code>DelegateCommand&lt;T&gt;</code> generic declaration. The control will automatically invoke the target command when the user interacts with that control, and the command parameter, if provided, will be passed as the argument to the command&#39;s <code>Execute</code> method. In the preceding example, the button will automatically invoke the <code>SubmitCommand</code> when it is clicked. Additionally, if a <code>CanExecute</code> delegate is specified, the button will be automatically disabled if <code>CanExecute</code> returns <code>false</code>, and it will be enabled if it returns <code>true</code>.</p>
+<h2 id="raising-change-notifications">Raising Change Notifications</h2>
+<p>The ViewModel often needs to indicate a change in the command&#39;s <code>CanExecute</code> status so that any controls in the UI that are bound to the command will update their enabled status to reflect the availability of the bound command.  The <code>DelegateCommand</code> provides several ways to send these notifications to the UI.</p>
+<h3 id="raisecanexecutechanged">RaiseCanExecuteChanged</h3>
+<p>Use the <code>RaiseCanExecuteChanged</code> method whenever you need to manually update the state of the bound UI elements.  For example, when the <code>IsEnabled</code> property values changes, we are calling <code>RaiseCanExecuteChanged</code> in the setter of the property to notify the UI of state changes.</p>
+<pre><code class="lang-cs">        private bool _isEnabled;
+        public bool IsEnabled
+        {
+            get { return _isEnabled; }
+            set
+            {
+                SetProperty(ref _isEnabled, value);
+                SubmitCommand.RaiseCanExecuteChanged();
+            }
+        }
+</code></pre><h3 id="observesproperty">ObservesProperty</h3>
+<p>In cases where the command should send notifications when a property value changes, you can use the <code>ObservesProperty</code> method. When using the <code>ObservesProperty</code> method, whenever the value of the supplied property changes, the <code>DelegateCommand</code> will automatically call <code>RaiseCanExecuteChanged</code> to notify the UI of state changes.</p>
+<pre><code class="lang-cs">public class ArticleViewModel : BindableBase
+{
+    private bool _isEnabled;
+    public bool IsEnabled
+    {
+        get { return _isEnabled; }
+        set { SetProperty(ref _isEnabled, value); }
+    }
+
+    public DelegateCommand SubmitCommand { get; private set; }
+
+    public ArticleViewModel()
+    {
+        SubmitCommand = new DelegateCommand(Submit, CanSubmit).ObservesProperty(() =&gt; IsEnabled);
+    }
+
+    void Submit()
+    {
+        //implement logic
+    }
+
+    bool CanSubmit()
+    {
+        return IsEnabled;
+    }
+}
+</code></pre><div class="NOTE"><h5>Note</h5><p>You can chain-register multiple properties for observation when using the <code>ObservesProperty</code> method. Example: <code>ObservesProperty(() =&gt; IsEnabled).ObservesProperty(() =&gt; CanSave)</code>.</p>
+</div>
+<h3 id="observescanexecute">ObservesCanExecute</h3>
+<p>If your <code>CanExecute</code> is the result of a simple <code>Boolean</code> property, you can eliminate the need to declare a <code>CanExecute</code> delegate, and use the <code>ObservesCanExecute</code> method instead. <code>ObservesCanExecute</code> will not only send notifications to the UI when the registered property value changes but it will also use that same property as the actual <code>CanExecute</code> delegate.</p>
+<pre><code class="lang-cs">public class ArticleViewModel : BindableBase
+{
+    private bool _isEnabled;
+    public bool IsEnabled
+    {
+        get { return _isEnabled; }
+        set { SetProperty(ref _isEnabled, value); }
+    }
+
+    public DelegateCommand SubmitCommand { get; private set; }
+
+    public ArticleViewModel()
+    {
+        SubmitCommand = new DelegateCommand(Submit, CanSubmit).ObservesCanExecute(() =&gt; IsEnabled);
+    }
+
+    void Submit()
+    {
+        //implement logic
+    }
+}
+</code></pre><div class="WARNING"><h5>Warning</h5><p>Do not attempt to chain-register <code>ObservesCanExecute</code> methods. Only one property can be observed for the <code>CanExcute</code> delegate.</p>
+</div>
+<h2 id="implementing-a-task-based-delegatecommand">Implementing a Task-Based DelegateCommand</h2>
+<p>In today&#39;s world of <code>async</code>/<code>await</code>, calling asynchronous methods inside of the <code>Execute</code> delegate is a very common requirement. Everyone&#39;s first instinct is that they need an <code>AsyncCommand</code>, but that assumption is wrong. <code>ICommand</code> by nature is synchronous, and the <code>Execute</code> and <code>CanExecute</code> delegates should be considered events.  This means that <code>async void</code> is a perfectly valid syntax to use for commands.  There are two approaches to using async methods with <code>DelegateCommand</code>.</p>
+<p><strong>Option 1:</strong></p>
+<pre><code class="lang-cs">public class ArticleViewModel
+{
+    public DelegateCommand SubmitCommand { get; private set; }
+
+    public ArticleViewModel()
+    {
+        SubmitCommand = new DelegateCommand(Submit);
+    }
+
+    async void Submit()
+    {
+        await SomeAsyncMethod();
+    }
+}
+</code></pre><p><strong>Option 2:</strong></p>
+<pre><code class="lang-cs">public class ArticleViewModel
+{
+    public DelegateCommand SubmitCommand { get; private set; }
+
+    public ArticleViewModel()
+    {
+        SubmitCommand = new DelegateCommand(async ()=&gt; await Submit());
+    }
+
+    Task Submit()
+    {
+        return SomeAsyncMethod();
+    }
+}
+</code></pre></article>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
@@ -236,7 +388,7 @@
               <div class="connect-widget">
                 <ul class="connect-links">
           		<li id="connect-github">
-          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/index.md/#L1" target="_blank">
+          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/commanding.md/#L1" target="_blank">
           				<div class="image github"></div>Edit on GitHub
           			</a>
                   </li>
