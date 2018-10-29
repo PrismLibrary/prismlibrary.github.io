@@ -61,6 +61,7 @@ html, body {
 .toc {
     overflow-x: hidden;
     padding-left: 10px;
+    margin-bottom: 65px;
 }
 
 .toc .nav > li > a {
