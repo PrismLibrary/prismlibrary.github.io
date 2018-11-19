@@ -264,7 +264,7 @@ If there is only one iOS device attached to the PC it&#39;ll select the one. Whe
 &lt;/ContentPage&gt;
 </code></pre><p>There are some important things happening here, let&#39;s break down whats going on.</p>
 <p><code>xmlns:prism=&quot;clr-namespace:Prism.Mvvm;assembly=Prism.Forms&quot;</code></p>
-<p>The Prism library is referenced. </p>
+<p>The Prism library is referenced.</p>
 <p><code>prism:ViewModelLocator.AutowireViewModel=&quot;True&quot;</code></p>
 <p>This view (MainPage.xaml) is wired to the view model (MainPageViewModel.cs) <em>automatically via naming conventions</em> allowing for databinding to the view model. See ViewModelLocator documentation for more information.</p>
 <p><code>&lt;Label Text=&quot;{Binding Title}&quot; /&gt;</code></p>
@@ -289,8 +289,8 @@ If there is only one iOS device attached to the PC it&#39;ll select the one. Whe
     }
 }
 </code></pre><pre><code class="lang-cs">public class MainPageViewModel : BindableBase, INavigationAware
-</code></pre><p>The MainPageViewModel inherits from <code>BindableBase</code> and implements the <code>INavigationAware</code> interface. </p>
-<p>The <code>BindableBase</code> class implements the <a href="https://msdn.microsoft.com/en-us/library/system.componentmodel.inotifypropertychanged%28v=vs.110%29.aspx">INotifyPropertyChanged</a> interface which allows for the view to be able to databind to properties created here. <code>BindableBase</code> also provides a protected <code>SetProperty</code> method to simplify creating these properties. </p>
+</code></pre><p>The MainPageViewModel inherits from <code>BindableBase</code> and implements the <code>INavigationAware</code> interface.</p>
+<p>The <code>BindableBase</code> class implements the <a href="https://msdn.microsoft.com/en-us/library/system.componentmodel.inotifypropertychanged%28v=vs.110%29.aspx">INotifyPropertyChanged</a> interface which allows for the view to be able to databind to properties created here. <code>BindableBase</code> also provides a protected <code>SetProperty</code> method to simplify creating these properties.</p>
 <p>The <code>INavigationAware</code> interface allows for the view model to be notified when it is being navigated from or being navigated to. See the <a href="navigation/passing-parameters.html">INavigationAware documentation</a> for more information.</p>
 <pre><code class="lang-cs">private string _title;
 public string Title
@@ -311,7 +311,7 @@ public void OnNavigatedTo(NavigationParameters parameters)
 <p>Now that we have a basic understanding of how project is setup with Prism for Xamarin.Forms, let&#39;s add to it and create a new Page (View) and ViewModel. We&#39;ll create a page with a text entry field and a button similar to the wireframe below. Later we&#39;ll add functionality to make the phone speak the text that&#39;s entered into the text field.</p>
 <p><img src="images/GettingStarted_ViewSketch.png" alt="Sketch of a view with a text entry field and button."></p>
 <h3 id="view">View</h3>
-<p>Let&#39;s create the new content page in the project, also known as the view. Again, the easiest way to do this is with the <em>Prism Template Pack</em>. We&#39;ll create the view first. Right click on the <code>Views</code> folder, click <code>Add &gt; New Item...</code> under <code>Installed &gt; Visual C# &gt; Prism &gt; Forms</code> select <code>Prism ContentPage (Forms)</code>. Name the page <code>SpeakPage.xaml</code> and click <code>Add</code>. This creates a blank content page. </p>
+<p>Let&#39;s create the new content page in the project, also known as the view. Again, the easiest way to do this is with the <em>Prism Template Pack</em>. We&#39;ll create the view first. Right click on the <code>Views</code> folder, click <code>Add &gt; New Item...</code> under <code>Installed &gt; Visual C# &gt; Prism &gt; Forms</code> select <code>Prism ContentPage (Forms)</code>. Name the page <code>SpeakPage.xaml</code> and click <code>Add</code>. This creates a blank content page.</p>
 <p>There are many different types of <a href="https://developer.xamarin.com/guides/xamarin-forms/controls/pages/">pages available in Xamarin Forms</a>, but the ContentPage is one of the most basic. It displays a single visual object, typically a <a href="https://developer.xamarin.com/guides/xamarin-forms/controls/layouts/">layout</a>. Update<code>SpeakPage.xaml</code> to have the contents shown below.</p>
 <pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
 &lt;ContentPage xmlns=&quot;http://xamarin.com/schemas/2014/forms&quot;
@@ -380,7 +380,7 @@ public SpeakPageViewModel()
 {
     SpeakCommand = new DelegateCommand(Speak);
 }
-</code></pre><p>Creates a <a href="https://msdn.microsoft.com/en-us/library/microsoft.practices.prism.commands.delegatecommand%28v=pandp.50%29.aspx">DelegateCommand</a> called <code>SpeakCommand</code> that the Speak button is bound to. The <code>SpeakCommand</code> is created in the <code>SpeakPageViewModel</code> constructor and will invoke the <code>Speak</code> method, which hasn&#39;t been written yet. To be able to perform the actual text-to-speech platform specific APIs need to be used. This is outside the scope of this documentation, but head over to the <a href="Dependency-Service.html">Dependency Service documentation</a> to see how this is done.</p>
+</code></pre><p>Creates a <a href="https://msdn.microsoft.com/en-us/library/microsoft.practices.prism.commands.delegatecommand%28v=pandp.50%29.aspx">DelegateCommand</a> called <code>SpeakCommand</code> that the Speak button is bound to. The <code>SpeakCommand</code> is created in the <code>SpeakPageViewModel</code> constructor and will invoke the <code>Speak</code> method, which hasn&#39;t been written yet. To be able to perform the actual text-to-speech platform specific APIs need to be used. This is outside the scope of this documentation, but head over to the <a href="Platform-Specific-Types.html">IPlatformInitializer documentation</a> to see how this is done.</p>
 <h2 id="navigating-to-your-new-page">Navigating to your new page</h2>
 <p>We now have two pages in our app, a main page and a speak page. To navigate to the new page, we&#39;ll need to register the page for navigation. In the Portable Class Library, <code>HelloXFPrism (Portable)</code>, open App.xaml.cs (you may have to click the carrot next to App.xaml to see it). Register the new page for navigation by updating <code>RegisterTypes(IContainerRegistry containerRegistry)</code> to include the following.</p>
 <pre><code class="lang-cs">public partial class App : PrismApplication
