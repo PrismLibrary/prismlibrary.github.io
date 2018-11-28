@@ -8,7 +8,7 @@
     <title>Productivity Tools | Prism </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Productivity Tools | Prism ">
-    <meta name="generator" content="docfx 2.40.2.0">
+    <meta name="generator" content="docfx 2.40.4.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -325,18 +325,40 @@
 <p>Use the new WPF project wizard to choose your container and no longer have to worry about brinign in the correct Nuget packages.</p>
 <p><img src="images/wpf-project-wizard.png" alt="WPF Project Wizard"></p>
 <p><strong>Xamarin.Forms</strong></p>
+<p><em>Visual Studio</em></p>
 <ul>
 <li>Prism Blank App - this project template will create a .NET Standard Xamarin.Forms application with four projects; a PCL project for the shared code, an iOS app, an Android app, and a UWP app.</li>
 <li>Prism Module - this project template will add a new project to your solution that will act as a Prism module.  It will have a class defined that implements IModule with two folders for your Views and ViewModels.  There will be a default view called ViewA and a class named ViewAViewModel that has already been registered with the container in the IModule class.</li>
 </ul>
+<p><em>Visual Studio for Mac</em></p>
+<ul>
+<li>App - contains templates for basic Prism Forms project, blank Prism Forms application with PropertyChanged.Fody and starter icon assets, and a customizable QuickStart.</li>
+<li>Module - contains templates for reusable Prism Modules.</li>
+<li>Tests - contains templates for Appium and Xamarin UI test, and Unit tests in MS Test, NUnit, and Xunit.</li>
+</ul>
+<p>QuickStart Templates (<em>not sure where to place this</em>)</p>
+<ul>
+<li>Blank Prism Application -  This template lets you create a Xamarin.Forms app for iOS and Android much like the &quot;Official&quot; template, but adds PropertyChanged.Fody, started icon assets, IDE configurations and option to incude UI tests.</li>
+</ul>
+<p><img src="images/vsmac-qs-prism-app-blank.png" alt="QuickStart Prism Application"></p>
+<ul>
+<li>QuickStart Prism Application - This template provides a customizable template for creating Prism application with many common tools already installed e.g. MVVM helpers like Fody, localization, barcode scanner, and data provider backends (Azure, Realm, etc.)</li>
+</ul>
+<p><img src="images/vsmac-qs-prism-app-01.png" alt="QuickStart Prism Application"></p>
+<p><strong>Note:</strong> This template requires CI/CD setup for <strong>AppCenter</strong> and <strong>Azure Devops (VSTS)</strong>. To get started, go to <a href="https://docs.microsoft.com/en-us/appcenter/">App Center</a> and <a href="https://visualstudio.microsoft.com/vso/">Azure DevOps</a> to setup your app. Then create connection to your app in Visual Studio for Mac by going to <code>Help -&gt; AppCenter Congiurations</code>.</p>
+<p><img src="images/vsmac-qs-prism-app-setup.png" alt="QuickStart Prism Application"></p>
+<p>Tutorial for this QuickStart can be found <a href="https://dansiegel.net/post/2018/06/21/developer-toolkit-for-visual-studio-mac">here</a>.</p>
 <p>Tired of creating every Xamarin.Forms platform project available? Now you can chose only the projects you care about with the new Xamarin.Forms Project Wizard.</p>
 <p><img src="images/xf-project-wizard.png" alt="Xamarin.Forms Project Wizard"></p>
+<p>Visual Studio for Mac,</p>
+<p><img src="images/vsmac-prism-template-official.png" alt="Official Blank Template"></p>
+<p><em>Note: UWP is not supported on Mac</em></p>
 <h2 id="visual-studio-installation">Visual Studio Installation</h2>
 <p>The Prism Template Pack is available on the <a href="https://marketplace.visualstudio.com/items?itemName=BrianLagunas.PrismTemplatePack">Visual Studio Gallery</a>. To install, just go to <code>Visual Studio -&gt; Tools -&gt; Extensions and Updates...</code> then search for &quot;Prism Template Pack&quot; in the online gallery:</p>
 <p><img src="images/prism-template-pack-win.jpg" alt="Prism Template Pack"></p>
 <h2 id="visual-studio-for-mac-installation">Visual Studio for Mac Installation</h2>
-<p>The Prism Template Studio and Developer Toolkit is available from the Visual Studio Mac Extensions Gallery.</p>
-<p><strong>need image</strong></p>
+<p>The Prism Template Studio and Developer Toolkit is available from the Visual Studio Mac Extensions Gallery. Prism makes it easier to get Prism Template Studio and Developer Toolkit all in a single extension. Go to <code>Visual Studio -&gt; Extensions...</code> and search for &quot;Prism&quot; in the Gallery tab.</p>
+<p><img src="images/vsmac-prism-ext.png" alt="VS4Mac Prism Extension"></p>
 <h1 id="prism-template-studio">Prism Template Studio</h1>
 <p>TBD</p>
 <h1 id="prism-extensibility-pack">Prism Extensibility Pack</h1>
