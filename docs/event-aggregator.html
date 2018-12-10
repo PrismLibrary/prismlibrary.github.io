@@ -245,7 +245,7 @@
 <p>The <code>PubSubEvent&lt;TPayload&gt;</code> is intended to be the base class for an application&#39;s or module&#39;s specific events. <code>TPayLoad</code> is the type of the event&#39;s payload. The payload is the argument that will be passed to subscribers when the event is published.</p>
 <p>For example, the following code shows the <code>TickerSymbolSelectedEvent</code>. The payload is a string containing the company symbol. Notice how the implementation for this class is empty.</p>
 <pre><code class="lang-cs">public class TickerSymbolSelectedEvent : PubSubEvent&lt;string&gt;{}
-</code></pre><div class="NOTE"><h5>Note</h5><p>In a composite application, the events are frequently shared between multiple modules, so they are defined in a common place. It is common practice to deinfe these events in a shared assembly such as a &quot;Core&quot; or &quot;Infrastructure&quot; project.</p>
+</code></pre><div class="NOTE"><h5>Note</h5><p>In a composite application, the events are frequently shared between multiple modules, so they are defined in a common place. It is common practice to define these events in a shared assembly such as a &quot;Core&quot; or &quot;Infrastructure&quot; project.</p>
 </div>
 <h2 id="publishing-an-event">Publishing an Event</h2>
 <p>Publishers raise an event by retrieving the event from the <code>EventAggregator</code> and calling the <code>Publish</code> method. To access the <code>EventAggregator</code>, you can use dependency injection by adding a parameter of type <code>IEventAggregator</code> to the class constructor.</p>
