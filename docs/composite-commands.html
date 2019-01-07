@@ -233,7 +233,7 @@
 <p>The <code>CompositeCommand</code> class maintains a list of child commands (<code>DelegateCommand</code> instances). The <code>Execute</code> method of the <code>CompositeCommand</code> class simply calls the <code>Execute</code> method on each of the child commands in turn. The <code>CanExecute</code> method similarly calls the <code>CanExecute</code> method of each child command, but if any of the child commands cannot be executed, the <code>CanExecute</code> method will return <code>false</code>. In other words, by default, a <code>CompositeCommand</code> can only be executed when all the child commands can be executed.</p>
 <div class="NOTE"><h5>Note</h5><p><code>CompositeCommand</code> can be found in the Prism.Commands namespace which is located in the Prism.Core NuGet package.</p>
 </div>
-<div class="embeddedvideo"><iframe src="https://youtu.be/kssprOqdfME" frameborder="0" allowfullscreen="true"></iframe></div>
+<div class="embeddedvideo"><iframe src="https://www.youtube.com/embed/kssprOqdfME" frameborder="0" allowfullscreen="true"></iframe></div>
 <h2 id="creating-a-composite-command">Creating a Composite Command</h2>
 <p>To create a composite command, instantiate a <code>CompositeCommand</code> instance and then expose it as either an <code>ICommand</code> or <code>ComponsiteCommand</code> property.</p>
 <pre><code class="lang-cs">    public class ApplicationCommands
