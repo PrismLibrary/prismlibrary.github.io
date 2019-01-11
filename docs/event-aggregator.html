@@ -229,6 +229,7 @@
 <p>The <code>EventAggregator</code> provides multicast publish/subscribe functionality. This means there can be multiple publishers that raise the same event and there can be multiple subscribers listening to the same event. Consider using the <code>EventAggregator</code> to publish an event across modules and when sending a message between business logic code, such as controllers and presenters.</p>
 <p>Events created with the Prism Library are typed events. This means you can take advantage of compile-time type checking to detect errors before you run the application. In the Prism Library, the <code>EventAggregator</code> allows subscribers or publishers to locate a specific <code>EventBase</code>. The event aggregator also allows for multiple publishers and multiple subscribers, as shown in the following illustration.</p>
 <p><img src="images/event-aggregator-1.png" alt="Using the event aggregator"></p>
+<div class="embeddedvideo"><iframe src="https://www.youtube.com/embed/xTP9_hN_3xA" frameborder="0" allowfullscreen="true"></iframe></div>
 <h2 id="ieventaggregator">IEventAggregator</h2>
 <p>The <code>EventAggregator</code> class is offered as a service in the container and can be retrieved through the <code>IEventAggregator</code>interface. The event aggregator is responsible for locating or building events and for keeping a collection of the events in the system.</p>
 <pre><code class="lang-cs">public interface IEventAggregator
