@@ -225,12 +225,90 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="using-the-viewmodellocator">Using the ViewModelLocator</h1>
 
+<p>The <code>ViewModelLocator</code> is used to wire the <code>DataContext</code> of a view to an instance of a ViewModel using a standard naming convention.</p>
+<p>The Prism <code>ViewModelLocator</code> has an <code>AutoWireViewModel</code> attached property, that when set to <code>true</code> calls the <code>AutoWireViewModelChanged</code> method in the <code>ViewModelLocationProvider</code> class to resolve the ViewModel for the view, and then set the view’s data context to an instance of that ViewModel.</p>
+<p>Add the <code>AutoWireViewModel</code> attached property to each View:</p>
+<pre><code>&lt;Window x:Class=&quot;Demo.Views.MainWindow&quot;
+    ...
+    xmlns:prism=&quot;http://prismlibrary.com/&quot;
+    prism:ViewModelLocator.AutoWireViewModel=&quot;True&quot;&gt;
+</code></pre><p>To locate a ViewModel, the <code>ViewModelLocationProvider</code> first attempts to resolve the ViewModel from any mappings that may have been registered by the <code>ViewModelLocationProvider.Register</code> method (See <strong>Custom ViewModel Registrations</strong>).  If the ViewModel cannot be resolved using this approach, the <code>ViewModelLocationProvider</code> falls back to a convention-based approach to resolve the correct ViewModel type.  </p>
+<p>This convention assumes:</p>
+<ul>
+<li>that ViewModels are in the same assembly as the view types</li>
+<li>that ViewModels are in a <code>.ViewModels</code> child namespace</li>
+<li>that views are in a <code>.Views</code> child namespace</li>
+<li>that ViewModel names correspond with view names and end with &quot;ViewModel.&quot;</li>
+</ul>
+<div class="NOTE"><h5>Note</h5><p>The <code>ViewModelLocationProvider</code> can be found in the <code>Prism.Mvvm</code> namespace in the <strong>Prism.Core</strong> NuGet package. The <code>ViewModelLocator</code> can be found in the <code>Prism.Mvvm</code> namespace in the <strong>Prism.WPF</strong> NuGet package.</p>
+</div>
+<div class="NOTE"><h5>Note</h5><p>The ViewModelLocator is required, and automatically applied to every View, when developing with Xamarin.Forms as it is responsible for providing the correct instance of the <code>INavigationServcie</code> to the ViewModel. When developing a Xamarin.Forms app, the <code>ViewModelLocator</code> is opt-out only.</p>
+</div>
 <div class="embeddedvideo"><iframe src="https://www.youtube.com/embed/I_3LxBdvJi4" frameborder="0" allowfullscreen="true"></iframe></div>
 <h2 id="change-the-naming-convention">Change the Naming Convention</h2>
-<div class="embeddedvideo"><iframe src="https://www.youtube.com/embed/o4ibaOFvfww" frameborder="0" allowfullscreen="true"></iframe></div>
-<h2 id="custom-registrations">Custom Registrations</h2>
-<h2 id="change-the-resolver">Change the Resolver</h2>
-</article>
+<p>If your application does not follow the <code>ViewModelLocator</code> default naming convention, you can change the convention to meet the requirements of your application.  The <code>ViewModelLocationProvider</code> class provides a static method called <code>SetDefaultViewTypeToViewModelTypeResolver</code> that can be used to provide your own convention for associating views to view models.</p>
+<p>To change the <code>ViewModelLocator</code> naming convention, override the <code>ConfigureViewModelLocator</code> method in the <code>App.xmla.cs</code> class. Then provide your custom naming convention logic in the <code>ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver</code> method.</p>
+<pre><code>protected override void ConfigureViewModelLocator()
+{
+    base.ConfigureViewModelLocator();
+
+    ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver((viewType) =&gt;
+    {
+        var viewName = viewType.FullName.Replace(&quot;.ViewModels.&quot;, &quot;CustomNamespace&quot;);
+        var viewAssemblyName = viewType.GetTypeInfo().Assembly.FullName;
+        var viewModelName = $&quot;{viewName}ViewModel, {viewAssemblyName}&quot;;
+        return Type.GetType(viewModelName);
+    });
+}
+</code></pre><div class="embeddedvideo"><iframe src="https://www.youtube.com/embed/o4ibaOFvfww" frameborder="0" allowfullscreen="true"></iframe></div>
+<h2 id="custom-viewmodel-registrations">Custom ViewModel Registrations</h2>
+<p>There may be instances where your app is following the <code>ViewModelLocator</code> default naming convention, but you have a number of ViewModels that do not follow the convention. Instead of trying to customize the naming convention logic to conditionally meet all your naming requirments, you can register a mapping for a ViewModel to a specific view directly with the <code>ViewModelLocator</code> by using the <code>ViewModelLocationProvider.Register</code> method.</p>
+<p>The following examples show the various ways to create a mapping between a view called <code>MainWindow</code> and a ViewModel named <code>CustomViewModel</code>.</p>
+<p><strong>Type / Type</strong></p>
+<pre><code>ViewModelLocationProvider.Register(typeof(MainWindow).ToString(), typeof(CustomViewModel));
+</code></pre><p><strong>Type / Factory</strong></p>
+<pre><code>ViewModelLocationProvider.Register(typeof(MainWindow).ToString(), () =&gt; Container.Resolve&lt;CustomViewModel&gt;());
+</code></pre><p><strong>Generic Factory</strong></p>
+<pre><code>ViewModelLocationProvider.Register&lt;MainWindow&gt;(() =&gt; Container.Resolve&lt;CustomViewModel&gt;());
+</code></pre><p><strong>Generic Type</strong></p>
+<pre><code>ViewModelLocationProvider.Register&lt;MainWindow, CustomViewModel&gt;();
+</code></pre><div class="NOTE"><h5>Note</h5><p>Registering your ViewModels directly with the <code>ViewModelLocator</code> is faster that relying on the default naming convention. This is because the naming convention requires the use of reflection, while a custom mapping provides the type directly to the <code>ViewModelLocator</code>.</p>
+</div>
+<div class="IMPORTANT"><h5>Important</h5><p>The <code>viewTypeName</code> parameter must be the fully qualifyied name of the view&#39;s Type (<code>Type.ToString()</code>). Otherwise the mapping will fail.</p>
+</div>
+<h2 id="control-how-viewmodels-are-resolved">Control how ViewModels are Resolved</h2>
+<p>By default, the <code>ViewModelLocator</code> will use the DI container you have chosen to create your Prism application to resolve ViewModels.  However, if you ever have the need to customize how ViewModels are resolved or change the resolver altogether, you can achieve this by using the <code>ViewModelLocationProvider.SetDefaultViewModelFactory</code> method.</p>
+<p>This example shows how you might change the container used for resolving the ViewModel instances.</p>
+<pre><code>protected override void ConfigureViewModelLocator()
+{
+    base.ConfigureViewModelLocator();
+
+    ViewModelLocationProvider.SetDefaultViewModelFactory(viewModelType) =&gt;
+    {
+        return MyAwesomeNewContainer.Resolve(viewModelType);
+    });
+}
+</code></pre><p>This is an example of how you might check the type of the view the ViewModel is being created for, and performing logic to control how the ViewModel is created.</p>
+<pre><code>protected override void ConfigureViewModelLocator()
+{
+    base.ConfigureViewModelLocator();
+
+    ViewModelLocationProvider.SetDefaultViewModelFactory((view, viewModelType) =&gt;
+    {
+        switch (view)
+        {
+            case Window window:
+                //your logic
+                break;
+            case UserControl userControl:
+                //your logic
+                break;
+        }
+
+        return MyAwesomeNewContainer.Resolve(someNewType);
+    });
+}
+</code></pre></article>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
