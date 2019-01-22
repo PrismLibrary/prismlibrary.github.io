@@ -254,7 +254,7 @@
 
     ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver((viewType) =&gt;
     {
-        var viewName = viewType.FullName.Replace(&quot;.ViewModels.&quot;, &quot;CustomNamespace&quot;);
+        var viewName = viewType.FullName.Replace(&quot;.ViewModels.&quot;, &quot;.CustomNamespace.&quot;);
         var viewAssemblyName = viewType.GetTypeInfo().Assembly.FullName;
         var viewModelName = $&quot;{viewName}ViewModel, {viewAssemblyName}&quot;;
         return Type.GetType(viewModelName);
@@ -276,6 +276,7 @@
 </div>
 <div class="IMPORTANT"><h5>Important</h5><p>The <code>viewTypeName</code> parameter must be the fully qualifyied name of the view&#39;s Type (<code>Type.ToString()</code>). Otherwise the mapping will fail.</p>
 </div>
+<div class="embeddedvideo"><iframe src="https://www.youtube.com/embed/phMc4OuKs58" frameborder="0" allowfullscreen="true"></iframe></div>
 <h2 id="control-how-viewmodels-are-resolved">Control how ViewModels are Resolved</h2>
 <p>By default, the <code>ViewModelLocator</code> will use the DI container you have chosen to create your Prism application to resolve ViewModels.  However, if you ever have the need to customize how ViewModels are resolved or change the resolver altogether, you can achieve this by using the <code>ViewModelLocationProvider.SetDefaultViewModelFactory</code> method.</p>
 <p>This example shows how you might change the container used for resolving the ViewModel instances.</p>
