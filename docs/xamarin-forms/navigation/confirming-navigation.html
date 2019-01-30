@@ -226,6 +226,7 @@
 <h1 id="confirming-navigaton">Confirming Navigaton</h1>
 
 <p>A ViewModel can determine whether or not it can perform a navigation operation. When a ViewModel implements the <strong>IConfirmNavigation</strong> or the <strong>IConfirmNavigationAsync</strong> interface, the navigation process looks to see what the result of this method is.  If <em>true</em>, a navigation process can be invoked, meaning a call to <code>NavigationService.NavigateAsync(&quot;target&quot;)</code> can be made.  If <em>false</em>, the ViewModel cannot invoke the navigation process.</p>
+<div class="embeddedvideo"><iframe src="https://www.youtube.com/embed/64qxmuzdX0M" frameborder="0" allowfullscreen="true"></iframe></div>
 <h2 id="iconfirmnavigation">IConfirmNavigation</h2>
 <pre><code class="lang-cs">public class ContactPageViewModel : IConfirmNavigation 
 {
