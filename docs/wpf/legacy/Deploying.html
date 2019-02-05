@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Xaml Navigation | Prism </title>
+    <title>Deploying Applications Using the Prism Library for WPF | Prism </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Xaml Navigation | Prism ">
+    <meta name="title" content="Deploying Applications Using the Prism Library for WPF | Prism ">
     <meta name="generator" content="docfx 2.40.10.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
@@ -150,8 +150,8 @@
                                 <li class="">
                                   <a href="../../wpf/legacy/Communication.html" title="Communication" class="">Communication</a>
                                 </li>
-                                <li class="">
-                                  <a href="../../wpf/legacy/Deploying.html" title="Deploying" class="">Deploying</a>
+                                <li class="active">
+                                  <a href="../../wpf/legacy/Deploying.html" title="Deploying" class="active">Deploying</a>
                                 </li>
                                 <li class="">
                                   <a href="../../wpf/legacy/Appendix-A-Glossary.html" title="Appendix-A-Glossary" class="">Appendix-A-Glossary</a>
@@ -204,8 +204,8 @@
                                 <li class="">
                                   <a href="../../xamarin-forms/navigation/working-with-tabbedpages.html" title="Working w/ TabbedPages" class="">Working w/ TabbedPages</a>
                                 </li>
-                                <li class="active">
-                                  <a href="../../xamarin-forms/navigation/xaml-navigation.html" title="XAML Navigation" class="active">XAML Navigation</a>
+                                <li class="">
+                                  <a href="../../xamarin-forms/navigation/xaml-navigation.html" title="XAML Navigation" class="">XAML Navigation</a>
                                 </li>
                               </ul>  </li>
                           <li class="">
@@ -229,90 +229,45 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="xaml-navigation">Xaml Navigation</h1>
+<h1 id="deploying-applications-using-the-prism-library-for-wpf">Deploying Applications Using the Prism Library for WPF</h1>
 
-<p>Prism allows you to declare your navigation directly inside your Xaml via a <a href="https://docs.microsoft.com/en-us/xamarin/xamarin-forms/xaml/markup-extensions/">Markup Extension</a>. This approach really helps with basic navigation scenarios, and can also help clean up your ViewModels.</p>
-<h2 id="defining-your-navigation-path-in-xaml">Defining your navigation path in Xaml</h2>
-<p>To define navigation from within your Xaml, simply add the prism namespace to your Page</p>
-<pre><code class="lang-xml">&lt;Page xmlns:prism=&quot;clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms&quot;&gt;
-</code></pre><p>And then add the Markup Extension to any <code>Command</code> property (buttons, tap gesture recognizers, etc.)</p>
-<pre><code class="lang-xml">&lt;!-- normal navigation --&gt;
-&lt;Button Command=&quot;{prism:NavigateTo &#39;path/to/navigate&#39;}&quot; /&gt;
-
-&lt;!-- replace a page on the stack --&gt;
-&lt;Button Command=&quot;{prism:NavigateTo &#39;../navigate&#39;}&quot; /&gt;
-</code></pre><p>Navigating back OR back to the root page will be done via the GoBack extension</p>
-<pre><code class="lang-xml">&lt;!-- go back one --&gt;
-&lt;Button Command=&quot;{prism:GoBack}&quot; /&gt;
-
-&lt;!-- go back to the root --&gt;
-&lt;Button Command=&quot;{prism:GoBack ToRoot}&quot; /&gt;
-</code></pre><h2 id="adding-navigationparameters-via-xaml">Adding NavigationParameters via Xaml</h2>
-<p>You can also define NavigationParameters to your Xaml in one of three ways.</p>
-<h4 id="1-directly-as-a-commandparameter-binding">1: Directly as a CommandParameter Binding.</h4>
-<p><em>Note: in order to access it, you need to lookup <code>xamlParam</code> from your NavigationParameters property. This is also statically defined in <code>KnownNavigationParameters.XamlParam</code></em></p>
-<pre><code class="lang-xml">&lt;Button Command=&quot;{prism:NavigateTo &#39;path/to/navigate&#39;}&quot; 
-        CommandParameter=&quot;{Binding Foo}&quot; /&gt;
-</code></pre><pre><code class="lang-csharp">public override void OnNavigatingTo(NavigationParameters parameters)
-{
-    if(parameters.TryGetValue(KnownNavigationParameters.XamlParam, out object fooObject))
-    {
-        // do something with fooObject
-    }
-}
-</code></pre><h4 id="2-as-a-single-navigation-parameter">2: As a single navigation parameter</h4>
-<pre><code class="lang-xml">&lt;Button Command=&quot;{prism:NavigateTo &#39;path/to/navigate&#39;}&quot;&gt;
-    &lt;Button.CommandParameter&gt;
-        &lt;prism:NavigationParameter Key=&quot;Foo&quot; Value=&quot;Some Value&quot;&gt;
-    &lt;/Button.CommandParameter&gt;
-&lt;/Button&gt;
-</code></pre><h4 id="3-as-a-collection-of-navigation-parameters">3: As a collection of navigation parameters</h4>
-<pre><code class="lang-xml">&lt;Button Command=&quot;{prism:NavigateTo &#39;path/to/navigate&#39;}&quot;&gt;
-    &lt;Button.CommandParameter&gt;
-        &lt;prism:NavigationParameters&gt;
-            &lt;prism:NavigationParameter Key=&quot;Foo&quot; Value=&quot;{Binding SomeBarValue}&quot;&gt;
-            &lt;prism:NavigationParameter Key=&quot;Fizz&quot; Value=&quot;Some Buzz Value&quot;&gt;
-        &lt;/prism:NavigationParameters&gt;
-    &lt;/Button.CommandParameter&gt;
-&lt;/Button&gt;
-</code></pre><p><em>note: you can also optionally specify a BindingContext on either your <code>NavigationParameters</code> or <code>NavigationParameter</code>.</em></p>
-<h2 id="controlling-cannavigate">Controlling <code>CanNavigate</code></h2>
-<p>You can control whether or not the user <code>CanNavigate</code> via an <a href="https://docs.microsoft.com/en-us/xamarin/xamarin-forms/xaml/attached-properties">attached property</a>. This attached property can be set on any parent object, and Prism will walk the tree until it finds the value. If Prism cannot find a <code>CanNavigate</code> property, it simply assumes <code>true</code> with a single caviat. In order to prevent double-tap issues, Prism&#39;s Xaml Navigation tracks if the user has already initiated navigation, if they have, then it prevents them from initiating it again.</p>
-<pre><code class="lang-xml">&lt;Page&gt;
-    &lt;StackLayout prism:Navigation.CanNavigate=&quot;{Binding MyCanNavigateProperty}&quot;&gt;
-        &lt;ContentView&gt;
-            &lt;Button Command=&quot;{prism:NavigateTo &#39;path/to/navigate&#39;}&quot;   
-                    CommandParameter=&quot;{Binding Foo}&quot; /&gt;
-        &lt;/ContentView&gt;
-    &lt;/StackLayout&gt;
-&lt;/Page&gt;
-</code></pre><h2 id="defining-your-source-page">Defining your Source Page</h2>
-<p>In the rare case that you need to tell the <code>NavigationService</code> to use a different Page from the one that Xamarin Forms passes into the Markup Extension, you can override the <code>SourcePage</code></p>
-<pre><code class="lang-xml">&lt;Button Command=&quot;{prism:NavigateTo &#39;path/to/navigate&#39;, SourcePage={x:Reference SomeOtherPage}}&quot; /&gt;
-</code></pre><p>One possible scenario is one which you want your Master to use a NavigationPage for the aesthetics of having a title bar, and want to make sure that your Navigation references are navigating from the MasterDetailPage rather than inside of the NavigationPage. In order to achieve this, you&#39;ll give your <code>MasterDetailPage</code> an <code>x:Name</code> and supply that to the <code>SourcePage</code> property of the <code>NavigateTo</code> extension.</p>
-<pre><code class="lang-xml">&lt;MasterDetailPage x:Name=&quot;mdp&quot;&gt;
-  &lt;MasterDetailPage.Master&gt;
-    &lt;NavigationPage Title=&quot;Menu&quot;&gt;
-      &lt;x:Arguments&gt;
-        &lt;ContentPage Title=&quot;Foo&quot;&gt;
-          &lt;Button Text=&quot;ClickMe&quot;
-                  Command=&quot;{prism:NavigateTo &#39;NavigationPage/ViewA&#39;, SourcePage={x:Reference mdp}}&quot; /&gt;
-        &lt;/ContentPage&gt;
-      &lt;x:Arguments&gt;
-    &lt;/NavigationPage&gt;
-  &lt;/MasterDetailPage.Master&gt;
-&lt;/MasterDetailPage&gt;
-</code></pre><h2 id="extending-the-markup-extensions">Extending the markup extensions</h2>
-<p>If you wish to add additional functionality to your xaml navigation, Prism has made it easy for you to extend both the <code>NavigateTo</code> and <code>GoBack</code> extensions. Some reasons you might want to do this would be to add additional options or simply add debug logging.</p>
-<pre><code class="lang-csharp">public class ExNavigateToExtension : NavigateToExtension
-{
-    protected override async Task HandleNavigation(INavigationParameters parameters, INavigationService navigationService)
-    {
-        Debug.WriteLine($&quot;Navigating to: {Name}&quot;);
-        await base.HandleNavigation(parameters, navigationService);
-    }
-}
-</code></pre></article>
+<p>To successfully move a Prism application into production, you need to plan for deployment as part of the design process of your application. This topic covers the considerations and actions you need to perform to prepare your composite or modular application for deployment and the actions you need to take to get the application in the user&#39;s hands.</p>
+<h2 id="deploying-wpf-prism-applications">Deploying WPF Prism Applications</h2>
+<p>A WPF Prism application can be composed of an executable and any number of additional DLLs. The main executable is the shell application project. Some of the additional DLLs will be the modules of the application. There may be some additional DLLs that are just shared assemblies used by the shell and modules of the application. In addition, you might have a set of resource or content files that get deployed along with the application.</p>
+<p>To deploy a WPF Prism application, you have three choices:</p>
+<ul>
+<li>&quot;XCopy deployment&quot;</li>
+<li>ClickOnce deployment</li>
+<li>Windows Installer deployment</li>
+</ul>
+<p>&quot;XCopy deployment&quot; is used as a general term for manual deployment through some sort of file copy operation, which may or may not include the use of the XCOPY command-line tool. If you choose to deploy the application in this way, it is up to you to manually package the files and move them to the target computer. The application should be ready to run as long as the expected folder structure and relative locations of the shell application executable, the module DLLs, and the content files are maintained.</p>
+<p>Usually, a more automatic means of deployment is desired to ensure that things get placed in the right location and the user has easy access to run the application. To facilitate that, you can choose to use ClickOnce or Windows Installer (.msi files), depending on what additional installation requirements exist for the application.</p>
+<p>The decision of whether to use ClickOnce or Windows Installer is often misunderstood. ClickOnce is not intended to be a one-size-fits-all deployment technology. It is intended for applications that need a low-impact install on a client computer. If your application needs to make computer-wide changes when it is installed—such as to install drivers, integrate with other applications, install services and other things that go outside the scope of just running your executable, ClickOnce is probably not an appropriate deployment choice. However, if you have a lightweight installation on the client computer and you want to benefit from network deployment and update of your WPF application, ClickOnce can be a great choice.</p>
+<p>To create a Windows Installer deployment package (.msi file) for your application, you have a variety of choices, including Visual Studio Setup projects, Windows Installer XML (WiX) projects, or numerous third-party installer creation products.</p>
+<h2 id="deploying-wpf-prism-application-with-clickonce">Deploying WPF Prism Application with ClickOnce</h2>
+<p>ClickOnce is a Windows Presentation Foundation (WPF) or Windows Forms deployment mechanism that has been part of the .NET Framework since version 2.0. ClickOnce enables automatic deployment and update of WPF applications over the network from a deployment server. WPF Prism applications can use ClickOnce to get the shell, modules, and any other dependencies deployed to the client computer. The main challenge with Prism applications is that the Visual Studio publishing process for ClickOnce does not automatically include dynamically loaded modules in the published application.</p>
+<p>Deploying a WPF application with ClickOnce is a two-step process. First, you have to publish the application from Visual Studio, and then you can deploy it to client computers. Publishing the application generates two manifests (a deployment manifest and an application manifest), and it copies the application files to a publish directory. That publish folder can then be moved to another server that may not be directly accessible from the developer computer to make the published application accessible to client computers from a known location and URL. Deploying an application to a client computer simply requires providing a URL or link that the user can navigate to. The URL points to the deployment manifest on the publishing deployment server. When that URL is loaded in the browser, ClickOnce on the client computer downloads the manifests and the application files specified by the manifests. After the files are downloaded and stored under the user profile, ClickOnce then launches the application. If subsequent updates are published to the deployment server, ClickOnce can automatically detect those updates, download, and apply them, or there are settings that allow you to detect and apply updates on demand or in the background after the application has launched.</p>
+<p>When you publish a WPF Prism application that has dynamically loaded modules, the shell project will typically not have project references to the dynamically loaded modules. As a result, the published ClickOnce application manifest also does not include those module files, and if you deploy the application using ClickOnce, the client computer will not get the module files. To address this, you must modify the application manifest to include the module files that are not referenced by the shell application project.</p>
+<h3 id="clickonce-publishing-process">ClickOnce Publishing Process</h3>
+<p>You can publish ClickOnce applications from Visual Studio 2013 using the Windows Software Development Kit (SDK) tool named the Manifest Generating and Editing tool (Mage) or a custom tool that uses the ClickOnce publishing APIs. Visual Studio exposes most of the capabilities needed for ClickOnce publishing. However, Visual Studio may not be available or desired for IT administrators who manage ClickOnce deployments on the server. Mage is designed to address most common administrative tasks for ClickOnce; it is a lightweight .NET Framework Windows-based application that can be given to your administrators. However, Mage requires too many detailed steps, performed in the correct order, to successfully complete common tasks such as modifying the application files listed in the application manifest. To make these tasks simpler, a custom utility is needed.</p>
+<p>The Manifest Manager Utility sample utility demonstrates how to use the ClickOnce publishing API to manage deployment and application manifests in a simpler way. This utility is used for updating application manifest file lists and deployment manifest settings in a single user interface (UI) and its use is described in later sections in this topic for initial deployment and update of a Prism application. The Manifest Manager Utility uses APIs exposed in the <strong>Microsoft.Build.Tasks.Deployment</strong> namespace to load, manipulate, and save modified manifest files for a ClickOnce deployment. You can download the <a href="http://compositewpf.codeplex.com/releases/view/14771">Manifest Manager Utility</a> from the Prism community site on Codeplex. To learn the specific steps involved in publishing and updating a WPF Prism application that uses dynamic module loading, see the <a href="Appendix-E-Click-Once.html">WPF Prism Deployment Hands-On Lab: Publishing and Updating with ClickOnce</a>.</p>
+<p>The following illustration shows the typical structure for a ClickOnce application publication, based on the way Visual Studio generates the deployment folders when you publish an application with ClickOnce. It includes a root folder for the application, which contains the default deployment manifest (.application file). The default deployment manifest usually points to the most recently published version when generated by Visual Studio, but it can be changed to point to whichever version the administrator chooses. The root folder also contains the Setup.exe bootstrapper, which allows you to deploy prerequisites for your application that might require an installer or executable to run before deploying the application using ClickOnce. There is then a subfolder for the application-specific files, under which you get a separate subfolder for each version that you publish. The publish version is a separate project setting and entry in the deployment manifest file for versioning the deployment as a whole, as opposed to the individual assembly versions of the contained assemblies. The publish version is used by ClickOnce to determine when there is an update available from a client that has already installed a ClickOnce application.</p>
+<p><img src="images/Ch10DeployingFig1.png" alt="ClickOnce publish folder structure"></p>
+<h4 id="clickonce-publish-folder-structure">ClickOnce publish folder structure</h4>
+<p>Under each publish version&#39;s application files folder, you have another copy of the deployment manifest (.application file) that can be used to deploy specific versions to a client computer, or it can be copied to the root folder to cause a server-side rollback to a previous version. The application executable, in addition to any dependent libraries (such as Prism module assemblies) and resource files, will also be in this folder and will be automatically suffixed by a .deploy file name extension when published by Visual Studio. This is done to simplify the file extension mappings on the publishing web server so that you don&#39;t have to allow downloads of .dll, .exe, and a myriad of other potential file types that the application is composed of.</p>
+<p>The application manifest (.exe.manifest) file is also contained in this folder and is referenced by the deployment manifest. It contains the list of files the application is composed of with hash values per file to assist in change detection; it also contains a list of permissions required by the application to run because ClickOnce can launch applications in a partial trust AppDomain if desired.</p>
+<p>If you manually generate or update a ClickOnce application publication using either Mage or a custom tool, you are not constrained to this folder and file structure. For any particular ClickOnce publication, the chain of dependencies includes the following:</p>
+<ul>
+<li>It includes a deployment manifest that points to the application manifest through an embedded code base URL.</li>
+<li>It includes an application manifest that contains relative paths to each of the application files. These files must reside in the same folder or a subfolder from where the application manifest resides.</li>
+</ul>
+<p>It includes the application files themselves, usually with a .deploy file name extension appended to the file name to simplify mapping these files to MIME types on the deployment server. ClickOnce automatically strips off the .deploy file name extension on the client side after the file is downloaded.</p>
+<h3 id="clickonce-deployment-and-update-process">ClickOnce Deployment and Update Process</h3>
+<p>The actual deployment of the application to a user via ClickOnce is almost always initiated by providing a URL or hyperlink to the deployment manifest of your published application on the deployment server. The user can click the hyperlink or enter the address in a browser, and the ClickOnce deployment process is invoked. After the manifest and application files are downloaded to the client computer, the application is launched. There are ClickOnce options that allow you to install the application during the initial deployment for offline use, or you can require the user to launch the application using the link or URL every time. When you publish a new version of the application to the deployment server, ClickOnce can automatically or manually check for updates and will download and apply the update for the next time the application launches.</p>
+<h2 id="more-information">More Information</h2>
+<p>You can download the <a href="http://compositewpf.codeplex.com/releases/view/14771">Manifest Manager Utility</a> from the Prism community site on Codeplex.</p>
+<p>To learn the specific steps involved in publishing and updating a WPF Prism application that uses dynamic module loading, see the <a href="Appendix-E-Click-Once.html">Publishing and Updating Applications Using the Prism Library Hands-on Lab</a>.</p>
+</article>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
@@ -320,7 +275,7 @@
               <div class="connect-widget">
                 <ul class="connect-links">
           		<li id="connect-github">
-          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/xamarin-forms/navigation/xaml-navigation.md/#L1" target="_blank">
+          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/wpf/legacy/Deploying.md/#L1" target="_blank">
           				<div class="image github"></div>Edit on GitHub
           			</a>
                   </li>
