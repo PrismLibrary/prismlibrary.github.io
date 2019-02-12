@@ -246,12 +246,10 @@ _navigationService.NavigateAsync($&quot;MyTabbedPage?{KnownNavigationParameters.
 {
     var result = await _navigationService.SelectTabAsync(&quot;Tab3&quot;);    
 }
-</code></pre><blockquote><p>[NOTE]
-When selecting a tab programmatically both the INavigationAware and IConfirmNavigation interfaces are invoked.</p>
-</blockquote>
-<blockquote><p>[Note]
-The target tab and the calling tab must exist within the same TabbedPage instance.</p>
-</blockquote>
+</code></pre><div class="NOTE"><h5>Note</h5><p>When selecting a tab programmatically both the INavigationAware and IConfirmNavigation interfaces are invoked.</p>
+</div>
+<div class="NOTE"><h5>Note</h5><p>The target tab and the calling tab must exist within the same TabbedPage instance.</p>
+</div>
 <h2 id="creating-tabs-at-runtime">Creating Tabs at Runtime</h2>
 <p>To get started you will need to register the TabbedPage you wish to use (which can be the base Xamarin.Forms.TabbedPage), and any Views that you may wish to add as a Tab in your App&#39;s RegisterTypes method as shown below:</p>
 <pre><code class="lang-cs">protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -268,12 +266,10 @@ _navigationService.NavigateAsync(&quot;MyTabbedPage?createTab=ViewA&amp;createTa
 _navigationService.NavigateAsync($&quot;MyTabbedPage?{KnownNavigationParameters.CreateTab}=ViewA&amp;{KnownNavigationParameters.CreateTab}=ViewB&quot;);
 </code></pre><p>To create a tab that wraps a page in a NavigationPage, simply denote this as a nested hierarchy using the | character.</p>
 <pre><code class="lang-cs">_navigationService.NavigateAsync(&quot;MyTabbedPage?createTab=NavigationPage|ViewA&quot;);
-</code></pre><blockquote><p>[Note]
-Dynamic tab creation is only supported from the querystring at this time, and is not supported if you were to add it to the <code>INavigationParameters</code> passed in to <code>NavigateAsync</code>.</p>
-</blockquote>
-<blockquote><p>[Note]
-CarouselPages are not supported</p>
-</blockquote>
+</code></pre><div class="NOTE"><h5>Note</h5><p>Dynamic tab creation is only supported from the querystring at this time, and is not supported if you were to add it to the <code>INavigationParameters</code> passed in to <code>NavigateAsync</code>.</p>
+</div>
+<div class="NOTE"><h5>Note</h5><p>CarouselPages are not supported</p>
+</div>
 <h2 id="knowing-the-selected-tab">Knowing the Selected Tab</h2>
 <p>The <code>IActiveAware</code> interface allows you to respond to tabs being selected/unselected in a TabbedPage. When a tab is selected and it, or it&#39;s ViewModel, implements that <code>IActiveAware</code> interface, the <code>IActiveAware.IsActive</code> property is set to either <code>true</code> if selected, or <code>false</code> if not selected.</p>
 <pre><code class="lang-cs">public class TabItemViewModel : BindableBase, IActiveAware
