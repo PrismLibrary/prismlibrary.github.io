@@ -239,6 +239,17 @@ _navigationService.NavigateAsync(&quot;MyTabbedPage?selectedTab=ViewA&quot;);
 //using KnownNavigationParameters.SelectedTab constant
 _navigationService.NavigateAsync($&quot;MyTabbedPage?{KnownNavigationParameters.SelectedTab}=ViewA&quot;);
 </code></pre><p>For tabs that are wrapped inside a NavigationPage, you do not need to change anything. The syntax is the same.</p>
+<h2 id="selecting-a-tab">Selecting a Tab</h2>
+<p>You can select a tab programmatically from within a tab&#39;s ViewModel by using the <code>INavigationService.SelectTabAsync</code> method. In order to use this method, you must add the <code>Prism.Navigation.TabbedPages</code> namespace to your ViewModel.</p>
+<pre><code>using Prism.Navigation.TabbedPages;
+</code></pre><pre><code>async void SelectTab(object parameters)
+{
+    var result = await _navigationService.SelectTabAsync(&quot;Tab3&quot;);    
+}
+</code></pre><div class="NOTE"><h5>Note</h5><p>When selecting a tab programmatically both the INavigationAware and IConfirmNavigation interfaces are invoked.</p>
+</div>
+<div class="NOTE"><h5>Note</h5><p>The target tab and the calling tab must exist within the same TabbedPage instance.</p>
+</div>
 <h2 id="creating-tabs-at-runtime">Creating Tabs at Runtime</h2>
 <p>To get started you will need to register the TabbedPage you wish to use (which can be the base Xamarin.Forms.TabbedPage), and any Views that you may wish to add as a Tab in your App&#39;s RegisterTypes method as shown below:</p>
 <pre><code class="lang-cs">protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -255,8 +266,10 @@ _navigationService.NavigateAsync(&quot;MyTabbedPage?createTab=ViewA&amp;createTa
 _navigationService.NavigateAsync($&quot;MyTabbedPage?{KnownNavigationParameters.CreateTab}=ViewA&amp;{KnownNavigationParameters.CreateTab}=ViewB&quot;);
 </code></pre><p>To create a tab that wraps a page in a NavigationPage, simply denote this as a nested hierarchy using the | character.</p>
 <pre><code class="lang-cs">_navigationService.NavigateAsync(&quot;MyTabbedPage?createTab=NavigationPage|ViewA&quot;);
-</code></pre><p><em>NOTE: Dynamic tab creation is only supported from the querystring at this time, and is not supported if you were to add it to the <code>INavigationParameters</code> passed in to <code>NavigateAsync</code>.</em>
-<em>NOTE: CarouselPages are not supported</em></p>
+</code></pre><div class="NOTE"><h5>Note</h5><p>Dynamic tab creation is only supported from the querystring at this time, and is not supported if you were to add it to the <code>INavigationParameters</code> passed in to <code>NavigateAsync</code>.</p>
+</div>
+<div class="NOTE"><h5>Note</h5><p>CarouselPages are not supported</p>
+</div>
 <h2 id="knowing-the-selected-tab">Knowing the Selected Tab</h2>
 <p>The <code>IActiveAware</code> interface allows you to respond to tabs being selected/unselected in a TabbedPage. When a tab is selected and it, or it&#39;s ViewModel, implements that <code>IActiveAware</code> interface, the <code>IActiveAware.IsActive</code> property is set to either <code>true</code> if selected, or <code>false</code> if not selected.</p>
 <pre><code class="lang-cs">public class TabItemViewModel : BindableBase, IActiveAware
