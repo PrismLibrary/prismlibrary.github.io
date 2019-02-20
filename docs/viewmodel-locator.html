@@ -8,7 +8,7 @@
     <title>Using the ViewModelLocator | Prism </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Using the ViewModelLocator | Prism ">
-    <meta name="generator" content="docfx 2.40.10.0">
+    <meta name="generator" content="docfx 2.40.11.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -253,7 +253,7 @@
 <div class="embeddedvideo"><iframe src="https://www.youtube.com/embed/I_3LxBdvJi4" frameborder="0" allowfullscreen="true"></iframe></div>
 <h2 id="change-the-naming-convention">Change the Naming Convention</h2>
 <p>If your application does not follow the <code>ViewModelLocator</code> default naming convention, you can change the convention to meet the requirements of your application.  The <code>ViewModelLocationProvider</code> class provides a static method called <code>SetDefaultViewTypeToViewModelTypeResolver</code> that can be used to provide your own convention for associating views to view models.</p>
-<p>To change the <code>ViewModelLocator</code> naming convention, override the <code>ConfigureViewModelLocator</code> method in the <code>App.xmla.cs</code> class. Then provide your custom naming convention logic in the <code>ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver</code> method.</p>
+<p>To change the <code>ViewModelLocator</code> naming convention, override the <code>ConfigureViewModelLocator</code> method in the <code>App.xaml.cs</code> class. Then provide your custom naming convention logic in the <code>ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver</code> method.</p>
 <pre><code>protected override void ConfigureViewModelLocator()
 {
     base.ConfigureViewModelLocator();
