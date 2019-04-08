@@ -8,7 +8,7 @@
     <title>Working with TabbedPages | Prism </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Working with TabbedPages | Prism ">
-    <meta name="generator" content="docfx 2.40.11.0">
+    <meta name="generator" content="docfx 2.41.0.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -258,7 +258,7 @@ _navigationService.NavigateAsync($&quot;MyTabbedPage?{KnownNavigationParameters.
     containerRegistry.RegisterForNavigation&lt;ViewA&gt;();
     containerRegistry.RegisterForNavigation&lt;ViewB&gt;();
 }
-</code></pre><p>Once you have verified your pages have been registerd, you can now dynamically create tabs when navigating to a TabbedPage by using the <code>KnownNavigationParameters.CreateTab</code> constant or by using the &quot;createTab&quot; parameter name.</p>
+</code></pre><p>Once you have verified your pages have been registered, you can now dynamically create tabs when navigating to a TabbedPage by using the <code>KnownNavigationParameters.CreateTab</code> constant or by using the &quot;createTab&quot; parameter name.</p>
 <pre><code class="lang-cs">//using parameter name
 _navigationService.NavigateAsync(&quot;MyTabbedPage?createTab=ViewA&amp;createTab=ViewB&quot;);
 

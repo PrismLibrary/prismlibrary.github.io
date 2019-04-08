@@ -8,7 +8,7 @@
     <title>Passing parameters | Prism </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Passing parameters | Prism ">
-    <meta name="generator" content="docfx 2.40.11.0">
+    <meta name="generator" content="docfx 2.41.0.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -267,7 +267,7 @@ _navigationService.NavigateAsync(new Uri(&quot;MainPage?id=3&quot;, UriKind.Rela
 </code></pre><h2 id="getting-parameters">Getting Parameters</h2>
 <p>Getting the parameters that were passed to the target View being navigated to can be achieved by using the <code>INavigationAware</code> interface on the corresponding ViewModel.</p>
 <h3 id="inavigationaware">INavigationAware</h3>
-<p>The ViewModel of the target navigation Page can participate in the navigation process by implementing the <code>INavigationAware</code> interface.  This interface adds three methods to your ViewModel so you can intercept before the View is navigated to <strong>(OnNavigatingTo)</strong>, once it is navigated to <strong>(OnNavigatedTo)</strong>, and once it is navigated away from <strong>(OnNavigatedFrom)</strong>.  These methods make the <code>NavigationParameters</code> accessible fomr either the View being navigated to, or the View being navigated away from.</p>
+<p>The ViewModel of the target navigation Page can participate in the navigation process by implementing the <code>INavigationAware</code> interface.  This interface adds three methods to your ViewModel so you can intercept before the View is navigated to <strong>(OnNavigatingTo)</strong>, once it is navigated to <strong>(OnNavigatedTo)</strong>, and once it is navigated away from <strong>(OnNavigatedFrom)</strong>.  These methods make the <code>NavigationParameters</code> accessible from either the View being navigated to, or the View being navigated away from.</p>
 <p><em>Note: You can implement <code>INavigationAware</code> on either the View or ViewModel</em></p>
 <p>Example:</p>
 <pre><code class="lang-cs">public class ContactPageViewModel : INavigationAware
@@ -332,7 +332,7 @@ _navigationService.NavigateAsync(new Uri(&quot;MainPage?id=3&quot;, UriKind.Rela
 }
 </code></pre><h2 id="get-the-navigationmode">Get the NavigationMode</h2>
 <p>When navigating, it is sometimes important to know which direction you are heading in the navigation stack.  This allows you to make different decisions based on if you are navigating forward or back.</p>
-<p>To get the NavigationMode, simple call the INavigationParameters.GetNavigationMode` method.</p>
+<p>To get the NavigationMode, simply call the <code>INavigationParameters.GetNavigationMode</code> method.</p>
 <pre><code class="lang-cs">public void OnNavigatedFrom(INavigationParameters parameters)
 {
   var navigationMode = parameters.GetNavigationMode();
