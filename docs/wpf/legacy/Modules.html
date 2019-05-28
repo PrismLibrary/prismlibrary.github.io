@@ -8,7 +8,7 @@
     <title>Modular Application Development Using Prism Library for WPF | Prism </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Modular Application Development Using Prism Library for WPF | Prism ">
-    <meta name="generator" content="docfx 2.42.3.0">
+    <meta name="generator" content="docfx 2.42.4.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -325,7 +325,8 @@
 <li><strong>Determine how to organize your solution</strong>. Approach a modular architecture by defining the boundaries of each module, including what assemblies are part of each module. You can decide to use modularity to ease the development, as well as to have control over how the application will be deployed or if it will support a plug-in or extensible architecture.</li>
 <li><strong>Determine how to partition your modules</strong>. Modules can be partitioned differently based on requirements, for example, by functional areas, provider modules, development teams and deployment requirements.</li>
 <li><strong>Determine the core services that the application will provide to all modules</strong>. An example is that core services could be an error reporting service or an authentication and authorization service.</li>
-<li><strong>If you are using Prism, determine what approach you are using to register modules in the module catalog</strong>. For WPF, you can register modules in code, XAML, in a configuration file, or discovering modules in a local directory on disk. <strong>Determine your module communication and dependency strategy</strong>. Modules will need to communicate with each other, and you will need to deal with dependencies between modules.</li>
+<li><strong>If you are using Prism, determine what approach you are using to register modules in the module catalog</strong>. For WPF, you can register modules in code, XAML, in a configuration file, or discovering modules in a local directory on disk.</li>
+<li><strong>Determine your module communication and dependency strategy</strong>. Modules will need to communicate with each other, and you will need to deal with dependencies between modules.</li>
 <li><strong>Determine your dependency injection container</strong>. Typically, modular systems require dependency injection, inversion of control, or service locator to allow the loose coupling and dynamic loading and creating of modules. Prism allows a choice between using the Unity, MEF, or another container and provides libraries for Unity or MEF-based applications.</li>
 <li><strong>Minimize application startup time</strong>. Think about on-demand and background downloading of modules to minimize application startup time.</li>
 <li><strong>Determine deployment requirements</strong>. You will need to think about how you intend to deploy your application.</li>
