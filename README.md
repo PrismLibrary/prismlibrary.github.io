@@ -1,7 +1,7 @@
 Website for Prism Library project
 =======
 
-The website for Prism Library project was written in HTML with a javascript translator script (english/japanese).
+The website for Prism Library project was written in HTML with a javascript translator script (english/japanese/russian).
 
 Languages
 ------------
