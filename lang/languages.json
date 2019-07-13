@@ -48,7 +48,7 @@
 	},
 	
 	"ru": {
-		"langdesc": "Russian (Русский)",
+		"langdesc": "Русский (Russian)",
 		"l_documentation": "Документация",
 		"l_learn": "Обучение",
 		"l_build_easily_applications": "Легко создавайте приложения в WPF, Windows 10 UWP и Xamarin Forms.",
@@ -64,7 +64,7 @@
 		"l_prism_template_pack": "Пакет шаблонов Prism",
 		"l_is_available_on": "Пакет шаблонов Prism доступен в",
 		"l_visual_studio_gallery": "галерее Visual Studio",
-		"l_to_install_just": "Чтобы установить, просто перейдите в Visual Studio -> Расширения -> Управление расширениями -> В сети. Затем найдите Prism в онлайн-галерее:",
+		"l_to_install_just": "Чтобы установить его, просто перейдите в Visual Studio -> Расширения -> Управление расширениями -> В сети. Затем найдите Prism в онлайн-галерее:",
 		"l_watch_videos_and": "Посмотрите видео и ознакомьтесь с нашими курсами Pluralsight.",
 		"l_prism_library": "Библиотека Prism",
 		"l_net_foundation": ".NET Foundation"
