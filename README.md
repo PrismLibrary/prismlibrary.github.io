@@ -6,7 +6,7 @@ The website for Prism Library project was written in HTML with a javascript tran
 Languages
 ------------
 
-The website is available in English and Japanese.
+The website is available in English, Japanese and Russian.
 
 To translate sentences, edit the following file:
 ```
