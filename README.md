@@ -25,6 +25,11 @@ Every new word or setence added to the HTML page has to be also added to **langu
 	"l_home": "ホーム",
 	...
 }
+"jp": {
+	...
+	"l_home": "Главная",
+	...
+}
 ```
 
 Note: to maintain a pattern, the reference code has to begin with "l_". If the reference code has more than 2 word, if should be limited to 3 word. For example, for the sentence "It is a great clean website" should be `l_it_is_a`. If there is already the same code, use the next words (eg: `l_great_clean_website`)
