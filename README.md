@@ -1,12 +1,12 @@
 Website for Prism Library project
 =======
 
-The website for Prism Library project was written in HTML with a javascript translator script (english/japanese).
+The website for Prism Library project was written in HTML with a javascript translator script (english/japanese/russian).
 
 Languages
 ------------
 
-The website is available in English and Japanese.
+The website is available in English, Japanese and Russian.
 
 To translate sentences, edit the following file:
 ```
@@ -23,6 +23,11 @@ Every new word or setence added to the HTML page has to be also added to **langu
 "jp": {
 	...
 	"l_home": "ホーム",
+	...
+}
+"ru": {
+	...
+	"l_home": "Главная",
 	...
 }
 ```
