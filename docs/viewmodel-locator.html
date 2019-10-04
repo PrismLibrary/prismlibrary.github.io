@@ -8,7 +8,7 @@
     <title>Using the ViewModelLocator | Prism </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Using the ViewModelLocator | Prism ">
-    <meta name="generator" content="docfx 2.43.2.0">
+    <meta name="generator" content="docfx 2.45.1.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -278,7 +278,7 @@
 <pre><code>ViewModelLocationProvider.Register&lt;MainWindow&gt;(() =&gt; Container.Resolve&lt;CustomViewModel&gt;());
 </code></pre><p><strong>Generic Type</strong></p>
 <pre><code>ViewModelLocationProvider.Register&lt;MainWindow, CustomViewModel&gt;();
-</code></pre><div class="NOTE"><h5>Note</h5><p>Registering your ViewModels directly with the <code>ViewModelLocator</code> is faster that relying on the default naming convention. This is because the naming convention requires the use of reflection, while a custom mapping provides the type directly to the <code>ViewModelLocator</code>.</p>
+</code></pre><div class="NOTE"><h5>Note</h5><p>Registering your ViewModels directly with the <code>ViewModelLocator</code> is faster than relying on the default naming convention. This is because the naming convention requires the use of reflection, while a custom mapping provides the type directly to the <code>ViewModelLocator</code>.</p>
 </div>
 <div class="IMPORTANT"><h5>Important</h5><p>The <code>viewTypeName</code> parameter must be the fully qualifyied name of the view&#39;s Type (<code>Type.ToString()</code>). Otherwise the mapping will fail.</p>
 </div>
