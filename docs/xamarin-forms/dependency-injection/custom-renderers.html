@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Dependency Injection with Xamarin.Forms | Prism </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Dependency Injection with Xamarin.Forms | Prism ">
+    <meta name="generator" content="docfx 2.47.0.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/affix.css">
+    <meta property="docfx:navrel" content="../../../toc">
+    <meta property="docfx:tocrel" content="toc">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../images/prism-logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+                <ul class="nav level1 navbar-nav">
+                  <li class="">
+                    <a href="http://prismlibrary.github.io/" title="Home" class="">Home</a>
+                  </li>
+                  <li class="">
+                    <a href="../../../docs/index.html" title="Documentation" class="">Documentation</a>
+                  </li>
+                  <li class="">
+                    <a href="https://www.pluralsight.com/authors/brian-lagunas/" title="Learn" class="">Learn</a>
+                  </li>
+                </ul>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div>
+              <div class="sidefilter">
+                <form class="toc-filter">
+                  <span class="glyphicon glyphicon-filter filter-icon"></span>
+                  <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+                </form>
+              </div>
+              <div class="sidetoc">
+                <div class="toc" id="toc">
+                  
+                  <ul class="nav level1">
+                    <li class="">
+                      <a href="index.html" title="Getting Started" class="">Getting Started</a>
+                    </li>
+                    <li class="">
+                      <a href="registering-types.html" title="Registering Types" class="">Registering Types</a>
+                    </li>
+                    <li class="">
+                      <a href="platform-specific-services.html" title="Platform Specific Services" class="">Platform Specific Services</a>
+                    </li>
+                    <li class="">
+                      <a href="add-custom-container.html" title="Adding a Custom Container" class="">Adding a Custom Container</a>
+                    </li>
+                    <li class="">
+                      <a href="appendix.html" title="Appendix" class="">Appendix</a>
+                    </li>
+                  </ul>        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="dependency-injection-with-xamarinforms">Dependency Injection with Xamarin.Forms</h1>
+
+<p>A little known feature in Xamarin.Forms is that we actually have the ability to use Dependency Injection for all of our custom services within Xamarin.Forms. This includes but is by no means limited to Renderers and Platform Effects. While this feature is disabled by default you can if you so choose, decide to set the Xamarin.Forms Dependency Resolver at app startup. When you set the flag to true, we will automatically take care of configuring Xamarin.Forms to use Prism&#39;s Dependency Injection container to resolve any service which it or any of your plugins may try to resolve with the Xamarin.Forms DependencyService. As mentioned this includes all of your Renderers.</p>
+<h2 id="how-to-use-the-container-for-xamarinforms">How to use the Container for Xamarin.Forms</h2>
+<p>It couldn&#39;t be easier. In order to enable this feature you simply need to pass <code>true</code> to the base constructor&#39;s argument for <code>setFormsDependencyResolver</code>.</p>
+<pre><code class="lang-cs">public App(IPlatformInitializer initializer = null)
+    : base(initializer, setFormsDependencyResolver: true)
+{
+}
+</code></pre><h2 id="why-use-it">Why Use It</h2>
+<p>There may be times which you want to implement a custom renderer for which you want to use a service that is registered with your container. As an example let&#39;s assume that you are using the Event Aggregator and you want to publish an event when something happens from a platform level:</p>
+<pre><code class="lang-cs">public class MyCustomRenderer : PageRenderer
+{
+    private IEventAggregator _eventAggregator { get; }
+
+    public MyCustomRenderer(IEventAggregator eventAggregator)
+    {
+        _eventAggregator = eventAggregator;
+    }
+}
+</code></pre></article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix" style="margin-top: 0px;">
+              <div class="connect-widget">
+                <ul class="connect-links">
+          		<li id="connect-github">
+          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/xamarin-forms/dependency-injection/custom-renderers.md/#L1" target="_blank">
+          				<div class="image github"></div>Edit on GitHub
+          			</a>
+                  </li>
+                  <li id="connect-stack-overflow">
+                      <a href="https://stackoverflow.com/questions/tagged/prism" target="_blank">
+                          <div class="image stackoverflow"></div>Ask questions
+                      </a>
+                  </li>
+                  <li id="connect-twitter">
+                      <a href="https://twitter.com/prismlib" target="_blank">
+                          <div class="image twitterhandle"></div>Follow @PrismLib
+                      </a>
+                  </li>
+                  <li id="connect-twitter">
+                      <a href="https://twitter.com/brianlagunas" target="_blank">
+                          <div class="image twitterhandle"></div>Follow @BrianLagunas
+                      </a>
+                  </li>
+                  <li id="connect-twitter">
+                      <a href="https://twitter.com/danjsiegel" target="_blank">
+                          <div class="image twitterhandle"></div>Follow @DanJSiegel
+                      </a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright 2017 Prism
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

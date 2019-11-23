@@ -209,6 +209,9 @@
                                 </li>
                               </ul>  </li>
                           <li class="">
+                            <a href="../xamarin-forms/auto-initialization.html" title="Auto Initialization" class="">Auto Initialization</a>
+                          </li>
+                          <li class="">
                             <a href="../xamarin-forms/application-lifecycle.html" title="Application Lifecycle" class="">Application Lifecycle</a>
                           </li>
                           <li class="">
@@ -233,8 +236,17 @@
                                 </li>
                               </ul>  </li>
                           <li class="">
-                            <a href="../xamarin-forms/EventToCommandBehavior.html" title="EventToCommandBehavior" class="">EventToCommandBehavior</a>
-                          </li>
+                            <span class="expand-stub"></span>
+                            <a class="">Behaviors</a>
+                              
+                              <ul class="nav level3">
+                                <li class="">
+                                  <a href="../xamarin-forms/behaviors/index.html" title="Working with Behaviors" class="">Working with Behaviors</a>
+                                </li>
+                                <li class="">
+                                  <a href="../xamarin-forms/behaviors/eventtocommandbehavior.html" title="EventToCommand Behavior" class="">EventToCommand Behavior</a>
+                                </li>
+                              </ul>  </li>
                         </ul>  </li>
                   </ul>        </div>
               </div>
@@ -246,6 +258,8 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="using-the-dependencyservice-with-prism">Using the DependencyService with Prism</h1>
 
+<div class="WARNING"><h5>Warning</h5><p>Use of the DependencyService in any way is deprecated in Prism 7. Please see the Dependency Injection topic for more information on how to best update your code.</p>
+</div>
 <p>Xamarin.Forms includes a DependencyService to let shared code to easily resolve Interfaces to platform-specific implementations, allowing you to access features of the iOS, Android and Windows Phone SDKs from your PCL or Shared Project.</p>
 <p>The <strong>problem</strong> with Xamarin&#39;s DependencyService is that it requires a static call to DependencyService.Get&lt;&gt; in your shared code to get a platform-specific instance of the interface at run time.  This makes your ViewModels less testable, and hides the dependencies of your class.</p>
 <p>Prism <strong>simplifies</strong> this feature by allowing you to simply request any dependencies that have been registered with Xamarin&#39;s DependencyService via your class constructor.</p>

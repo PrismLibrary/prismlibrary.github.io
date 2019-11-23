@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Custom Containers | Prism </title>
+    <title>Dependency Injection with Prism | Prism </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Custom Containers | Prism ">
+    <meta name="title" content="Dependency Injection with Prism | Prism ">
     <meta name="generator" content="docfx 2.47.0.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
@@ -84,7 +84,19 @@
                   
                   <ul class="nav level1">
                     <li class="active">
-                      <a href="add-custom-container.html" title="Custom Containers" class="active">Custom Containers</a>
+                      <a href="index.html" title="Getting Started" class="active">Getting Started</a>
+                    </li>
+                    <li class="">
+                      <a href="registering-types.html" title="Registering Types" class="">Registering Types</a>
+                    </li>
+                    <li class="">
+                      <a href="platform-specific-services.html" title="Platform Specific Services" class="">Platform Specific Services</a>
+                    </li>
+                    <li class="">
+                      <a href="add-custom-container.html" title="Adding a Custom Container" class="">Adding a Custom Container</a>
+                    </li>
+                    <li class="">
+                      <a href="appendix.html" title="Appendix" class="">Appendix</a>
                     </li>
                   </ul>        </div>
               </div>
@@ -94,97 +106,24 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="custom-containers">Custom Containers</h1>
+<h1 id="dependency-injection-with-prism">Dependency Injection with Prism</h1>
 
-<p>For a variety of reasons the Prism team cannot support every container that developers may want to use. Prism makes it very easy to use a container that isn&#39;t officially supported or shipped by the Prism Library.</p>
-<p>Prism imposes the following requirements in order to use a container:</p>
+<p>Prism has always been built around Dependency Injection. This helps you to architect apps that are maintainable and testable and help you reduce or eliminate your dependence on Static and circular references. Prior to Prism 7, dependency injection with Prism was focused around various containers that were implemented for use with Prism. This led to a number of issues including that while docs may have been written showing you how to do something with one container they did not necessarily reflect the appropriate API to use for the container that you were using for your application.</p>
+<p>Prism 7 introduced several new interfaces for abstracting what Prism requires for dependency injection. This has several benefits as you might imagine including:</p>
 <ul>
-<li>The container must be mutable to support Prism Modularity</li>
-<li>The container must support Transient and Singleton registrations</li>
-<li>The container must support registering a specified instance</li>
-<li>The container must support keyed registrations / resolving by name</li>
-<li>The container must support all three Prism platforms (WPF, UWP, Xamarin.Forms)</li>
+<li>Docs showing how to do something in Prism will always show you what you need to do without any concern for which dependency injection container you are using.</li>
+<li>This greatly simplified what needed to be added to any container specific package. In the case of Prism.Forms this reduces each container specific project 3 classes: <code>PrismApplication</code>, an implementation of <code>IContainerExtension</code> and an extension class to retieve the underlying container should you feel the need to access it for one of it&#39;s API&#39;s that is not implemented by Prism.</li>
 </ul>
-<p>In this topic we wil be creating a conatiner extension for the Grace DI container.</p>
-<h2 id="create-a-new-project">Create a New Project</h2>
-<p>The first step is to create a new project that will contain the code for your DI container extension.</p>
-<p>TODO: fill this section out</p>
-<h2 id="adding-a-container-extension">Adding a Container Extension</h2>
-<p>Next, add a new class to your project and implement the <code>IContainerExtension</code> interface.  The <code>IContainerExtension</code> interface is used to create a mapping for the most common registration and resolution methods.</p>
-<p>In the case of the Grace DI container we simply need to add this single class:</p>
-<pre><code class="lang-cs">public class GraceContainerExtension : IContainerExtension&lt;IInjectionScope&gt;
-{
-    public GraceContainerExtension()
-        : this(new DependencyInjectionContainer())
-    {
-    }
-
-    public GraceContainerExtension(IInjectionScope injectionScope)
-    {
-        Instance = injectionScope;
-    }
-
-    public IInjectionScope Instance { get; }
-
-    public bool SupportsModules =&gt; true;
-
-    public void FinalizeExtension() { }
-
-    public void Register(Type from, Type to) =&gt;
-        Instance.Configure(c =&gt; c.Export(to).As(from));
-
-    public void Register(Type from, Type to, string name) =&gt;
-        Instance.Configure(c =&gt; c.Export(to).AsKeyed(from, name));
-
-    public void RegisterInstance(Type type, object instance) =&gt;
-        Instance.Configure(c =&gt; c.ExportInstance(instance).As(type));
-
-    public void RegisterSingleton(Type from, Type to) =&gt;
-        Instance.Configure(c =&gt; c.Export(to).As(from).Lifestyle.Singleton());
-
-    public object Resolve(Type type) =&gt;
-        Instance.Locate(type);
-
-    public object Resolve(Type type, string name) =&gt;
-        Instance.Locate(type, withKey: name);
-
-    public object ResolveViewModelForView(object view, Type viewModelType)
-    {
-        Page page = null;
-
-        switch(view)
-        {
-            case Page viewAsPage:
-                page = viewAsPage;
-                break;
-            case BindableObject bindable:
-                page = bindable.GetValue(ViewModelLocator.AutowirePartialViewProperty) as Page;
-                break;
-            default:
-                return Instance.Locate(viewModelType);
-        }
-
-        var navService = Instance.Locate&lt;INavigationService&gt;(withKey: PrismApplicationBase.NavigationServiceName);
-        ((IPageAware)navService).Page = page;
-        return Instance.Locate(viewModelType, new[] { navService });
-    }
-}
-</code></pre><h2 id="create-the-application-class">Create the Application Class</h2>
-<p>Once we&#39;ve added this single class we only need to add to update our App as follows:</p>
-<pre><code class="lang-cs">namespace Prism.Grace
-{
-    public partial class PrismApplication : PrismApplicationBase
-    {
-        protected override IContainerExtension CreateContainerExtension() =&gt; new GraceContainerExtension();
-    }
-}
-</code></pre><p>As I mentioned, Prism&#39;s IOC abstraction only provides the most common functionality. This means that you could find an advanced scenario where you need direct access to the underlying container. To achieve a more complex registration, you can add an extension method like we provide in the Container specific packages:</p>
-<pre><code class="lang-cs">public static class ContainerExtensions
-{
-    public static IInjectionScope GetContainer(this IContainerRegistry containerRegistry) =&gt;
-        ((IContainerExtension&lt;IInjectionScope&gt;)containerRegistry).Instance;
-}
-</code></pre></article>
+<p>As a result you can easily implement support for a container that is not otherwise provided out of the box by the Prism team. For more information on this be sure to read more on how this works in this blog post by Dan Siegel, <a href="https://dansiegel.net/post/2018/10/29/using-unsupported-di-containers-with-prism">Using &quot;Unsupported&quot; DI Containers with Prism</a>.</p>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Learn how to <a href="registering-types.html">Register Services</a> and <a href="registering-types.html">Register Pages for Navigation</a></li>
+<li>Learn how to <a href="platform-specific-services.html">Register Platform Speicific Services</a></li>
+<li>Learn how to <a href="add-custom-container.html">Add a Custom Container</a></li>
+<li>Learn how to use the <a href="custom-renderers.html">Xamarin.Forms Dependency Resolver with Prism</a></li>
+<li>Learn more about the Prism Container Extensions and working with Shiny in the <a href="appendix.html">Appendix</a></li>
+</ul>
+</article>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
@@ -192,7 +131,7 @@
               <div class="connect-widget">
                 <ul class="connect-links">
           		<li id="connect-github">
-          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/xamarin-forms/extending-prism/add-custom-container.md/#L1" target="_blank">
+          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/xamarin-forms/dependency-injection/index.md/#L1" target="_blank">
           				<div class="image github"></div>Edit on GitHub
           			</a>
                   </li>

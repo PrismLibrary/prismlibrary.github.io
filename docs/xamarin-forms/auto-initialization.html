@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Application Lifecycle Management | Prism </title>
+    <title>AutoInitialization | Prism </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Application Lifecycle Management | Prism ">
+    <meta name="title" content="AutoInitialization | Prism ">
     <meta name="generator" content="docfx 2.47.0.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -208,11 +208,11 @@
                                   <a href="../xamarin-forms/navigation/xaml-navigation.html" title="XAML Navigation" class="">XAML Navigation</a>
                                 </li>
                               </ul>  </li>
-                          <li class="">
-                            <a href="../xamarin-forms/auto-initialization.html" title="Auto Initialization" class="">Auto Initialization</a>
-                          </li>
                           <li class="active">
-                            <a href="../xamarin-forms/application-lifecycle.html" title="Application Lifecycle" class="active">Application Lifecycle</a>
+                            <a href="../xamarin-forms/auto-initialization.html" title="Auto Initialization" class="active">Auto Initialization</a>
+                          </li>
+                          <li class="">
+                            <a href="../xamarin-forms/application-lifecycle.html" title="Application Lifecycle" class="">Application Lifecycle</a>
                           </li>
                           <li class="">
                             <a href="../xamarin-forms/page-lifecycle.html" title="Page Lifecycle" class="">Page Lifecycle</a>
@@ -256,93 +256,48 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="application-lifecycle-management">Application Lifecycle Management</h1>
+<h1 id="autoinitialization">AutoInitialization</h1>
 
-<p>Mobile applications development has to deal with the concept of <strong>application lifecycle</strong>. With this we mean that mobile apps are created to manage scenarios where battery life, CPU and memory are limited (as opposed to the classic desktop app where all of this is unlimited).</p>
-<p>When a mobile app is running in backgroud it is <strong>suspended</strong> by the OS after a few seconds. The exact timing is different from OS to OS and other factors. When the application is suspended it is frozen: the app will continue to use memory but all the running operations are stopped. This way, every other application can make use of resources. However RAM isn&#39;t infinite and the app will be <strong>killed</strong> by the OS to free some memory if necessary.</p>
-<p>As mobile developers you need to take care of this to provide your users a smooth and transparent experience whenever possible and restore the previous state of the app.</p>
-<p>The typical application lifecycle events are:</p>
-<ul>
-<li><strong>Initializing</strong>. This happens the first time the app is launched.</li>
-<li><strong>Resuming</strong>. This happens every time we restore the app from the background after it has been suspended.</li>
-<li><strong>Sleeping</strong>. This happens when the OS decides to freeze our app after it has gone in background.</li>
-</ul>
-<p>The management of these events can be tricky in an MVVM app but Prism provides the <a href="https://github.com/PrismLibrary/Prism/blob/master/Source/Xamarin/Prism.Forms/AppModel/IApplicationLifecycleAware.cs">IApplicationLifecycleAware</a> interface to make your life easier.</p>
-<h2 id="how-to-handle-alm-in-your-viewmodels">How to handle ALM in your ViewModels</h2>
-<p>The first thing you have to do to is to implement the <code>IApplicationLifecycleAware</code> interface in your <strong>ViewModel</strong> class. Implemening this interface means that you have to provide an implementation of the <code>OnResume()</code> and <code>OnSleep()</code> method that are called by the framework when the app is resuming and going to sleep respectively. The typical operation you&#39;ll do in the <code>OnSleep()</code> method is to <strong>save</strong> the state of your ViewModel to later <strong>restore</strong> it during the execution of the <code>OnResume()</code> method.</p>
-<p>The following is an example of a ViewModel that implements <code>IApplicationLifecycleAware</code>. </p>
-<pre><code class="lang-csharp"> public class ViewModelExample : ViewModelBase, IApplicationLifecycleAware
+<p>Beginning with Prism 7.2, support was added for <code>IAutoInitialization</code>. This was provided along with <code>IInitialize</code> and <code>IInitializeAsync</code>. It is important to remember that <code>IAutoInitialize</code> itself lives within the <code>Prism.AppModel</code> namespace as it is used both by Prism&#39;s NavigationService and DialogService to initialize your ViewModels. AutoInitialization will only occur if you have added this marker interface to your ViewModel.</p>
+<h2 id="how-it-works">How it works</h2>
+<p>If you pass any parameter via either the QueryString, NavigationParameters, or DialogParameters which you would expect to have access to in one of the Navigation interfaces or in <code>IDialogAware.OnDialogOpened</code>, <code>IAutoInitialize</code> will automatically inspect your ViewModel through reflection and set any public property which has the same name as is contained in the Parameters.</p>
+<div class="NOTE"><h5>Note</h5><p>Parameter name matching is done using the following string comparison <code>StringComparison.InvariantCultureIgnoreCase</code></p>
+</div>
+<h2 id="customizing-parameters">Customizing Parameters</h2>
+<p>There are times in which you may have a hard requirement for a specific parameter, while other parameters may be optional when initializing your ViewModel. Similarly there may be times in which the name of the Property may not match the parameter key that you wish to use. For either of these cases you can use the <code>AutoInitializeAttribute</code> on the property to provide <code>IAutoInitialize</code> the proper context for what to do with the given property.</p>
+<pre><code class="lang-cs">public class ViewAViewModel : BindableBase
+{
+    // A required property which will generate an exception if not set
+    private string _title;
+    [AutoInitialize(true)]
+    public string Title
     {
-        protected INavigationService NavigationService { get; private set; }
-
-        public ViewModelExample(INavigationService navigationService)
-        {
-            NavigationService = navigationService;
-        }
-
-        public void OnResume()
-        {
-            //Restore the state of your ViewModel.
-        }
-
-        public  void OnSleep()
-        {
-            //Save the state of your ViewModel.
-        }
+        get =&gt; _title;
+        set =&gt; SetProperty(ref _title, value);
     }
-</code></pre><h2 id="how-to-handle-alm-at-application-level">How to handle ALM at Application level</h2>
-<p>You can handle ALM events at the <strong>Application</strong> level by overriding the <code>OnSleep()</code> and <code>OnResume()</code> methods in the <code>App</code> class.
-The following is an example of an <code>App</code> class with ALM management.</p>
-<pre><code class="lang-csharp">    public partial class App : PrismApplication
+
+    // An optional property with the parameter key item1
+    private FooModel _model1;
+    [AutoInitialize(&quot;item1&quot;)]
+    public FooModel Model1
     {
-
-        public App() : this(null) { }
-
-        public App(IPlatformInitializer initializer) : base(initializer) { }
-
-        protected override async void OnInitialized()
-        {
-            InitializeComponent();
-
-            await NavigationService.NavigateAsync(&quot;NavigationPage/MainPage&quot;);
-        }
-
-        protected override void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-            containerRegistry.RegisterForNavigation&lt;NavigationPage&gt;();
-            containerRegistry.RegisterForNavigation&lt;MainPage&gt;();
-        }
-
-        protected override void OnResume()
-        {
-            base.OnResume();
-
-            // TODO: Refresh network data, perform UI updates, and reacquire resources like cameras, I/O devices, etc.
-
-        }
-
-        protected override void OnSleep()
-        {
-            base.OnSleep();
-
-            // TODO: This is the time to save app data in case the process is terminated.
-            // This is the perfect timing to release exclusive resources (camera, I/O devices, etc...)
-
-        }
+        get =&gt; _model1;
+        set =&gt; SetProperty(ref _model1, value);
     }
-</code></pre><h2 id="handling-app-resume-and-suspend">Handling app resume and suspend</h2>
-<p>In general, an application goes into <strong>sleep mode</strong> when it no longer commands the screen and has become inactive. From this sleep mode, an application can be <strong>resumed</strong> (signaled by an <code>OnResume()</code> call) or <strong>terminated</strong>. But this is important: after the <code>OnSleep()</code> call, there is <strong>no further notification</strong> that an application is being terminated. The <code>OnSleep()</code> call is as close as you get to a termination notification, and it always precedes a termination. For example, if your application is running and the user turns off the phone, the application gets an <code>OnSleep()</code> call as the phone is shutting down. If your program has established a connection with a web service, or is in the process of establishing such a connection, you might want to use <code>OnResume()</code> to restore that connection. Perhaps the connection has timed out in the interval that the program was inactive. Or perhaps some fresh data is available. </p>
-<h2 id="debugging-tips-and-tricks">Debugging tips and tricks</h2>
-<p>When your app is attached to the Visual Studio debugger, it will not be suspended. You can suspend it from the debugger, however, and then send it a Resume event so that you can debug your code. Make sure the Debug Location toolbar is visible and click the drop-down next to the Suspend icon. Then choose Resume.</p>
-<p><img src="images/xf-iapplicationlifecycleaware-debug-location.png" alt="how to activate debug-location"></p>
-<h2 id="reference">Reference</h2>
+
+    // A required property with the parameter key item2
+    private FooModel _model2
+    [AutoInitialize(&quot;item2&quot;, true)]
+    public FooModel Model2
+    {
+        get =&gt; _model2;
+        set =&gt; SetProperty(ref _model2, value);
+    }
+}
+</code></pre><h2 id="additional-references">Additional References</h2>
 <ul>
-<li><p><a href="https://developer.xamarin.com/guides/xamarin-forms/application-fundamentals/app-lifecycle/">Xamarin Docs App Lifecycle</a></p>
-</li>
-<li><p><a href="https://xamarin.azureedge.net/developer/xamarin-forms-book/XamarinFormsBook-Ch06-Apr2016.pdf">Xamarin Forms Book</a></p>
-</li>
-<li><p><a href="https://github.com/PrismLibrary/Prism/blob/36dc541274edb3e1d1ee2957e1ae65aafbf6c0a1/Source/Xamarin/Prism.Forms/PrismApplicationBase.cs">PrismApplicationBase source code</a></p>
-</li>
+<li><a href="dialogs/dialog-service.html">Dialog Service</a></li>
+<li><a href="navigation/navigation-basics.html">Navigation Basics</a></li>
 </ul>
 </article>
           </div>
@@ -352,7 +307,7 @@ The following is an example of an <code>App</code> class with ALM management.</p
               <div class="connect-widget">
                 <ul class="connect-links">
           		<li id="connect-github">
-          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/xamarin-forms/application-lifecycle.md/#L1" target="_blank">
+          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/xamarin-forms/auto-initialization.md/#L1" target="_blank">
           				<div class="image github"></div>Edit on GitHub
           			</a>
                   </li>
