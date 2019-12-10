@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Using IPlatformInitializer | Prism </title>
+    <title>Navigation Journal | Prism </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Using IPlatformInitializer | Prism ">
+    <meta name="title" content="Navigation Journal | Prism ">
     <meta name="generator" content="docfx 2.48.0.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
@@ -150,8 +150,8 @@
                                 <li class="">
                                   <a href="../../wpf/region-navigation/controlling-view-lifetime.html" title="Controlling View Lifetime" class="">Controlling View Lifetime</a>
                                 </li>
-                                <li class="">
-                                  <a href="../../wpf/region-navigation/navigation-journal.html" title="Navigation Journal" class="">Navigation Journal</a>
+                                <li class="active">
+                                  <a href="../../wpf/region-navigation/navigation-journal.html" title="Navigation Journal" class="active">Navigation Journal</a>
                                 </li>
                               </ul>  </li>
                           <li class="">
@@ -261,8 +261,8 @@
                                 <li class="">
                                   <a href="../../xamarin-forms/dependency-injection/registering-types.html" title="Registering Types" class="">Registering Types</a>
                                 </li>
-                                <li class="active">
-                                  <a href="../../xamarin-forms/dependency-injection/platform-specific-services.html" title="Platform Specific Services" class="active">Platform Specific Services</a>
+                                <li class="">
+                                  <a href="../../xamarin-forms/dependency-injection/platform-specific-services.html" title="Platform Specific Services" class="">Platform Specific Services</a>
                                 </li>
                                 <li class="">
                                   <a href="../../xamarin-forms/dependency-injection/add-custom-container.html" title="Adding a Custom Container" class="">Adding a Custom Container</a>
@@ -337,34 +337,9 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="using-iplatforminitializer">Using IPlatformInitializer</h1>
+<h1 id="navigation-journal">Navigation Journal</h1>
 
-<p>With Xamarin.Forms you may have read how you can add the Dependency attribute for an impelementing type in your Platform Specific code and then resolve it with the Xamarin.Forms DependencyService. This is considered a major Anti-Pattern that should be avoided when you are using a proper Dependency Injection container. It is for this reason that Prism has dropped all support for working with the DependencyService as of Prism 7.0. Starting with Prism 6.3 the <code>IPlatformInitializer</code> was introduced. This allows you to easily register types with Prism&#39;s container.</p>
-<p>The <code>IPlatformInitializer</code> is a very simple interface which simply contains a single method for <code>RegisterTypes</code>. The <code>IPlatformInitializer</code> can then be passed into the PrismApplication when you create your app. For iOS you might simply have the following code:</p>
-<pre><code class="lang-cs">public partial class AppDelegate : FormsApplicationDelegate, IPlatformInitializer
-{
-    public override bool FinishedLaunching(UIApplication app, NSDictionary options)
-    {
-        global::Xamarin.Forms.Forms.Init();
-        LoadApplication(new App(this));
-
-        return base.FinishedLaunching(app, options);
-    }
-
-    public void RegisterTypes(IContainerRegistry containerRegistry)
-    {
-        containerRegistry.Register&lt;ITextToSpeech, TextToSpeech&gt;();
-    }
-}
-</code></pre><p>Keep in mind that you will need to be sure your App contains the proper constructor overload like the following:</p>
-<pre><code class="lang-cs">public class App : PrismApplication
-{
-    public App(IPlatformInitializer initializer)
-        : base(initializer)
-    {
-    }
-}
-</code></pre></article>
+</article>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
@@ -372,7 +347,7 @@
               <div class="connect-widget">
                 <ul class="connect-links">
           		<li id="connect-github">
-          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/xamarin-forms/dependency-injection/platform-specific-services.md/#L1" target="_blank">
+          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/wpf/region-navigation/navigation-journal.md/#L1" target="_blank">
           				<div class="image github"></div>Edit on GitHub
           			</a>
                   </li>

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Page Lifecycle | Prism </title>
+    <title>Dialog Service | Prism </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Page Lifecycle | Prism ">
+    <meta name="title" content="Dialog Service | Prism ">
     <meta name="generator" content="docfx 2.48.0.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -166,8 +166,8 @@
                                   <a href="../wpf/interactivity/event-to-command.html" title="Event To Command" class="">Event To Command</a>
                                 </li>
                               </ul>  </li>
-                          <li class="">
-                            <a href="../wpf/dialog-service.html" title="Dialog Service" class="">Dialog Service</a>
+                          <li class="active">
+                            <a href="../wpf/dialog-service.html" title="Dialog Service" class="active">Dialog Service</a>
                           </li>
                           <li class="">
                             <span class="expand-stub"></span>
@@ -325,8 +325,8 @@
                           <li class="">
                             <a href="../xamarin-forms/application-lifecycle.html" title="Application Lifecycle" class="">Application Lifecycle</a>
                           </li>
-                          <li class="active">
-                            <a href="../xamarin-forms/page-lifecycle.html" title="Page Lifecycle" class="active">Page Lifecycle</a>
+                          <li class="">
+                            <a href="../xamarin-forms/page-lifecycle.html" title="Page Lifecycle" class="">Page Lifecycle</a>
                           </li>
                         </ul>  </li>
                   </ul>        </div>
@@ -337,10 +337,181 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="page-lifecycle">Page Lifecycle</h1>
+<h1 id="dialog-service">Dialog Service</h1>
 
-<p>TBD</p>
-</article>
+<p>TODO: Intro</p>
+<h2 id="create-your-dialog-view">Create Your Dialog View</h2>
+<p>Your dialog view is a simple <strong>UserControl</strong> that can be designed anyway you please.  The only requirement it has a ViewModel that implements <code>IDialogAware</code> set as it&#39;s DataContext.  Preferably, it will utilize the <code>ViewModelLocator</code></p>
+<pre><code class="lang-xml">&lt;UserControl x:Class=&quot;HelloWorld.Dialogs.NotificationDialog&quot;
+             xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+             xmlns:prism=&quot;http://prismlibrary.com/&quot;
+             prism:ViewModelLocator.AutoWireViewModel=&quot;True&quot;
+             Width=&quot;300&quot; Height=&quot;150&quot;&gt;
+    &lt;Grid x:Name=&quot;LayoutRoot&quot; Margin=&quot;5&quot;&gt;
+        &lt;Grid.RowDefinitions&gt;
+            &lt;RowDefinition /&gt;
+            &lt;RowDefinition Height=&quot;Auto&quot; /&gt;
+        &lt;/Grid.RowDefinitions&gt;
+
+        &lt;TextBlock Text=&quot;{Binding Message}&quot; HorizontalAlignment=&quot;Stretch&quot; VerticalAlignment=&quot;Stretch&quot; Grid.Row=&quot;0&quot; TextWrapping=&quot;Wrap&quot; /&gt;
+        &lt;Button Command=&quot;{Binding CloseDialogCommand}&quot; CommandPrameter=&quot;true&quot; Content=&quot;OK&quot; Width=&quot;75&quot; Height=&quot;25&quot; HorizontalAlignment=&quot;Right&quot; Margin=&quot;0,10,0,0&quot; Grid.Row=&quot;1&quot; IsDefault=&quot;True&quot; /&gt;
+    &lt;/Grid&gt;
+&lt;/UserControl&gt;
+</code></pre><h2 id="create-your-dialog-viewmodel">Create Your Dialog ViewModel</h2>
+<p>Next you need a ViewModel that implements <code>IDialogAware</code> which is defined as follows</p>
+<pre><code class="lang-cs">public interface IDialogAware
+{
+    bool CanCloseDialog();
+    void OnDialogClosed();
+    void OnDialogOpened(IDialogParameters parameters);
+    string Title { get; set; }
+    event Action&lt;IDialogResult&gt; RequestClose;
+}
+</code></pre><p>Here is a simple example of what an <code>IDialogAware</code> ViewModel may look like.</p>
+<pre><code class="lang-cs">public class NotificationDialogViewModel : BindableBase, IDialogAware
+{
+    private DelegateCommand&lt;string&gt; _closeDialogCommand;
+    public DelegateCommand&lt;string&gt; CloseDialogCommand =&gt;
+        _closeDialogCommand ?? (_closeDialogCommand = new DelegateCommand&lt;string&gt;(CloseDialog));
+
+    private string _message;
+    public string Message
+    {
+        get { return _message; }
+        set { SetProperty(ref _message, value); }
+    }
+
+    private string _title = &quot;Notification&quot;;
+    public string Title
+    {
+        get { return _title; }
+        set { SetProperty(ref _title, value); }
+    }
+
+    public event Action&lt;IDialogResult&gt; RequestClose;
+
+    protected virtual void CloseDialog(string parameter)
+    {
+        ButtonResult result = ButtonResult.None;
+
+        if (parameter?.ToLower() == &quot;true&quot;)
+            result = ButtonResult.OK;
+        else if (parameter?.ToLower() == &quot;false&quot;)
+            result = ButtonResult.Cancel;
+
+        RaiseRequestClose(new DialogResult(result));
+    }
+
+    public virtual void RaiseRequestClose(IDialogResult dialogResult)
+    {
+        RequestClose?.Invoke(dialogResult);
+    }
+
+    public virtual bool CanCloseDialog()
+    {
+        return true;
+    }
+
+    public virtual void OnDialogClosed()
+    {
+
+    }
+
+    public virtual void OnDialogOpened(IDialogParameters parameters)
+    {
+        Message = parameters.GetValue&lt;string&gt;(&quot;message&quot;);
+    }
+}
+</code></pre><h2 id="register-the-dialog">Register the Dialog</h2>
+<p>To register a dialog, you must have a View (UserControl) and a corresponding ViewModel (which must implement <code>IDialogAware</code>).  In the <code>RegisterTypes</code> method, simply register your dialog like you would any other service by using the <code>IContainterRegistery.RegisterDialog</code> method.</p>
+<pre><code class="lang-cs"> protected override void RegisterTypes(IContainerRegistry containerRegistry)
+ {
+     containerRegistry.RegisterDialog&lt;NotificationDialog, NotificationDialogViewModel&gt;();
+ }
+</code></pre><p>Optionally, you can provide a custom name for your dialog.</p>
+<pre><code class="lang-cs"> protected override void RegisterTypes(IContainerRegistry containerRegistry)
+ {
+     containerRegistry.RegisterDialog&lt;NotificationDialog, NotificationDialogViewModel&gt;(&quot;myDialog&quot;);
+ }
+</code></pre><h2 id="using-the-dialog-service">Using the Dialog Service</h2>
+<p>To use the dialog service you simply ask for the service in your VM ctor.</p>
+<pre><code class="lang-cs">public MainWindowViewModel(IDialogService dialogService)
+{
+    _dialogService = dialogService;
+}
+</code></pre><p>Then call either <code>Show</code> or <code>ShowDialog</code> providing the name of the dialog, any parameters your dialogs requires, and then handle the result via a call back</p>
+<pre><code class="lang-cs">private void ShowDialog()
+{
+    var message = &quot;This is a message that should be shown in the dialog.&quot;;
+    //using the dialog service as-is
+    _dialogService.ShowDialog(&quot;NotificationDialog&quot;, new DialogParameters($&quot;message={message}&quot;), r =&gt;
+    {
+           if (r.Result == ButtonResult.None)
+               Title = &quot;Result is None&quot;;
+           else if (r.Result == ButtonResult.OK)
+               Title = &quot;Result is OK&quot;;
+           else if (r.Result == ButtonResult.Cancel)
+               Title = &quot;Result is Cancel&quot;;
+           else
+               Title = &quot;I Don&#39;t know what you did!?&quot;;
+    });
+}
+</code></pre><h2 id="register-a-custom-dialog-window">Register a Custom Dialog Window</h2>
+<p>It&#39;s very common to be using a third-party control vendor such as Infragistics. In these cases, you may want to replace the standard WPF Window control that hosts the dialogs with a custom Window class such as the Infragistics XamRibbonWindow control.</p>
+<p>In this case, just create your custom Window, and implement the <code>IDialogWindow</code> interface:</p>
+<pre><code class="lang-cs">public partial class MyRibbonWindow: XamRibbonWindow, IDialogWindow
+{
+    public IDialogResult Result { get; set; }
+    ….
+}
+</code></pre><p>Then register your dialog window with the <code>IContainerRegistry</code>.</p>
+<pre><code class="lang-cs">protected override void RegisterTypes(IContainerRegistry containerRegistry)
+{
+    containerRegistry.RegisterDialogWindow&lt;MyRibbonWindow&gt;();
+}
+</code></pre><p>If you have more than one dialog window you would like to use as a dialog host, you register multiple dialog windows with the container by specifying a name for the window.</p>
+<pre><code class="lang-cs">protected override void RegisterTypes(IContainerRegistry containerRegistry)
+{
+    containerRegistry.RegisterDialogWindow&lt;NotificationWindow&gt;(&quot;notifyWindow&quot;);
+}
+</code></pre><div class="NOTE"><h5>Note</h5><p>In order to use a dialog window by name, you must provide the dialog window name in the <code>IDialogService.Show</code> or <code>IDialogService.ShowDialog</code> method as follows:</p>
+<pre><code> _dialogService.ShowDialog(&quot;DialogName&quot;, dialogParameters), r =&gt;
+    { ...  }, &quot;notifyWindow&quot;);
+</code></pre></div>
+<h2 id="style-the-dialogwindow">Style the DialogWindow</h2>
+<p>You can control the properties of the DialogWindow by using a style via an attatched property on the Dialog UserControl</p>
+<pre><code class="lang-xml">&lt;prism:Dialog.WindowStyle&gt;
+    &lt;Style TargetType=&quot;Window&quot;&gt;
+        &lt;Setter Property=&quot;prism:Dialog.WindowStartupLocation&quot; Value=&quot;CenterScreen&quot; /&gt;
+        &lt;Setter Property=&quot;ResizeMode&quot; Value=&quot;NoResize&quot;/&gt;
+        &lt;Setter Property=&quot;ShowInTaskbar&quot; Value=&quot;False&quot;/&gt;
+        &lt;Setter Property=&quot;SizeToContent&quot; Value=&quot;WidthAndHeight&quot;/&gt;
+    &lt;/Style&gt;
+&lt;/prism:Dialog.WindowStyle&gt;
+</code></pre><h2 id="simplify-your-application-dialog-apis">Simplify your Application Dialog APIs</h2>
+<p>The intent of the dialog API is not to try and guess exactly what type of parameters your need for all of your dialogs, but rather to just create and show the dialogs.  To simplify common dialogs in your application the guidance will be to create an extension methods to simplify your applications dialogs.</p>
+<p>For example:</p>
+<pre><code class="lang-cs">public static class DialogServiceExtensions
+{
+    public static void ShowNotification(this IDialogService dialogService, string message, Action&lt;IDialogResult&gt; callBack)
+    {
+        dialogService.ShowDialog(&quot;NotificationDialog&quot;, new DialogParameters($&quot;message={message}&quot;), callBack, &quot;notificationWindow&quot;);
+    }
+}
+</code></pre><p>Then to call your Notifications use the new and improved API that you created specifically for your app.</p>
+<pre><code class="lang-cs">_dialogService.ShowNotification(message, r =&gt;
+{
+        if (r.Result == ButtonResult.None)
+            Title = &quot;Result is None&quot;;
+        else if (r.Result == ButtonResult.OK)
+            Title = &quot;Result is OK&quot;;
+        else if (r.Result == ButtonResult.Cancel)
+            Title = &quot;Result is Cancel&quot;;
+        else
+            Title = &quot;I Don&#39;t know what you did!?&quot;;
+});
+</code></pre></article>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
@@ -348,7 +519,7 @@
               <div class="connect-widget">
                 <ul class="connect-links">
           		<li id="connect-github">
-          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/xamarin-forms/page-lifecycle.md/#L1" target="_blank">
+          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/wpf/dialog-service.md/#L1" target="_blank">
           				<div class="image github"></div>Edit on GitHub
           			</a>
                   </li>
