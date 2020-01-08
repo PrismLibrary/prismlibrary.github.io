@@ -47,7 +47,7 @@
               </form>
                 <ul class="nav level1 navbar-nav">
                   <li class="">
-                    <a href="http://prismlibrary.github.io/" title="Home" class="">Home</a>
+                    <a href="//prismlibrary.com/" title="Home" class="">Home</a>
                   </li>
                   <li class="active">
                     <a href="../../../docs/index.html" title="Documentation" class="active">Documentation</a>
@@ -386,7 +386,7 @@ commandProxy.CancelAllOrdersCommand.RegisterCommand(
         &lt;ListBox.ItemTemplate&gt;
             &lt;DataTemplate&gt;
                 &lt;Button Content=&quot;{Binding Path=Name}&quot;
-                    Command=&quot;{Binding ElementName=root, 
+                    Command=&quot;{Binding ElementName=root,
                     Path=DataContext.DeleteCommand}&quot; /&gt;
             &lt;/DataTemplate&gt;
         &lt;/ListBox.ItemTemplate&gt;
@@ -475,7 +475,7 @@ else
 <pre><code class="lang-cs">this.questionnaireRepository.GetQuestionnaireAsync(
     (result) =&gt;
     {
-        if (result.Error == null) 
+        if (result.Error == null)
         {
             this.Questionnaire = result.Result;
             ...
@@ -577,7 +577,7 @@ private void RaiseConfirmation()
 <p>Because the interaction request object represents a logical interaction, the exact user experience for the interaction is defined in the view. Behaviors are often used to encapsulate the user experience for an interaction; this allows the UI designer to choose an appropriate behavior and to bind it to the interaction request object on the view model.</p>
 <p>The view must be set up to detect an interaction request event, and then to present the appropriate visual display for the request. Triggers are used to initiate actions whenever a specific event is raised.</p>
 <p>The standard <strong>EventTrigger</strong> provided by Blend can be used to monitor an interaction request event by binding to the interaction request objects exposed by the view model. However, the Prism Library defines a custom <strong>EventTrigger</strong>, named <strong>InteractionRequestTrigger</strong>, which automatically connects to the appropriate <strong>Raised</strong> event of the <strong>IInteractionRequest</strong> interface. This reduces the amount of Extensible Application Markup Language (XAML) needed and reduces the chance of inadvertently entering an incorrect event name.</p>
-<p>After the event is raised, the <strong>InteractionRequestTrigger</strong> will invoke the specified action. For WPF, the Prism Library provides the <strong>PopupWindowAction</strong> class, which displays a pop-up window to the user. When the window is displayed, its data context is set to the context parameter of the interaction request. Using the <strong>WindowContent</strong> property of the <strong>PopupWindowAction</strong> class, you can specify the view that will be shown in the popup window. The title of the pop-up window is bound to the Title property of the context object. </p>
+<p>After the event is raised, the <strong>InteractionRequestTrigger</strong> will invoke the specified action. For WPF, the Prism Library provides the <strong>PopupWindowAction</strong> class, which displays a pop-up window to the user. When the window is displayed, its data context is set to the context parameter of the interaction request. Using the <strong>WindowContent</strong> property of the <strong>PopupWindowAction</strong> class, you can specify the view that will be shown in the popup window. The title of the pop-up window is bound to the Title property of the context object.</p>
 <p><em><strong>Note:</strong> By default, the specific type of pop-up window displayed by the <strong>PopupWindowAction</strong> class depends on the type of the context object. For a <strong>Notification</strong> context object, a <strong>DefaultNotificationWindow</strong> is displayed, while for a <strong>Confirmation</strong> context object, a <strong>DefaultConfirmationWindow</strong> is displayed. The <strong>DefaultNotificationWindow</strong> displays a simple popup window to display the notification, while the <strong>DefaultConfirmationWindow</strong> also contains <strong>Accept</strong> and <strong>Cancel</strong> buttons to capture the user&#39;s response. You can override this behavior by specifying a custom pop-up window using the <strong>WindowContent</strong> property of the <strong>PopupWindowAction</strong> class.</em></p>
 <p>The following example shows how the <strong>InteractionRequestTrigger</strong> and the <strong>PopupWindowAction</strong> are used to display a confirmation pop-up window to the user within the Interactivity QuickStart.</p>
 <pre><code class="lang-xml">&lt;i:Interaction.Triggers&gt;
@@ -740,7 +740,7 @@ helper.ValidatePropertyChange(
     NotifyDataErrorInfoBehavior.FiresErrorsChanged);
 </code></pre><h3 id="testing-asynchronous-service-calls">Testing Asynchronous Service Calls</h3>
 <p>When implementing the MVVM pattern, view models usually invoke operations on services, often asynchronously. Tests for code that invokes these operations typically use mocks or stubs as replacements for the actual services.</p>
-<p>The standard patterns used to implement asynchronous operations provide different guarantees regarding the thread in which notifications about the status of an operation occur. Although the <a href="http://msdn.microsoft.com/en-us/library/wewwczdw.aspx">Event-based Asynchronous design pattern</a> guarantees that handlers for the events are invoked on a thread that is appropriate for the application, the <a href="http://msdn.microsoft.com/en-us/library/ms228963.aspx">IAsyncResult design pattern</a> does not provide any such guarantees forcing the view model code that originates the call to ensure any changes that would affect the view are posted to the UI thread.</p>
+<p>The standard patterns used to implement asynchronous operations provide different guarantees regarding the thread in which notifications about the status of an operation occur. Although the <a href="https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/event-based-asynchronous-pattern-overview">Event-based Asynchronous design pattern</a> guarantees that handlers for the events are invoked on a thread that is appropriate for the application, the <a href="https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/asynchronous-programming-model-apm">IAsyncResult design pattern</a> does not provide any such guarantees forcing the view model code that originates the call to ensure any changes that would affect the view are posted to the UI thread.</p>
 <p>Dealing with threading concerns requires more complicated, and, therefore, usually harder to test, code. It also usually requires the tests themselves to be asynchronous. When notifications are guaranteed to occur in the UI thread, either because the standard event-based asynchronous pattern is used or because view models rely on a service access layer to marshal notifications to the appropriate thread, tests can be simplified and can essentially play the role of a &quot;dispatcher for the UI thread.&quot;</p>
 <p>The way services are mocked depends on the asynchronous event pattern used to implement their operations. If a method-based based pattern is used, mocks for the service interface created using a standard mocking framework are usually enough, but if the event-based pattern is used, mocks based on a custom class that implements the methods to add and remove handlers for the service events are usually preferred.</p>
 <p>The following code example shows a test for the appropriate behavior on the successful completion of an asynchronous operation notified in the UI thread using mocks for services. In this example, the test code captures the callback supplied by the view model when it makes the asynchronous service call. The test then simulates the completion of that call later in the test by invoking the callback. This approach allows testing of a component that uses an asynchronous service without the complexity of making your tests asynchronous.</p>
