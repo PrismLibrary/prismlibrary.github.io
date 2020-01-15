@@ -8,7 +8,7 @@
     <title>Using IPlatformInitializer | Prism </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Using IPlatformInitializer | Prism ">
-    <meta name="generator" content="docfx 2.48.0.0">
+    <meta name="generator" content="docfx 2.48.1.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -249,6 +249,9 @@
                                 <li class="">
                                   <a href="../../xamarin-forms/behaviors/eventtocommandbehavior.html" title="EventToCommand Behavior" class="">EventToCommand Behavior</a>
                                 </li>
+                                <li class="">
+                                  <a href="../../xamarin-forms/behaviors/page-behavior-factory.html" title="PageBehaviorFactory" class="">PageBehaviorFactory</a>
+                                </li>
                               </ul>  </li>
                           <li class="">
                             <span class="expand-stub"></span>
@@ -340,6 +343,9 @@
 <h1 id="using-iplatforminitializer">Using IPlatformInitializer</h1>
 
 <p>With Xamarin.Forms you may have read how you can add the Dependency attribute for an impelementing type in your Platform Specific code and then resolve it with the Xamarin.Forms DependencyService. This is considered a major Anti-Pattern that should be avoided when you are using a proper Dependency Injection container. It is for this reason that Prism has dropped all support for working with the DependencyService as of Prism 7.0. Starting with Prism 6.3 the <code>IPlatformInitializer</code> was introduced. This allows you to easily register types with Prism&#39;s container.</p>
+<div class="embeddedvideo"><iframe src="https://www.youtube.com/embed/qMzTAOOgY8c" frameborder="0" allowfullscreen="true"></iframe></div>
+<hr>
+
 <p>The <code>IPlatformInitializer</code> is a very simple interface which simply contains a single method for <code>RegisterTypes</code>. The <code>IPlatformInitializer</code> can then be passed into the PrismApplication when you create your app. For iOS you might simply have the following code:</p>
 <pre><code class="lang-cs">public partial class AppDelegate : FormsApplicationDelegate, IPlatformInitializer
 {
