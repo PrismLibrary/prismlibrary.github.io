@@ -377,23 +377,27 @@
 </code></pre><h3 id="onplatform-registration">OnPlatform Registration</h3>
 <p>When writing a Xamarin.Forms apllication, it is common to use a different view for a specific platform. Prism enables you to register different views for different platforms while using the same ViewModel. To do this, simply register your views using the <code>IContainerRegistry.RegisterForNavigationOnPlatform</code> method. The <code>TView</code> and <code>TViewModel</code> will be used for all views unless you provide an IPlatform arugment.</p>
 <p>For example; The following code will use the MainPage, with the MainPageViewModel as it&#39;s BindingContent, for every platform except Android and iOS.  For Android, we have rgeistered the MainPageAndroid, and for iOS we have registered the MainPageiOS. Both MainPageAndroid and MainPageiOS will use the MainPageViewModel as their BindingContent.</p>
-<pre><code class="lang-cs">containerRegistry.RegisterForNavigationOnPlatform&lt;MainPage, MainPageViewModel&gt;(new Platform&lt;MainPageAndroid&gt;(RuntimePlatform.Android),
-                                                                               new Platform&lt;MainPageiOS&gt;(RuntimePlatform.iOS));
+<pre><code class="lang-cs">containerRegistry.RegisterForNavigationOnPlatform&lt;MainPage, MainPageViewModel&gt;(
+    new Platform&lt;MainPageAndroid&gt;(RuntimePlatform.Android),
+    new Platform&lt;MainPageiOS&gt;(RuntimePlatform.iOS)
+);
 </code></pre><p>To navigate to the MainPage use:</p>
 <pre><code class="lang-cs">_navigationService.NavigateAsync(&quot;MainPage&quot;);
 </code></pre><p>Depending on which platform your app is running on, the appropriate view will be provided for the respective platform.</p>
 <h3 id="onidiom-registration">OnIdiom Registration</h3>
 <p>Another common scenario when creating a Xamarin.Forms aplication is the need to provide a different view based on the device the app is running on, such as Desktop, Phone, Tablet, etc.  </p>
-<pre><code class="lang-cs">containerRegistry.RegisterForNavigationOnIdiom&lt;MainPage, MainPageViewModel&gt;(desktopView: typeof(MainPageDesktop),
-                                                                            tabletView: typeof(MainPageTablet));
+<pre><code class="lang-cs">containerRegistry.RegisterForNavigationOnIdiom&lt;MainPage, MainPageViewModel&gt;(
+    desktopView: typeof(MainPageDesktop),
+    tabletView: typeof(MainPageTablet)
+);
 </code></pre><p>To navigate to the MainPage use:</p>
 <pre><code class="lang-cs">_navigationService.NavigateAsync(&quot;MainPage&quot;);
 </code></pre><p>Depending on which device your app is running on, the appropriate view will be provided for the respective device.</p>
 <h2 id="getting-the-navigation-service">Getting the Navigation Service</h2>
-<p>Once your views are registered for navigation, you must use the INavigationService to perform navigation.  To obtain the <strong>INavigationService</strong> in your ViewModels simply ask for it as a constructor parameter.  There is a caveat while injecting the Navigation Service into your ViewModels. The current version of the Prism.Forms library requires that you name the injection parameter precisely as <code>navigationService</code>. Otherwise the Navigation Service is unaware of the current View it is used on.  This is a limitation of the dependency injection container.</p>
+<p>Once your views are registered for navigation, you must use the INavigationService to perform navigation.  To obtain the <strong>INavigationService</strong> in your ViewModels simply ask for it as a constructor parameter.  There is a caveat while injecting the Navigation Service into your ViewModels. The current version of the Prism.Forms library requires that you name the injection parameter precisely as <code>navigationService</code> Otherwise the Navigation Service is unaware of the current View it is used on.  This is a limitation of the dependency injection container.</p>
 <pre><code class="lang-cs">public MainPageViewModel(INavigationService navigationService) // has to be named correctly
 {
-  _navigationService = navigationService;
+    _navigationService = navigationService;
 }
 </code></pre><h3 id="navigating">Navigating</h3>
 <p>Once you have the <strong>INavigationService</strong> in your ViewModel, you can navigate to your target views by calling the <code>INavigationService.NavigateAsync</code> method and provide the unique identifier/key that represents the target Page.</p>
@@ -405,22 +409,23 @@ _navigationService.NavigateAsync(&quot;MainPage&quot;);
 
 //relative URI-syntax
 _navigationService.NavigateAsync(new Uri(&quot;MainPage&quot;, UriKind.Relative));
-</code></pre><p><strong>Absolute</strong> navigation will reset the entire navigation stack no matter where you call it, or where you are in the current naviation stack. It is equivalent to <code>Application.Current.MainPage = new MainPage()</code></p>
+</code></pre><p><strong>Absolute</strong> navigation will reset the entire navigation stack no matter where you call it, or where you are in the current navigation stack. It is equivalent to <code>Application.Current.MainPage = new MainPage()</code></p>
 <p>Syntax for Absolute navigation:</p>
 <pre><code class="lang-cs">//absolute short-syntax
 _navigationService.NavigateAsync(&quot;/MainPage&quot;); //notice the prefix /
 
 //absolute URI-syntax
 _navigationService.NavigateAsync(new Uri(&quot;http://www.brianlagunas.com/MainPage&quot;, UriKind.Absolute));
-</code></pre><p><strong>Important:</strong> If you do not register your Pages with Prism, navigation will not work.</p>
+</code></pre><div class="IMPORTANT"><h5>Important</h5><p>If you do not register your Pages with Prism, navigation will not work.</p>
+</div>
 <h3 id="gobackasync">GoBackAsync</h3>
 <p>Going back to the previous View is as simple calling the <code>INavigationService.GoBackAsync</code> method. </p>
 <pre><code class="lang-cs">_navigationService.GoBackAsync();
 </code></pre><h3 id="forcing-a-modal-or-non-modal-navigation">Forcing a Modal or Non-Modal Navigation</h3>
 <p>The Prism navigation service tries it&#39;s best to understand the intent of the navigation operation and perform the appropriate modal/non-modal navigation. However, sometimes you require full contol over whether or not you perform a modal or non-modal navigation.  To tell the Prism navigation service how to handle the navigation request, set the <code>useModalNavigation</code> parameter in the <code>INavigationService.NavigateAsync</code> method signature.</p>
-<p>For example; if your navigation stack is rooted within a NavigationPage such as &quot;NavigationPage/ViewA/ViewB&quot;, then you call <code>_navigationService.NavigateAsync(&quot;ViewC&quot;)</code> from ViewB, ViewC will be pushed onto the NavigationPage&#39;s nav stack and your new navigation stack will look like &quot;NavigationPage/ViewA/ViewB/ViewC&quot;.  If you do not want this behavior, and instead wish to force ViewC to be navigated to modally, you must set the <code>useModalNavigation</code> parameter to <code>true</code>.</p>
+<p>For example; if your navigation stack is rooted within a NavigationPage such as &quot;NavigationPage/ViewA/ViewB&quot;, then you call <code>_navigationService.NavigateAsync(&quot;ViewC&quot;)</code> from ViewB, ViewC will be pushed onto the NavigationPage&#39;s navigation stack and your new navigation stack will look like &quot;NavigationPage/ViewA/ViewB/ViewC&quot;.  If you do not want this behavior, and instead wish to force ViewC to be navigated to modally, you must set the <code>useModalNavigation</code> parameter to <code>true</code>.</p>
 <pre><code class="lang-cs">_navigationService.NavigateAsync(&quot;ViewC&quot;, useModalNavigation: true);
-</code></pre><p>The same approach applies to <code>GoBackAsync</code>.  For example, let&#39;s assume your navigation stack is rooted with a ContentPage which then has a NavigationPage pushed modally onto the navigation stack.  The Stack would look something like &quot;RootPage/NavigationPage/ViewA&quot;.  In this case, if you were to call <code>GoBackAsync</code> from ViewA, nothing would happen becuase you are within the context of a NavigationPage and Prism does not know if you want a non-modal or a modal GoBack operation.  To force a GoBack to the RootPage, you must set the <code>useModalNavgation</code> parameter to <code>true</code>.</p>
+</code></pre><p>The same approach applies to <code>GoBackAsync</code>.  For example, let&#39;s assume your navigation stack is rooted with a ContentPage which then has a NavigationPage pushed modally onto the navigation stack.  The Stack would look something like &quot;RootPage/NavigationPage/ViewA&quot;.  In this case, if you were to call <code>GoBackAsync</code> from ViewA, nothing would happen because you are within the context of a NavigationPage and Prism does not know if you want a non-modal or a modal GoBack operation.  To force a GoBack to the RootPage, you must set the <code>useModalNavgation</code> parameter to <code>true</code>.</p>
 <pre><code class="lang-cs">_navigationService.GoBackAsync(useModalNavigation: true);
 </code></pre></article>
           </div>

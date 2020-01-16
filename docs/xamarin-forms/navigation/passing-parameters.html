@@ -346,8 +346,8 @@
 <div class="embeddedvideo"><iframe src="https://www.youtube.com/embed/inxl6Xfqsjs" frameborder="0" allowfullscreen="true"></iframe></div>
 <h2 id="creating-parameters">Creating Parameters</h2>
 <p>Creating parameters can be done in a variety of ways.</p>
-<pre><code class="lang-cs">var navigationParams = new NavigationParameters ();
-navigationParams.Add(&quot;model&quot;, new Contact ());
+<pre><code class="lang-cs">var navigationParams = new NavigationParameters();
+navigationParams.Add(&quot;model&quot;, new Contact());
 _navigationService.NavigateAsync(&quot;MainPage&quot;, navigationParams);
 </code></pre><p>You can also create an HTML query string to generate your parameter collection.</p>
 <pre><code class="lang-cs">var queryString = &quot;code=CR&amp;desc=Red&quot;;
@@ -361,7 +361,7 @@ _navigationService.NavigateAsync(&quot;MainPage?id=3&amp;name=brian&quot;);
 _navigationService.NavigateAsync(&quot;MainPage&quot; + navParameters.ToString());
 
 //using both short-syntax parameters and NavigationParameters
-var navParameters = new NavigationParameters ();
+var navParameters = new NavigationParameters();
 navParameters.Add(&quot;name&quot;, &quot;brian&quot;);
 _navigationService.NavigateAsync(&quot;MainPage?id=3&quot;, navParameters);
 </code></pre><p>When using a Uri-syntax to navigate, you may append the Uri with parameters, which will be used as the navigation parameters.</p>
@@ -382,21 +382,16 @@ _navigationService.NavigateAsync(new Uri(&quot;MainPage?id=3&quot;, UriKind.Rela
 <p><em>Note: You can implement <code>INavigationAware</code> on either the View or ViewModel</em></p>
 <p>Example:</p>
 <pre><code class="lang-cs">public class ContactPageViewModel : INavigationAware
-{
-  public void OnNavigatedTo(NavigationParameters parameters)
-  {
+{  
+    public void OnNavigatedTo(INavigationParameters parameters)
+    {
 
-  }
+    }
 
-  public void OnNavigatingTo(NavigationParameters parameters)
-  {
+    public void OnNavigatedFrom(INavigationParameters parameters)
+    {
 
-  }
-
-  public void OnNavigatedFrom(NavigationParameters parameters)
-  {
-
-  }
+    }
 }
 </code></pre><p>For more granular control, or if you wish to only implement very specific methods, you may choose to implement <code>INavigatedAware</code> or <code>INavigatingAware</code> interfaces.  These interfaces provide you the ability to choose exactly which navigation methods you wish to participate in.</p>
 <pre><code class="lang-cs">public interface INavigatedAware
@@ -421,13 +416,14 @@ _navigationService.NavigateAsync(new Uri(&quot;MainPage?id=3&quot;, UriKind.Rela
     /// &lt;param name=&quot;parameters&quot;&gt;The navigation parameters.&lt;/param&gt;
     /// &lt;remarks&gt;Not called when using device hardware or software back buttons&lt;/remarks&gt;
     void OnNavigatingTo(INavigationParameters parameters);
-    }
-</code></pre><p>In fact, the <code>INavigationAware</code> intefrace simply implements both the <code>INavigatedAware</code> and <code>INavigatingAware</code> interfaces.</p>
+}
+</code></pre><p>In fact, the <code>INavigationAware</code> interface simply implements both the <code>INavigatedAware</code> and <code>INavigatingAware</code> interfaces.</p>
 <pre><code class="lang-cs">public interface INavigationAware : INavigatedAware, INavigatingAware
 {
 
 }
-</code></pre><p><em>Note: <strong>OnNavigatingTo</strong> is not called when using device hardware or software back button.</em></p>
+</code></pre><div class="NOTE"><h5>Note</h5><p><strong>OnNavigatingTo</strong> is not called when using device hardware or software back button.</p>
+</div>
 <h2 id="reading-parameters">Reading Parameters</h2>
 <p>Now that you have access to the parameters, you must read the parameters from the available <code>NavigationParameters</code> instance.  There are two ways to read parameters; by using the parameter key as an indexer on the parameters instance, or by using the <code>GetValue</code>/<code>GetValues</code> method on the parameters instance.</p>
 <pre><code class="lang-cs">public void OnNavigatedTo(INavigationParameters parameters)
@@ -460,7 +456,8 @@ _navigationService.NavigateAsync(new Uri(&quot;MainPage?id=3&quot;, UriKind.Rela
         /// &lt;/summary&gt;
         New,
     }
-</code></pre><p><em>Note: <code>NavigationMode.Forward</code> and <code>NavigationMode.Refresh</code> are not supported in Xamarin.Forms. These are used in UWP only.</em></p>
+</code></pre><div class="NOTE"><h5>Note</h5><p><code>NavigationMode.Forward</code> and <code>NavigationMode.Refresh</code> are not supported in Xamarin.Forms. These are used in UWP only.</p>
+</div>
 </article>
           </div>
           

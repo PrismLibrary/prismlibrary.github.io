@@ -349,7 +349,7 @@
     ...
     xmlns:prism=&quot;http://prismlibrary.com/&quot;
     prism:ViewModelLocator.AutoWireViewModel=&quot;True&quot;&gt;
-</code></pre><p>To locate a ViewModel, the <code>ViewModelLocationProvider</code> first attempts to resolve the ViewModel from any mappings that may have been registered by the <code>ViewModelLocationProvider.Register</code> method (See <strong>Custom ViewModel Registrations</strong>).  If the ViewModel cannot be resolved using this approach, the <code>ViewModelLocationProvider</code> falls back to a convention-based approach to resolve the correct ViewModel type.  </p>
+</code></pre><p>To locate a ViewModel, the <code>ViewModelLocationProvider</code> first attempts to resolve the ViewModel from any mappings that may have been registered by the <code>ViewModelLocationProvider.Register</code> method (See <a href="#Custom-ViewModel-Registrations">Custom ViewModel Registrations</a>).  If the ViewModel cannot be resolved using this approach, the <code>ViewModelLocationProvider</code> falls back to a convention-based approach to resolve the correct ViewModel type.  </p>
 <p>This convention assumes:</p>
 <ul>
 <li>that ViewModels are in the same assembly as the view types</li>
@@ -357,7 +357,7 @@
 <li>that views are in a <code>.Views</code> child namespace</li>
 <li>that ViewModel names correspond with view names and end with &quot;ViewModel.&quot;</li>
 </ul>
-<div class="NOTE"><h5>Note</h5><p>The <code>ViewModelLocationProvider</code> can be found in the <code>Prism.Mvvm</code> namespace in the <strong>Prism.Core</strong> NuGet package. The <code>ViewModelLocator</code> can be found in the <code>Prism.Mvvm</code> namespace in the <strong>Prism.WPF</strong> NuGet package.</p>
+<div class="NOTE"><h5>Note</h5><p>The <code>ViewModelLocationProvider</code> can be found in the <code>Prism.Mvvm</code> namespace in the <strong>Prism.Core</strong> NuGet package. The <code>ViewModelLocator</code> can be found in the <code>Prism.Mvvm</code> namespace in the platform specific packages (<strong>Prism.WPF</strong>, <strong>Prism.Forms</strong>) NuGet package.</p>
 </div>
 <div class="NOTE"><h5>Note</h5><p>The ViewModelLocator is required, and automatically applied to every View, when developing with Xamarin.Forms as it is responsible for providing the correct instance of the <code>INavigationService</code> to the ViewModel. When developing a Xamarin.Forms app, the <code>ViewModelLocator</code> is opt-out only.</p>
 </div>
