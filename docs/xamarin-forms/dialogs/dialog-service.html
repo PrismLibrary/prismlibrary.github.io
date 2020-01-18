@@ -343,6 +343,7 @@
 <h1 id="getting-to-know-the-dialog-service">Getting to know the Dialog Service</h1>
 
 <p>The new Prism Dialog Service is designed to provide you a minimalistic framework that you can build on to provide richly styled dialogs that match the look and feel of your app.</p>
+<div class="embeddedvideo"><iframe src="https://www.youtube.com/embed/swe4XTksiLI" frameborder="0" allowfullscreen="true"></iframe></div>
 <h2 id="getting-started-with-idialogaware">Getting Started with IDialogAware</h2>
 <p>Creating dialogs with the DialogService requires a ViewModel that is <code>IDialogAware</code>. This special interface is what allows the DialogService to work with your ViewModel. Note that the navigation interfaces such as <code>INavigationAware</code>, <code>IConfirmNavigation</code>, <code>IInitialize</code>, <code>IDestructible</code> are not supported or used by the DialogService. By implementing <code>IDialogAware</code> you have methods that will allow you to do anything that you may be used to doing throught the ViewModel&#39;s lifecycle. It is worth noting however, that Dialogs do support <code>IAutoInitialize</code> to help reduce the amount of code you need to write.</p>
 <pre><code class="lang-cs">public class DemoDialogViewModel : BindableBase, IDialogAware, IAutoInitialize
