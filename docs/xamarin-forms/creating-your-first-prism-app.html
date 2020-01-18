@@ -486,7 +486,7 @@
 
     }
 }
-</code></pre><p>The <code>BindableBase</code> class implements the <a href="https://msdn.microsoft.com/en-us/library/system.componentmodel.inotifypropertychanged%28v=vs.110%29.aspx">INotifyPropertyChanged</a> interface which allows for the view to be able to data bind to properties defined in a ViewModel. <code>BindableBase</code> also provides a protected <code>SetProperty</code> method to simplify creating these properties.</p>
+</code></pre><p>The <code>BindableBase</code> class implements the <a href="https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifypropertychanged?redirectedfrom=MSDN&amp;view=netframework-4.8">INotifyPropertyChanged</a> interface which allows for the view to be able to data bind to properties defined in a ViewModel. <code>BindableBase</code> also provides a protected <code>SetProperty</code> method to simplify creating these properties.</p>
 <p>The <code>INavigationAware</code> interface provides the <code>OnNavigatedFrom</code>, <code>OnNavigatingTo</code>, and <code>OnNavigatedTo</code> methods and allows for the ViewModel to be notified when it is being navigated from or being navigated to. See the <a href="navigation/passing-parameters.html">Navigation topic</a> for more information.</p>
 <p>The <code>MainPageViewModel</code> has a public property named <code>Title</code> (inherited from <code>ViewModelBase</code>) that triggers the <code>INotifyPropertyChanged.OnPropertyChanged</code> event when the value is set.</p>
 <pre><code class="lang-cs">private string _title;
