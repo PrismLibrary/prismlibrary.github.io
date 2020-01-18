@@ -333,11 +333,11 @@
                           </li>
                           <li class="">
                             <span class="expand-stub"></span>
-                            <a class="">GTK#</a>
+                            <a class="">Additional Platforms</a>
                               
                               <ul class="nav level3">
                                 <li class="">
-                                  <a href="../../xamarin-forms/gtk/Getting-Started.html" title="Getting Started" class="">Getting Started</a>
+                                  <a href="../../xamarin-forms/platform-reference/gtk.html" title="GTK" class="">GTK</a>
                                 </li>
                               </ul>  </li>
                         </ul>  </li>
@@ -354,7 +354,7 @@
 <p>Prism allows you to declare your navigation directly inside your Xaml via a <a href="https://docs.microsoft.com/en-us/xamarin/xamarin-forms/xaml/markup-extensions/">Markup Extension</a>. This approach really helps with basic navigation scenarios, and can also help clean up your ViewModels.</p>
 <h2 id="defining-your-navigation-path-in-xaml">Defining your navigation path in Xaml</h2>
 <p>To define navigation from within your Xaml, simply add the prism namespace to your Page</p>
-<pre><code class="lang-xml">&lt;Page xmlns:prism=&quot;clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms&quot;&gt;
+<pre><code class="lang-xml">&lt;Page xmlns:prism=&quot;http://prismlibrary.com&quot;&gt;
 </code></pre><p>And then add the Markup Extension to any <code>Command</code> property (buttons, tap gesture recognizers, etc.)</p>
 <pre><code class="lang-xml">&lt;!-- normal navigation --&gt;
 &lt;Button Command=&quot;{prism:NavigateTo &#39;path/to/navigate&#39;}&quot; /&gt;
@@ -371,9 +371,9 @@
 <p>You can also define NavigationParameters to your Xaml in one of three ways.</p>
 <h4 id="1-directly-as-a-commandparameter-binding">1: Directly as a CommandParameter Binding.</h4>
 <p><em>Note: in order to access it, you need to lookup <code>xamlParam</code> from your NavigationParameters property. This is also statically defined in <code>KnownNavigationParameters.XamlParam</code></em></p>
-<pre><code class="lang-xml">&lt;Button Command=&quot;{prism:NavigateTo &#39;path/to/navigate&#39;}&quot; 
+<pre><code class="lang-xml">&lt;Button Command=&quot;{prism:NavigateTo &#39;path/to/navigate&#39;}&quot;
         CommandParameter=&quot;{Binding Foo}&quot; /&gt;
-</code></pre><pre><code class="lang-csharp">public override void OnNavigatingTo(NavigationParameters parameters)
+</code></pre><pre><code class="lang-csharp">public override void OnNavigatingTo(INavigationParameters parameters)
 {
     if(parameters.TryGetValue(KnownNavigationParameters.XamlParam, out object fooObject))
     {
@@ -401,7 +401,7 @@
 <pre><code class="lang-xml">&lt;Page&gt;
     &lt;StackLayout prism:Navigation.CanNavigate=&quot;{Binding MyCanNavigateProperty}&quot;&gt;
         &lt;ContentView&gt;
-            &lt;Button Command=&quot;{prism:NavigateTo &#39;path/to/navigate&#39;}&quot;   
+            &lt;Button Command=&quot;{prism:NavigateTo &#39;path/to/navigate&#39;}&quot;
                     CommandParameter=&quot;{Binding Foo}&quot; /&gt;
         &lt;/ContentView&gt;
     &lt;/StackLayout&gt;

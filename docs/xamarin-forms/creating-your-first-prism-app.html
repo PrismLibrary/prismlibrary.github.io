@@ -333,11 +333,11 @@
                           </li>
                           <li class="">
                             <span class="expand-stub"></span>
-                            <a class="">GTK#</a>
+                            <a class="">Additional Platforms</a>
                               
                               <ul class="nav level3">
                                 <li class="">
-                                  <a href="../xamarin-forms/gtk/Getting-Started.html" title="Getting Started" class="">Getting Started</a>
+                                  <a href="../xamarin-forms/platform-reference/gtk.html" title="GTK" class="">GTK</a>
                                 </li>
                               </ul>  </li>
                         </ul>  </li>
@@ -385,20 +385,18 @@
 <p>The <code>App.xaml</code> and <code>App.xaml.cs</code> files are the entry point of the application. The XAML markup in the <code>App.xaml</code> file is simple, and defines the application as a <code>PrismApplication</code>.</p>
 <pre><code class="lang-xml">&lt;prism:PrismApplication xmlns=&quot;http://xamarin.com/schemas/2014/forms&quot;
              xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
-             xmlns:prism=&quot;clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms&quot;
+             xmlns:prism=&quot;http://prismlibrary.com&quot;
              x:Class=&quot;MyFirstPrismApp.App&quot;&gt;
-    &lt;Application.Resources&gt;
-
-        &lt;!-- Application resource dictionary --&gt;
-
-    &lt;/Application.Resources&gt;
+  &lt;Application.Resources&gt;
+    &lt;!-- Application resource dictionary --&gt;
+  &lt;/Application.Resources&gt;
 &lt;/prism:PrismApplication&gt;
 </code></pre><p>The <code>App.xaml.cs</code> file contains the logic required to configure a Prism application and navigate to the root page on start up.</p>
 <pre><code class="lang-cs">    public partial class App
     {
-        /* 
+        /*
          * The Xamarin Forms XAML Previewer in Visual Studio uses System.Activator.CreateInstance.
-         * This imposes a limitation in which the App class must have a default constructor. 
+         * This imposes a limitation in which the App class must have a default constructor.
          * App(IPlatformInitializer initializer = null) cannot be handled by the Activator.
          */
         public App() : this(null) { }
@@ -435,66 +433,67 @@
 
 &lt;/ContentPage&gt;
 </code></pre><p>The <code>MainPage.BindingContext</code> is auto-wired to the ViewModel, which in this case is the <code>MainPageViewModel.cs</code> class, by using Prism&#39;s <code>ViewModelLocator</code>. The <code>ViewModelLocator</code> automatically resolves the view&#39;s ViewModel and sets the view&#39;s <code>BindingContext</code> to the ViewModel instance. The <code>ViewModelLocator</code> is automatically applied to every view when it is created by Prism. There is no need to set the <code>ViewModelLocator.AutowireViewModel</code> property on your pages. You may manually add the <code>ViewModelLocator.AutowireViewModel</code> attached property with the following syntax:</p>
-<pre><code class="lang-xml">xmlns:prism=&quot;clr-namespace:Prism.Mvvm;assembly=Prism.Forms&quot;
-prism:ViewModelLocator.AutowireViewModel=&quot;True&quot;
-</code></pre><p>See the <code>ViewModelLocator</code> topic for more information.</p>
+<pre><code class="lang-xml">&lt;ContentPage
+    xmlns:prism=&quot;http://prismlibrary.com&quot;
+    prism:ViewModelLocator.AutowireViewModel=&quot;True&quot;&gt;
+</code></pre><div class="NOTE"><h5>Note</h5><p>Using the ViewModelLocator.AutowireViewModel property is typically not needed except in a few edge cases where you have manually added a Page somewhere. Typically Prism&#39;s Navigation Service will set this to True for you if it has not explicitly been set.</p>
+</div>
+<p>See the <code>ViewModelLocator</code> topic for more information.</p>
 <p>Notice that there is a binding defined for the <code>Title</code> property on the page with the text bound to the property named <code>Title</code> in the <code>MainPageViewModel</code> class.</p>
-<pre><code class="lang-xml">Title=&quot;{Binding Title}&quot;
+<pre><code class="lang-xml">&lt;ContentPage Title=&quot;{Binding Title}&quot;&gt;
 </code></pre><h4 id="view-models">View Models</h4>
 <p>Within the shared project head there is a <code>ViewModels</code> folder which contains all of your application&#39;s ViewModels. The template created a ViewModel for the <code>MainPage.xaml</code> called <code>MainPageViewModel.cs</code> in this folder.  Lets take a look at this class and break down what is going on here.</p>
-<pre><code class="lang-cs">    public class MainPageViewModel : ViewModelBase
+<pre><code class="lang-cs">public class MainPageViewModel : ViewModelBase
+{
+    public MainPageViewModel(INavigationService navigationService)
+        : base(navigationService)
     {
-        public MainPageViewModel(INavigationService navigationService)
-            : base(navigationService)
-        {
-            Title = &quot;Main Page&quot;;
-        }
+        Title = &quot;Main Page&quot;;
     }
+}
 </code></pre><p>The <code>MainPageViewModel</code> inherits from <code>ViewModelBase</code> which is defined as follows.</p>
-<pre><code class="lang-cs">    public class ViewModelBase : BindableBase, INavigationAware, IDestructible
+<pre><code class="lang-cs">public abstract class ViewModelBase : BindableBase, INavigationAware, IDestructible
+{
+    protected INavigationService NavigationService { get; }
+
+    public ViewModelBase(INavigationService navigationService)
     {
-        protected INavigationService NavigationService { get; private set; }
-
-        private string _title;
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
-
-        public ViewModelBase(INavigationService navigationService)
-        {
-            NavigationService = navigationService;
-        }
-
-        public virtual void OnNavigatedFrom(INavigationParameters parameters)
-        {
-
-        }
-
-        public virtual void OnNavigatedTo(INavigationParameters parameters)
-        {
-
-        }
-
-        public virtual void OnNavigatingTo(INavigationParameters parameters)
-        {
-
-        }
-
-        public virtual void Destroy()
-        {
-
-        }
+        NavigationService = navigationService;
     }
-</code></pre><p>The <code>BindableBase</code> class implements the <a href="https://msdn.microsoft.com/en-us/library/system.componentmodel.inotifypropertychanged%28v=vs.110%29.aspx">INotifyPropertyChanged</a> interface which allows for the view to be able to data bind to properties defined in a ViewModel. <code>BindableBase</code> also provides a protected <code>SetProperty</code> method to simplify creating these properties. </p>
+
+    private string _title;
+    public string Title
+    {
+        get =&gt; _title;
+        set =&gt; SetProperty(ref _title, value);
+    }
+
+    // INavigationAware
+    public virtual void OnNavigatedFrom(INavigationParameters parameters)
+    {
+
+    }
+
+    // INavigationAware
+    public virtual void OnNavigatedTo(INavigationParameters parameters)
+    {
+
+    }
+
+    // IDestructible
+    public virtual void Destroy()
+    {
+
+    }
+}
+</code></pre><p>The <code>BindableBase</code> class implements the <a href="https://msdn.microsoft.com/en-us/library/system.componentmodel.inotifypropertychanged%28v=vs.110%29.aspx">INotifyPropertyChanged</a> interface which allows for the view to be able to data bind to properties defined in a ViewModel. <code>BindableBase</code> also provides a protected <code>SetProperty</code> method to simplify creating these properties.</p>
 <p>The <code>INavigationAware</code> interface provides the <code>OnNavigatedFrom</code>, <code>OnNavigatingTo</code>, and <code>OnNavigatedTo</code> methods and allows for the ViewModel to be notified when it is being navigated from or being navigated to. See the <a href="navigation/passing-parameters.html">Navigation topic</a> for more information.</p>
 <p>The <code>MainPageViewModel</code> has a public property named <code>Title</code> (inherited from <code>ViewModelBase</code>) that triggers the <code>INotifyPropertyChanged.OnPropertyChanged</code> event when the value is set.</p>
 <pre><code class="lang-cs">private string _title;
 public string Title
 {
-    get { return _title; }
-    set { SetProperty(ref _title, value); }
+    get =&gt; _title;
+    set =&gt; SetProperty(ref _title, value);
 }
 </code></pre><p>The <code>MainPageViewModel</code> is asking for an instance of the <code>INavigationService</code> in it&#39;s contructor, and passing it down to the derived <code>ViewModelBase</code> class so that navigation can be performed when required. See the <a href="navigation/navigation-basics.html">Navigation topic</a> for more information.</p>
 <p>The <code>IDestructible</code> interface provides the <code>Destroy</code> method and allows for the ViewModel to clean up any resource when the view it popped off the navigation stack and is ready for garbage collection.</p>

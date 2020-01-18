@@ -333,11 +333,11 @@
                           </li>
                           <li class="">
                             <span class="expand-stub"></span>
-                            <a class="">GTK#</a>
+                            <a class="">Additional Platforms</a>
                               
                               <ul class="nav level3">
                                 <li class="">
-                                  <a href="../../xamarin-forms/gtk/Getting-Started.html" title="Getting Started" class="">Getting Started</a>
+                                  <a href="../../xamarin-forms/platform-reference/gtk.html" title="GTK" class="">GTK</a>
                                 </li>
                               </ul>  </li>
                         </ul>  </li>
@@ -354,9 +354,9 @@
 <p>A ViewModel can determine whether or not it can perform a navigation operation. When a ViewModel implements the <strong>IConfirmNavigation</strong> or the <strong>IConfirmNavigationAsync</strong> interface, the navigation process looks to see what the result of this method is.  If <em>true</em>, a navigation process can be invoked, meaning a call to <code>NavigationService.NavigateAsync(&quot;target&quot;)</code> can be made.  If <em>false</em>, the ViewModel cannot invoke the navigation process.</p>
 <div class="embeddedvideo"><iframe src="https://www.youtube.com/embed/64qxmuzdX0M" frameborder="0" allowfullscreen="true"></iframe></div>
 <h2 id="iconfirmnavigation">IConfirmNavigation</h2>
-<pre><code class="lang-cs">public class ContactPageViewModel : IConfirmNavigation 
+<pre><code class="lang-cs">public class ContactPageViewModel : IConfirmNavigation
 {
-  public bool CanNavigate(NavigationParameters parameters)
+  public bool CanNavigate(INavigationParameters parameters)
   {
     return true;
   }

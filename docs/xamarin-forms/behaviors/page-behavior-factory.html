@@ -333,11 +333,11 @@
                           </li>
                           <li class="">
                             <span class="expand-stub"></span>
-                            <a class="">GTK#</a>
+                            <a class="">Additional Platforms</a>
                               
                               <ul class="nav level3">
                                 <li class="">
-                                  <a href="../../xamarin-forms/gtk/Getting-Started.html" title="Getting Started" class="">Getting Started</a>
+                                  <a href="../../xamarin-forms/platform-reference/gtk.html" title="GTK" class="">GTK</a>
                                 </li>
                               </ul>  </li>
                         </ul>  </li>
@@ -351,7 +351,39 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="page-behavior-factory">Page Behavior Factory</h1>
 
-<p>TODO</p>
+<p>There are many times where you may want to apply specific behaviors to pages universally. Internally Prism utilizes the IPageBehaviorFactory to apply Behaviors for supporting <code>IActiveAware</code> on the children of the <code>TabbedPage</code> <code>CarouselPage</code>, &amp; <code>NavigationPage</code> as well as handling <a href="../page-lifecycle.html"><code>IPageLifecycleAware</code></a>. In the event that there are custom behaviors which you would like to apply you can provide a custom implementation of the PageBehaviorFactory.</p>
+<p>While this is generally utilized for applying Behaviors, we can do anything we may need to here to configure our Page. As an example we could simplify our Pages, and apply some Platform Specific&#39;s from the PageBehaviorFactory. For an example let&#39;s assume that we want the Tabbed Bar on the bottom for Android and we want to use the Safe Area on iOS. Given this we could create the following CustomPageBehaviorFactory:</p>
+<pre><code class="lang-csharp">using Prism.Behaviors;
+using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
+using TabbedPage = Xamarin.Forms.TabbedPage;
+
+namespace MyApp.Behaviors
+{
+    public class CustomPageBehaviorFactory : PageBehaviorFactory
+    {
+        public override void ApplyContentPageBehaviors(ContentPage page)
+        {
+            base.ApplyContentPageBehaviors(page);
+            page.On&lt;iOS&gt;().SetUseSafeArea(true);
+        }
+
+        public override void ApplyTabbedPageBehaviors(TabbedPage page)
+        {
+            base.ApplyTabbedPageBehaviors(page);
+            page.On&lt;Android&gt;().SetToolbarPlacement(ToolbarPlacement.Bottom);
+        }
+    }
+}
+</code></pre><p>Now that we have a custom implementation all we need to do is Register it in our PrismApplication and we will get the custom behavior and configuration that we are looking for.</p>
+<pre><code class="lang-cs">protected override void RegisterTypes(IContainerRegistry containerRegistry)
+{
+    constinerRegistry.RegisterSingleton&lt;IPageBehaviorFactory, CustomPageBehaviorFactory&gt;();
+}
+</code></pre><div class="WARNING"><h5>Warning</h5><p>Prism 8 will have some breaking changes here. When this API was first introduced IPageBehaviorFactory was given several Page type specific methods. These aren&#39;t actually used anywhere. For this reason the interface will be simplified to only declare the single ApplyPageBehaviors(Page) method. All of the methods in the PageBehaviorFactory will be changed from public to protected and will remain virtual so that you can apply your custom behaviors.</p>
+</div>
 </article>
           </div>
           
