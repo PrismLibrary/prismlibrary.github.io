@@ -383,15 +383,15 @@
 </code></pre><h4 id="2-as-a-single-navigation-parameter">2: As a single navigation parameter</h4>
 <pre><code class="lang-xml">&lt;Button Command=&quot;{prism:NavigateTo &#39;path/to/navigate&#39;}&quot;&gt;
     &lt;Button.CommandParameter&gt;
-        &lt;prism:NavigationParameter Key=&quot;Foo&quot; Value=&quot;Some Value&quot;&gt;
+        &lt;prism:NavigationParameter Key=&quot;Foo&quot; Value=&quot;Some Value&quot; /&gt;
     &lt;/Button.CommandParameter&gt;
 &lt;/Button&gt;
 </code></pre><h4 id="3-as-a-collection-of-navigation-parameters">3: As a collection of navigation parameters</h4>
 <pre><code class="lang-xml">&lt;Button Command=&quot;{prism:NavigateTo &#39;path/to/navigate&#39;}&quot;&gt;
     &lt;Button.CommandParameter&gt;
         &lt;prism:NavigationParameters&gt;
-            &lt;prism:NavigationParameter Key=&quot;Foo&quot; Value=&quot;{Binding SomeBarValue}&quot;&gt;
-            &lt;prism:NavigationParameter Key=&quot;Fizz&quot; Value=&quot;Some Buzz Value&quot;&gt;
+            &lt;prism:NavigationParameter Key=&quot;Foo&quot; Value=&quot;{Binding SomeBarValue}&quot; /&gt;
+            &lt;prism:NavigationParameter Key=&quot;Fizz&quot; Value=&quot;Some Buzz Value&quot; /&gt;
         &lt;/prism:NavigationParameters&gt;
     &lt;/Button.CommandParameter&gt;
 &lt;/Button&gt;
