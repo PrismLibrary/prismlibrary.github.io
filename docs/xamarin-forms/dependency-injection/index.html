@@ -8,7 +8,7 @@
     <title>Dependency Injection with Prism | Prism </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Dependency Injection with Prism | Prism ">
-    <meta name="generator" content="docfx 2.56.0.0">
+    <meta name="generator" content="docfx 2.56.1.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -358,7 +358,7 @@
 <p>Prism 7 introduced several new interfaces for abstracting what Prism requires for dependency injection. This has several benefits as you might imagine including:</p>
 <ul>
 <li>Docs showing how to do something in Prism will always show you what you need to do without any concern for which dependency injection container you are using.</li>
-<li>This greatly simplified what needed to be added to any container specific package. In the case of Prism.Forms this reduces each container specific project 3 classes: <code>PrismApplication</code>, an implementation of <code>IContainerExtension</code> and an extension class to retieve the underlying container should you feel the need to access it for one of it&#39;s API&#39;s that is not implemented by Prism.</li>
+<li>This greatly simplified what needed to be added to any container specific package. In the case of Prism.Forms this reduces each container specific project 3 classes: <code>PrismApplication</code>, an implementation of <code>IContainerExtension</code> and an extension class to retrieve the underlying container should you feel the need to access it for one of it&#39;s API&#39;s that is not implemented by Prism.</li>
 </ul>
 <p>As a result you can easily implement support for a container that is not otherwise provided out of the box by the Prism team. For more information on this be sure to read more on how this works in this blog post by Dan Siegel, <a href="https://dansiegel.net/post/2018/10/29/using-unsupported-di-containers-with-prism">Using &quot;Unsupported&quot; DI Containers with Prism</a>.</p>
 <h2 id="next-steps">Next Steps</h2>
