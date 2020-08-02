@@ -468,7 +468,7 @@
 
     public ArticleViewModel()
     {
-        SubmitCommand = new DelegateCommand(Submit, CanSubmit).ObservesCanExecute(() =&gt; IsEnabled);
+        SubmitCommand = new DelegateCommand(Submit).ObservesCanExecute(() =&gt; IsEnabled);
     }
 
     void Submit()
