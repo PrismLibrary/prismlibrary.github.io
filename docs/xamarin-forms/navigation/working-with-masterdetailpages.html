@@ -357,7 +357,92 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="working-with-master-detail-pages">Working with Master-Detail-Pages</h1>
 
-<p>TBD</p>
+<p>The MasterDetailPage is a very special type of page in Xamarin.Forms and it is important to understand first how the MasterDetailPage in Xamarin.Forms itself works before we can hope to understand how it works in Prism.</p>
+<h2 id="fundamentals">Fundamentals</h2>
+<p>The MasterDetailPage is a special type of Multi-Page, which is comprised of two children:</p>
+<ul>
+<li>The Master Page</li>
+<li>The Detail Page</li>
+</ul>
+<h3 id="the-master-page">The Master Page</h3>
+<p>The content of the Master is what is used for the Flyout Menu when it is presented. Note that the BindingContext of the Master should be automatically inherited from it&#39;s parent the MasterDetailPage.</p>
+<h3 id="the-detail-page">The Detail Page</h3>
+<p>The Detail Page will have the content that is generally visible most of the time. This may be to the right of the Master when the Master is presented, or may take up the full screen when the Master is not presented.</p>
+<h3 id="master-detail-structure">Master Detail Structure</h3>
+<p>In Xamarin.Forms you may see a MasterDetailPage classically constructed like the following sample. Here we have a MasterPage and a ContactsPage. The ContactsPage will be the default page displayed when the MasterDetailPage is navigated to.</p>
+<pre><code class="lang-xml">&lt;MasterDetailPage xmlns=&quot;http://xamarin.com/schemas/2014/forms&quot;
+                  xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+                  xmlns:local=&quot;clr-namespace:MasterDetailPageNavigation;assembly=MasterDetailPageNavigation&quot;
+                  x:Class=&quot;MasterDetailPageNavigation.MainPage&quot;&gt;
+  &lt;MasterDetailPage.Master&gt;
+    &lt;local:MasterPage /&gt;
+  &lt;/MasterDetailPage.Master&gt;
+  &lt;MasterDetailPage.Detail&gt;
+    &lt;NavigationPage&gt;
+      &lt;x:Arguments&gt;
+        &lt;local:ContactsPage /&gt;
+      &lt;/x:Arguments&gt;
+    &lt;/NavigationPage&gt;
+  &lt;/MasterDetailPage.Detail&gt;
+&lt;/MasterDetailPage&gt;
+</code></pre><div class="NOTE"><h5>Note</h5><p>Xamarin.Forms has a requirement that your Master page MUST contain a Title. It is also important to note that while SOME platforms will automatically provide the classic hamburger menu icon, others such as iOS do not. For those platforms you will need to provide an IconImageSource for the Master page.</p>
+</div>
+<h2 id="building-your-masterdetailpage-with-prism">Building your MasterDetailPage with Prism</h2>
+<p>In Prism.Forms however we construct our MasterDetailPage&#39;s a little differently. We recommend that you do NOT create a separate MasterPage as this ultimately leads to confusion for many developers. Instead we recommend simply nesting a ContentPage in the <code>MasterDetailPage.Master</code> and building your UI for it there. There will be NO reference to the Detail in the code behind or in XAML.</p>
+<pre><code class="lang-xml">&lt;MasterDetailPage xmlns=&quot;http://xamarin.com/schemas/2014/forms&quot;
+                  xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+                  xmlns:local=&quot;clr-namespace:MasterDetailPageNavigation;assembly=MasterDetailPageNavigation&quot;
+                  x:Class=&quot;MasterDetailPageNavigation.MainPage&quot;&gt;
+  &lt;MasterDetailPage.Master&gt;
+    &lt;ContentPage Title=&quot;Menu&quot;
+            Padding=&quot;0,40,0,0&quot;
+            IconImageSource=&quot;{OnPlatform iOS=&#39;hamburger.png&#39;}&quot;&gt;
+      &lt;StackLayout&gt;
+        &lt;Button Text=&quot;View A&quot;
+                Command=&quot;{Binding NavigateCommand}&quot;
+                CommandParameter=&quot;ViewA&quot; /&gt;
+      &lt;/StackLayout&gt;
+    &lt;/ContentPage&gt;
+  &lt;/MasterDetailPage.Master&gt;
+&lt;/MasterDetailPage&gt;
+</code></pre><p>By adding the MasterContent in this way it remains clear to developers that the ViewModel for that Master is in fact the MainPageViewModel (The ViewModel for our MasterDetailPage itself). When we have our binding for the NavigateCommand this will look for the NavigateCommand in the MainPageViewModel.</p>
+<h3 id="register-for-navigation">Register for Navigation</h3>
+<p>While there isn&#39;t anything particularly special about how we register the impacted Pages, it is important to Remember that we are in fact dealing with three pages here and not one. When we register our MasterDetailPage we need to remember that we want the top title bar and as a result we will need to ensure that we have a registered NavigationPage. This can be literally any NavigationPage, either one you have customized or the NavigationPage straight from Xamarin.Forms:</p>
+<pre><code class="lang-csharp">public class App : PrismApplication
+{
+    protected override void RegisterTypes(IContainerRegistry containerRegistry)
+    {
+        containerRegistry.RegisterForNavigation&lt;NavigationPage&gt;();
+        containerRegistry.RegisterForNavigation&lt;MainPage, MainPageViewModel&gt;();
+        containerRegistry.RegisterForNavigation&lt;ViewA, ViewAViewModel&gt;();
+    }
+}
+</code></pre><h3 id="navigating-to-the-masterdetailpage">Navigating to the MasterDetailPage</h3>
+<div class="NOTE"><h5>Note</h5><p>A MasterDetailPage is considered a ROOT page. While you can technically have more than one used in your app, the MasterDetailPage should be navigated to with an absolute uri to reset the NavigationStack setting the Application.MainPage equal to your MasterDetailPage.</p>
+</div>
+<pre><code class="lang-csharp">public class App : PrismApplication
+{
+    protected override void OnInitialized()
+    {
+        InitializeComponent();
+        NavigationService.NavigateAsync(&quot;/MainPage/NavigationPage/ViewA&quot;);
+    }
+}
+</code></pre><h3 id="navigating-from-the-master-page">Navigating from the Master page</h3>
+<p>Earlier we looked at how we could add a simple master right in the XAML of our MasterDetailPage. We bound our button to a Command in our ViewModel named NavigateCommand. Our button simply passed back that we wanted to Navigate to ViewA, however as you remember we want the Navigation bar with the page title, so we need the actual Detail to be the NavigationPage with it&#39;s root page being ViewA. We can do this easily by prefing the <code>NavigationPage/</code> before the path we are passed in our Command handler as shown here.</p>
+<pre><code class="lang-csharp">public class MainPageViewModel : BindableBase
+{
+    public DelegateCommand&lt;string&gt; NavigateCommand { get; }
+
+    private async void NavigateCommandExecuted(string path)
+    {
+        var result = await _navigationService.NavigateAsync($&quot;NavigationPage/{path}&quot;);
+    }
+}
+</code></pre><h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li><a href="https://github.com/PrismLibrary/Prism-Samples-Forms/tree/master/09-MasterDetail">Sample App</a></li>
+</ul>
 </article>
           </div>
           
