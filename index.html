@@ -1,327 +1,513 @@
-﻿<!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="expires" content="0" />
-	<meta name="description" content="" />
-	<meta name="language" content="EN" />
-	<meta name="author" content="Rian Design" />
-	<meta name="copyright" content="©2017 Prism Library" />
-	<meta name="robots" content="index, follow" />
-	<meta name="revisit-after" content="7 days" />
-	<meta name="reply-to" content="contato@riandesign.com.br" />
-	<meta name="rating" content="general" />
-	<meta name="keywords" content="" />
+    <meta charset="UTF-8">
+    <title>Prism Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico">
 
-	<title>Prism Library</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <!-- Main Css -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" id="theme-opt" />
+    <link href="css/colors/default.css" rel="stylesheet" id="color-opt">
 
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800" rel="stylesheet">
+    <style>
+        .github {
+            padding: 15px 0 15px 40px;
+            background-image: url(images/icon-github@2x.png);
+            background-repeat: no-repeat;
+            background-size: 32px 32px;
+            background-position: 0;
+        }
 
-    <!--[if lt IE 9]>
-        <script src="js/html5.js"></script>
-    <![endif]-->
-
-    <!--[if (gt IE 8) | (IEMobile)]><!-->
-        <link rel="stylesheet" href="css/unsemantic-grid-responsive.css">
-    <!--<![endif]-->
-
-    <!--[if (lt IE 9) & (!IEMobile)]>
-		<link rel="stylesheet" href="css/ie.css">
-		<link rel="stylesheet" href="css/ie-styles.css">
-    <![endif]-->
-
-    <link rel="stylesheet" href="css/default.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/styles-menu-mobile.css">
-
-	<script src="js/jquery-1.11.0.min.js"></script>
-	<script src="js/translator.js"></script>
-	<script src="js/translator_init.js"></script>
-
+        .documentation {
+            padding: 15px 0 15px 40px;
+            background-image: url(images/icon-documentation@2x.png);
+            background-repeat: no-repeat;
+            background-size: 32px 32px;
+            background-position: 0;
+        }
+    </style>
 </head>
-<!-- onLoad() in js/translator_init.js -->
-<body onload="onLoad()">
 
-<!-- <select name="listlanguages" onchange="langSelectChange(this)"></select> -->
+<body>
 
-<script>
-$(document).ready(function(){
+    <!-- Navbar Start -->
+    <header>
+        <div id="topnav" class="defaultscroll sticky">            
+            <div class="container">
+                <div class="menu-extras">
+                    <div class="menu-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </div>
+                </div>
 
-	// Mobile menu
-	$('.menu-anchor').on('click touchstart', function(e){
-		$('html').toggleClass('menu-active');
-	  	e.preventDefault();
-	});
+                <div id="navigation">
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#learn">Learn</a></li>
+                        <li><a href="#sponsors">Sponsors</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Navbar End -->
 
-})
-</script>
+    <!-- Hero Start -->
+    <section class="bg-marketing d-table w-100" id="home">
+        <div class="container">
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-7 col-md-7 text-center">
+                    <img src="images/prism-library-logo.jpg" class="img-fluid" style="max-height: 400px"
+                        alt="Prism Library">
 
+                    <div class="title-heading mt-0 mt-md-5 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                        <h1 class="heading mb-3">#1 Application Framework for <span class="element text-primary"
+                                data-elements="WPF, Xamarin.Forms, Uno"></span></h1>
+                        <p class="para-desc text-muted">The Prism Library is a framework for building loosely coupled,
+                            modular, maintainable, and testable XAML applications</p>
+                        <div class="mt-4 pt-2">
+                            <a href="https://github.com/PrismLibrary/Prism"
+                                class="btn btn-outline-primary mt-2 mr-2"><span class="github">View on GitHub</span></a>
+                            <a href="page-contact-one.html" class="btn btn-primary mt-2"><span
+                                    class="documentation">Documentation</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </section>
+    <!--end section-->
+    <!-- Hero End -->
 
+    <!-- Feature Start -->
+    <section class="section bg-light" id="features">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    <div class="section-title mb-4 pb-2">
+                        <h4 class="title mb-4">Features</h4>
+                        <p class="text-muted para-desc mx-auto mb-0"><span
+                                class="text-primary font-weight-bold">Prism</span> provides everything you
+                            need to build well architected, extensible, maintainable, and testable applications.</p>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
 
-<!-- Mobile menu -->
-<div class="hide-on-desktop">
-	<div class="menuMobile">
-		<menu>
-			<ul>
-				<li>
-					<a href="docs/">
-						<span id="l_documentation">Documentation</span>
-					</a>
-				</li>
-				<li>
-					<a href="http://www.pluralsight.com/authors/brian-lagunas" target="_blank">
-						<span id="l_learn">Learn</span>
-					</a>
-				</li>
-			</ul>
-		</menu>
-	</div>
-</div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                    <div class="media key-feature align-items-center p-3 rounded shadow">
+                        <div class="icon text-center rounded-circle mr-3">
+                            <i data-feather="command" class="fea icon-ex-md text-primary"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="title mb-0">Delegate Commands</h4>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
 
+                <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                    <div class="media key-feature align-items-center p-3 rounded shadow">
+                        <div class="icon text-center rounded-circle mr-3">
+                            <i data-feather="layers" class="fea icon-ex-md text-primary"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="title mb-0">Composite Commands</h4>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
 
-<header>
-	<div class="grid-container">
-		<div class="grid-100">
-			<div class="positionRelative">
+                <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                    <div class="media key-feature align-items-center p-3 rounded shadow">
+                        <div class="icon text-center rounded-circle mr-3">
+                            <i data-feather="zap" class="fea icon-ex-md text-primary"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="title mb-0">Event Aggregation</h4>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
 
-				<!-- Mobile menu anchor -->
-				<span class="menu-anchor"></span>
+                <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                    <div class="media key-feature align-items-center p-3 rounded shadow">
+                        <div class="icon text-center rounded-circle mr-3">
+                            <i data-feather="grid" class="fea icon-ex-md text-primary"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="title mb-0">Modules</h4>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
 
-				<!-- Languages flags -->
-				<div class="languageFlags">
-					<ul>
-						<li>
-							<a href="#" onClick="langChange('ru'); return false;" title="Русский (Russian)">
-								<img src="images/icon-language-ru@2x.jpg" alt="Русский">
-							</a>
-						</li>
-						<li>
-							<a href="#" onClick="langChange('jp'); return false;" title="日本語 (Japanese)">
-								<img src="images/icon-language-jp@2x.jpg" alt="日本語">
-							</a>
-						</li>
-						<li>
-							<a href="#" onClick="langChange('en'); return false;" title="English">
-								<img src="images/icon-language-en@2x.jpg" alt="English">
-							</a>
-						</li>
-					</ul>
-				</div>
+                <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                    <div class="media key-feature align-items-center p-3 rounded shadow">
+                        <div class="icon text-center rounded-circle mr-3">
+                            <i data-feather="layout" class="fea icon-ex-md text-primary"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="title mb-0">Regions</h4>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
 
-				<!-- Prism logo -->
-				<div class="logo">
-					<div class="hide-on-mobile">
-						<img src="images/logo-prism-symbol@2x.png" alt="Prism Library">
-					</div>
-					<div class="hide-on-desktop">
-						<img src="images/logo-prism@2x.png" alt="Prism Library">
-					</div>
-				</div>
+                <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                    <div class="media key-feature align-items-center p-3 rounded shadow">
+                        <div class="icon text-center rounded-circle mr-3">
+                            <i data-feather="code" class="fea icon-ex-md text-primary"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="title mb-0">Dependency Injection</h4>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
 
-				<!-- Desktop nav -->
-				<div class="menuDesktop hide-on-mobile">
-					<menu>
-						<ul>
-							<li>
-								<a href="docs/">
-									<span id="l_documentation">Documentation</span>
-								</a>
-							</li>
-							<li>
-								<a href="http://www.pluralsight.com/authors/brian-lagunas" target="_blank">
-									<span id="l_learn">Learn</span>
-								</a>
-							</li>
-						</ul>
-					</menu>
-				</div>
+                <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                    <div class="media key-feature align-items-center p-3 rounded shadow">
+                        <div class="icon text-center rounded-circle mr-3">
+                            <i data-feather="compass" class="fea icon-ex-md text-primary"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="title mb-0">Navigation</h4>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
 
-				<div class="clear"></div>
-			</div>
-		</div>
-	</div>
-</header>
+                <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                    <div class="media key-feature align-items-center p-3 rounded shadow">
+                        <div class="icon text-center rounded-circle mr-3">
+                            <i data-feather="search" class="fea icon-ex-md text-primary"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="title mb-0">ViewModelLocator</h4>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
 
+                <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                    <div class="media key-feature align-items-center p-3 rounded shadow">
+                        <div class="icon text-center rounded-circle mr-3">
+                            <i data-feather="credit-card" class="fea icon-ex-md text-primary"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="title mb-0">Dialog Services</h4>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
 
-<main>
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </section>
 
-	<div class="welcomeCont">
-		<div class="grid-container">
-			<div class="grid-100 textAlignCenter">
-				<img src="images/logo-prism@2x.png" alt="Prism Library" class="logo hide-on-mobile">
+    <!-- Team Start -->
+    <section class="section bg-primary" style="background: url('images/bg.png') center;" id="team">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 text-white text-center">
+                    <div class="section-title mb-4 pb-2">
+                        <h4 class="title mb-4">The Prism Team</h4>
+                        <p class="para-desc mx-auto text-white-50">Meet the people that spend all their freetime working
+                            on Prism. Please consider sponsoring our team to help them sustain their OSS contributions.
+                        </p>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
 
-				<div class="fontSize16 grey999 marginTop40 marginBottom40">
-					<strong id="l_build_easily_applications">Build easily applications in WPF, Windows 10 UWP and Xamarin Forms.</strong>
-				</div>
+            <div class="row justify-content-center">
+                <div class="col-md-4 col-12 mt-4 pt-2">
+                    <div class="card pricing-rates starter-plan bg-light py-5 border-0 rounded text-center">
+                        <div class="card-body">
+                            <div class="text-center border-0">
+                                <div class="position-relative">
+                                    <img src="images/team/brian-lagunas.jpg"
+                                        class="img-fluid avatar avatar-ex-large rounded-circle shadow"
+                                        alt="Brian Lagunas">
+                                </div>
+                                <div class="py-3 px-0 content">
+                                    <h5 class="mb-0"><a href="https://brianlagunas.com/" target="_blank" class="name text-dark">Brian
+                                            Lagunas</a></h5>
+                                    <small class="designation text-muted">Microsoft MVP</small>
+                                    <ul class="list-unstyled social-icon team-icon mb-0 mt-4">
+                                        <li class="list-inline-item"><a href="https://youtube.com/brianlagunas" target="_blank"
+                                                class="rounded"><i data-feather="youtube"
+                                                    class="fea icon-sm fea-social"></i></a></li>
+                                        <li class="list-inline-item"><a href="https://twitter.com/brianlagunas" target="_blank"
+                                                class="rounded"><i data-feather="twitter"
+                                                    class="fea icon-sm fea-social"></i></a></li>
+                                        <li class="list-inline-item"><a href="https://www.twitch.tv/brianlagunas" target="_blank"
+                                                class="rounded"><i data-feather="twitch"
+                                                    class="fea icon-sm fea-social"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="https://github.com/sponsors/brianlagunas" class="btn btn-primary mt-4">Sponsor on
+                                Github</a>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
 
-				<div class="marginBottom60">
-					<a href="https://github.com/PrismLibrary/Prism" class="linkBox linkBoxGitHub" target="_blank">
-						<span id="l_view_on_github">View on GitHub</span>
-					</a>
-					<a href="docs/" class="linkBox linkBoxDocumentation">
-						<span id="l_documentation">Documentation</span>
-					</a>
-				</div>
-			</div>
-		</div>
+                <div class="col-md-4 col-12 mt-4 pt-2">
+                    <div class="card pricing-rates starter-plan bg-light py-5 border-0 rounded text-center">
+                        <div class="card-body">
+                            <div class="text-center border-0">
+                                <div class="position-relative">
+                                    <img src="images/team/dan-siegel.jpg"
+                                        class="img-fluid avatar avatar-ex-large rounded-circle shadow"
+                                        alt="Brian Lagunas">
+                                </div>
+                                <div class="py-3 px-0 content">
+                                    <h5 class="mb-0"><a href="https://dansiegel.net/" target="_blank" class="name text-dark">Dan
+                                            Siegel</a></h5>
+                                    <small class="designation text-muted">Microsoft MVP</small>
+                                    <ul class="list-unstyled social-icon team-icon mb-0 mt-4">
+                                        <li class="list-inline-item"><a href="https://youtube.com/dansiegel" target="_blank"
+                                                class="rounded"><i data-feather="youtube"
+                                                    class="fea icon-sm fea-social"></i></a></li>
+                                        <li class="list-inline-item"><a href="https://twitter.com/danjsiegel" target="_blank"
+                                                class="rounded"><i data-feather="twitter"
+                                                    class="fea icon-sm fea-social"></i></a></li>
+                                        <li class="list-inline-item"><a href="https://www.twitch.tv/dansiegel" target="_blank"
+                                                class="rounded"><i data-feather="twitch"
+                                                    class="fea icon-sm fea-social"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="https://github.com/sponsors/dansiegel" class="btn btn-primary mt-4">Sponsor on
+                                Github</a>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!-- end row -->
+        </div>
+        <!--end container-->
+    </section>
+    <!--end section-->
+    <!-- Team End -->
 
-		<div style="border-top:  1px solid #dedede; padding-top:  40px">
-			<div class="grid-container">
-				<div>
-					<div class="grid-40 prefix-10">
-						<span id="l_prism_is_a">Prism is a framework for building loosely coupled, maintainable, and testable XAML applications in WPF, Windows 10 UWP, and Xamarin Forms.</strong> Separate releases are available for each platform and those will be developed on independent timelines. Prism provides an implementation of a collection of design patterns that are helpful in writing well-structured and maintainable XAML applications, including MVVM, dependency injection, commands, EventAggregator, and others. Prism's core functionality is a shared code base in a Portable Class Library targeting these platforms.</span>
-					</div>
+    <!-- Learn Start -->
+    <div class="section container" id="learn">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="section-title text-center mb-4 pb-2">
+                    <h4 class="title mb-4">Learn</h4>
+                    <p class="text-muted para-desc mb-0 mx-auto">Watch these Pluralsight courses and learn how to master <span
+                            class="text-primary font-weight-bold">Prism</span>.</p>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
 
-					<div class="grid-40 suffix-10">
-						<br class="hide-on-desktop">
-						<span id="l_those_things_that">Those things that need to be platform specific are implemented in the respective libraries for the target platform. Prism also provides great integration of these patterns with the target platform. For example, Prism for UWP and Xamarin Forms allows you to use an abstraction for navigation that is unit testable, but that layers on top of the platform concepts and APIs for navigation so that you can fully leverage what the platform itself has to offer, but done in the MVVM way.</span>
-					</div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+                <div class="card blog rounded border-0 shadow overflow-hidden">
+                    <div class="position-relative">
+                        <img src="images/learn/ps-into-to-prism.jpg" class="card-img-top" alt="...">
+                        <div class="overlay bg-dark"></div>
+                    </div>
+                    <div class="card-body content">
+                        <small  class="text-primary h6">WPF</small>
+                        <h5 class="mt-2"><a href="https://pluralsight.pxf.io/bE3rB" target="_blank" class="title text-dark">Introduction to Prism for WPF</a></h5>
+                        <p class="text-muted">In this course you'll learn the foundational knowledge required to design and build composite WPF desktop applications using Prism.
+                        </p>
+                        <a href="https://pluralsight.pxf.io/bE3rB" target="_blank" class="text-primary">Watch Now <i data-feather="chevron-right"
+                                class="fea icon-sm"></i></a>
+                        <ul class="list-unstyled d-flex justify-content-between border-top mt-3 pt-3 mb-0">
+                            <li class="text-muted small"><i data-feather="book" class="fea icon-sm text-info"></i> 11 modules</li>
+                            <li class="text-muted small ml-3"><i data-feather="clock" class="fea icon-sm text-warning"></i> 4h 9m</li>
+                        </ul>
+                    </div>
+                </div>
+                <!--end card / course-blog-->
+            </div>
+            <!--end col-->
 
-					<div class="clear"></div>
-				</div>
-			</div>
-		</div>
-	</div>
+            <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+                <div class="card blog rounded border-0 shadow overflow-hidden">
+                    <div class="position-relative">
+                        <img src="images/learn/ps-master-tab-control.jpg" class="card-img-top" alt="...">
+                        <div class="overlay bg-dark"></div>
+                    </div>
+                    <div class="card-body content">
+                        <small  class="text-primary h6">WPF</small>
+                        <h5 class="mt-2"><a href="https://pluralsight.pxf.io/B6X99" target="_blank" class="title text-dark">Mastering the TabControl</a></h5>
+                        <p class="text-muted"> This course focuses on using the TabControl as a region, and shows advanced navigation scenarios such as scoped regions.
+                        </p>
+                        <a href="https://pluralsight.pxf.io/B6X99" target="_blank" class="text-primary">Watch Now <i data-feather="chevron-right"
+                                class="fea icon-sm"></i></a>
+                        <ul class="list-unstyled d-flex justify-content-between border-top mt-3 pt-3 mb-0">
+                            <li class="text-muted small"><i data-feather="book" class="fea icon-sm text-info"></i> 4 modules</li>
+                            <li class="text-muted small ml-3"><i data-feather="clock" class="fea icon-sm text-warning"></i> 1h 57m</li>
+                        </ul>
+                    </div>
+                </div>
+                <!--end card / course-blog-->
+            </div>
+            <!--end col-->
 
+            <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+                <div class="card blog rounded border-0 shadow overflow-hidden">
+                    <div class="position-relative">
+                        <img src="images/learn/ps-multiple-shells.jpg" class="card-img-top" alt="...">
+                        <div class="overlay bg-dark"></div>
+                    </div>
+                    <div class="card-body content">
+                        <small  class="text-primary h6">WPF</small>
+                        <h5 class="mt-2"><a href="https://pluralsight.pxf.io/XVxR5" target="_blank" class="title text-dark">Showing Multiple Shells</a></h5>
+                        <p class="text-muted">This course will solve one of the more complex issues around controlling view composition when dealing with multiple instances of a shell as well as child views.
+                        </p>
+                        <a href="https://pluralsight.pxf.io/XVxR5" target="_blank" class="text-primary">Watch Now <i data-feather="chevron-right"
+                                class="fea icon-sm"></i></a>
+                        <ul class="list-unstyled d-flex justify-content-between border-top mt-3 pt-3 mb-0">
+                            <li class="text-muted small"><i data-feather="book" class="fea icon-sm text-info"></i> 4 modules</li>
+                            <li class="text-muted small ml-3"><i data-feather="clock" class="fea icon-sm text-warning"></i> 1h 7m</li>
+                        </ul>
+                    </div>
+                </div>
+                <!--end card / course-blog-->
+            </div>
+            <!--end col-->
 
+            <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+                <div class="card blog rounded border-0 shadow overflow-hidden">
+                    <div class="position-relative">
+                        <img src="images/learn/ps-dependent-views.jpg" class="card-img-top" alt="...">
+                        <div class="overlay bg-dark"></div>
+                    </div>
+                    <div class="card-body content">
+                        <small  class="text-primary h6">WPF</small>
+                        <h5 class="mt-2"><a href="https://pluralsight.pxf.io/a01zj" target="_blank" class="title text-dark">Loading Dependent Views</a></h5>
+                        <p class="text-muted"> This course will show you how to navigate a view into one region, while simultaneously navigating another related view into a different region of the same view.
+                        </p>
+                        <a href="https://pluralsight.pxf.io/a01zj" target="_blank" class="text-primary">Watch Now <i data-feather="chevron-right"
+                                class="fea icon-sm"></i></a>
+                        <ul class="list-unstyled d-flex justify-content-between border-top mt-3 pt-3 mb-0">
+                            <li class="text-muted small"><i data-feather="book" class="fea icon-sm text-info"></i> 4 modules</li>
+                            <li class="text-muted small ml-3"><i data-feather="clock" class="fea icon-sm text-warning"></i> 1h 39m</li>
+                        </ul>
+                    </div>
+                </div>
+                <!--end card / course-blog-->
+            </div>
+            <!--end col-->
 
+            <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+                <div class="card blog rounded border-0 shadow overflow-hidden">
+                    <div class="position-relative">
+                        <img src="images/learn/ps-loading-roles.jpg" class="card-img-top" alt="...">
+                        <div class="overlay bg-dark"></div>
+                    </div>
+                    <div class="card-body content">
+                        <small  class="text-primary h6">WPF</small>
+                        <h5 class="mt-2"><a href="https://pluralsight.pxf.io/GvjkE" target="_blank" class="title text-dark">Loading Modules Based on User Roles</a></h5>
+                        <p class="text-muted"> This course will address a major concern with Prism developers regarding security and answer the question, "How do I load modules based on user roles?"
+                        </p>
+                        <a href="https://pluralsight.pxf.io/GvjkE" target="_blank" class="text-primary">Watch Now <i data-feather="chevron-right"
+                                class="fea icon-sm"></i></a>
+                        <ul class="list-unstyled d-flex justify-content-between border-top mt-3 pt-3 mb-0">
+                            <li class="text-muted small"><i data-feather="book" class="fea icon-sm text-info"></i> 4 modules</li>
+                            <li class="text-muted small ml-3"><i data-feather="clock" class="fea icon-sm text-warning"></i> 0h 33m</li>
+                        </ul>
+                    </div>
+                </div>
+                <!--end card / course-blog-->
+            </div>
+            <!--end col-->
 
+         
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+    <!-- Learn End -->
 
-	<!-- Main content -->
-	<div class="grid-container">
-		<div class="grid-100">
-			<div class="highlightedCont slackCont">
-				<a href="https://www.patreon.com/prismlibrary" target="_blank">
-					<img src="images/logo-slack@2x.png" class="imgInline logo" alt="Logo Slack">
-					<br class="hide-on-desktop">
-					<span id="l_join_our_slack">Join our Slack Channel</span>
-				</a>
-			</div>
-		</div>
+    <!-- Sponsors start -->
+    <section class="section border-bottom border-top" id="sponsors">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    <div class="section-title mb-4 pb-2">
+                        <h4 class="title mb-4">Our Sponsors</h4>
+                        <p class="text-muted para-desc mx-auto mb-0">The companies that go above and beyong to help keep
+                            <span class="text-primary font-weight-bold">Prism</span> running.</p>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
 
-		<div class="installSteps">
-			<div class="grid-100">
-				<h2 id="l_getting_started">Getting Started</h2>
-			</div>
+            <div class="row justify-content-center">
+                <div class="col-lg-2 col-md-2 col-6 text-center mt-4 pt-2">
+                    <a href="http://infragistics.com" target="_blank"><img
+                            src="images/sponsors/Infragistics-horizontal-rgb.svg" class="avatar" alt=""></a>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </section>
+    <!--end section-->
+    <!-- Sponsors End -->
 
-			<div class="grid-33 mobile-marginBottom40">
-				<div class="marginBottom20">
-					<strong>
-						<span class="labelBlue"><span id="l_step">Step</span> 1</span>
-						<span id="l_install_the_template">Install the Template Pack</span>
-					</strong>
-				</div>
+    <!-- Footer Start -->
+    <footer>
+        <div class="--------">
 
-				<img src="images/install-step-1.jpg" class="img-100 borderGrey boxShadow" alt="Install the Template Pack">
-			</div>
+        </div>
+    </footer>
+    <!-- Footer End -->
 
-			<div class="grid-33 mobile-marginBottom40">
-				<div class="marginBottom20">
-					<strong>
-						<span class="labelBlue"><span id="l_step">Step</span> 2</span>
-						<span id="l_create_a_project">Create a project</span>
-					</strong>
-				</div>
+    <!-- Back To Home Start -->
+    <a href="#" class="btn btn-icon btn-primary back-to-top"><i data-feather="arrow-up" class="icons"></i></a>
+    <!-- Back To Home End -->
 
-				<img src="images/install-step-2.jpg" class="img-100 borderGrey boxShadow" alt="Create a project">
-			</div>
-
-			<div class="grid-33 mobile-marginBottom40">
-				<div class="marginBottom20">
-					<strong>
-						<span class="labelBlue"><span id="l_step">Step</span> 3</span>
-						<span id="l_run_the_code">Run the code</span>
-					</strong>
-				</div>
-
-				<img src="images/install-step-3.jpg" class="img-100 borderGrey boxShadow" alt="Run the code">
-			</div>
-
-			<div class="clear"></div>
-		</div>
-	</div>
-	<!-- End Main content-->
-
-
-
-
-
-	<div class="aboveFooter">
-		<div class="grid-container">
-
-			<div class="grid-45 suffix-5">
-				<h2 class="white">
-					<a href="https://visualstudiogallery.msdn.microsoft.com/e7b6bde2-ba59-43dd-9d14-58409940ffa0" target="_blank">
-						<span id="l_prism_template_pack">Prism Template Pack</span>
-					</a>
-				</h2>
-
-				<a href="https://visualstudiogallery.msdn.microsoft.com/e7b6bde2-ba59-43dd-9d14-58409940ffa0" target="_blank">
-					<img src="images/screenshot-prism-template-pack@2x.jpg" class="img-100 boxShadow" alt="Prism Template Pack">
-				</a>
-
-				<p class="marginTop20">
-					<span id="l_is_available_on">The Prism Template Pack is available on the</span>
-					<a href="https://visualstudiogallery.msdn.microsoft.com/e7b6bde2-ba59-43dd-9d14-58409940ffa0" target="_blank" id="l_visual_studio_gallery">Visual Studio Gallery</a>.
-					<span id="l_to_install_just">To install, just go to Visual Studio -> Tools -> Extensions and Updates. Then search for Prism in the online gallery:</span>
-				</p>
-			</div>
-
-			<div class="grid-45 suffix-5">
-				<h2 class="white">
-					<a href="http://www.pluralsight.com/authors/brian-lagunas" target="_blank">
-						<span id="l_learn">Learn</span>
-					</a>
-				</h2>
-
-				<a href="http://www.pluralsight.com/authors/brian-lagunas" target="_blank">
-					<img src="images/banner-pluralsight@2x.jpg" class="img-100 boxShadow" alt="Learn">
-				</a>
-
-				<p class="marginTop20">
-					<a href="http://www.pluralsight.com/authors/brian-lagunas" target="_blank" id="l_watch_videos_and">Watch videos and check out our Pluralsight courses.</a>
-				</p>
-			</div>
-
-			<div class="clear"></div>
-		</div>
-	</div>
-
-</main>
-
-
-<!-- Footer -->
-<footer>
-	<div class="grid-container">
-		<div class="grid-60">
-			<div class="info">
-				<img src="images/logo-prism-grey@2x.png" class="logo" alt="Logo">
-				<Strong id="l_prism_library">Prism Library</Strong><br>
-				This project is part of the
-				<a href="http://www.dotnetfoundation.org/projects" target="_blank" id="l_net_foundation">.NET Foundation</a>.
-				<div class="clear"></div>
-			</div>
-		</div>
-
-		<div class="grid-40 RianDesign">
-			<div class="hide-on-mobile">
-				<a href="http://riandesign.com.br/en" target="_blank" title="Rian Design">
-					<img src="images/logo-rian-design@2x.png" alt="Rian Design">
-				</a>
-			</div>
-			<div class="hide-on-desktop">
-				<a href="http://riandesign.com.br/en" target="_blank" title="Rian Design">
-					Rian Design
-				</a>
-			</div>
-		</div>
-	</div>
-</footer>
-
-
+    <!-- Javascript Start -->
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- Icons -->
+    <script src="js/feather.min.js"></script>
+    <!-- Typed -->
+    <script src="js/typed.js"></script>
+    <script src="js/typed.init.js"></script>
+    <!-- Main Js -->
+    <script src="js/app.js"></script>
+    <!-- Javascript End -->
 </body>
+
 </html>
