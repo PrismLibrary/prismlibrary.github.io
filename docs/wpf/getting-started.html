@@ -8,7 +8,7 @@
     <title>Getting Started | Prism </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Getting Started | Prism ">
-    <meta name="generator" content="docfx 2.56.2.0">
+    <meta name="generator" content="docfx 2.56.5.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -454,7 +454,7 @@ public class DbCustomerStore : ICustomerStore
 }
 </code></pre><p>At this point, the app can be built and run and should look like the following:</p>
 <p><img src="images/FirstRun.PNG" alt="First Run of App"></p>
-<p>This now a Prism app. There isn&#39;t much here yet, but there are lots of things that Prism can help out with, such as breaking up the app into manageable chunks, navigation and implementing the MVVM patterns.</p>
+<p>This is now a Prism app. There isn&#39;t much here yet, but there are lots of things that Prism can help out with, such as breaking up the app into manageable chunks, navigation and implementing the MVVM patterns.</p>
 <h2 id="view-models">View Models</h2>
 <p>WPF is well setup to use an MVVM pattern and Prism helps a lot with this. It has a base class that handles the INotifyPropertyChanged infrastructure that publishes changes from the view model to the view. There are some other classes that make it simple to handle buttons from within the view model as opposed to writing an event handler in your code behind.</p>
 <p>First there needs to be some controls added to the view. Go to <code>MainWindow.xaml</code> and add the following <code>&lt;Grid&gt;</code> markup as the content for the <code>&lt;MainWindow&gt;</code>.</p>
@@ -553,7 +553,7 @@ namespace WpfApp1.ViewModels
         }
     }
 }
-</code></pre><p>A bit of an explanation on what is happening here. MainWindowViewModel has a dependency on the <code>ICustomerStore</code> interface, so that interface has to be registered in the <code>App.RegisterTypes</code> so that it&#39;s implementation can be handled by the dependency container. There is a <code>Customers</code> property that is bound to the listview in the user interface and a <code>SelectedCustomer</code> that is bound to the currently selected item in the list view.</p>
+</code></pre><p>A bit of an explanation on what is happening here. MainWindowViewModel has a dependency on the <code>ICustomerStore</code> interface, so that interface has to be registered in the <code>App.RegisterTypes</code> so that its implementation can be handled by the dependency container. There is a <code>Customers</code> property that is bound to the listview in the user interface and a <code>SelectedCustomer</code> that is bound to the currently selected item in the list view.</p>
 <p>There is also CommandLoad object that implements the <code>ICommand</code> interface. This has an <code>Execute</code> method that is called when the user clicks on the button. Prism implements the <code>ICommand</code> interface with <code>DelegateCommand</code> class that allows delegates to be passed in to handle implementing the <code>ICommand</code> interface. In the case of <code>CommandLoad</code>, the <code>CommandLoadExecute</code> function is passed in as the delegate and now, whenever the WPF binding system tries to execute <code>ICommand.Execute</code>, <code>CommandLoadExecute</code> is invoked.</p>
 <p>For more details on DelegateCommand, see <a href="../commanding.html">Commanding</a>.</p>
 <p>Now there is a view and a view model, but how are they linked together? The easiest way is to inject the view model automatically using the <code>ViewModelLocator</code> and naming conventions.</p>
