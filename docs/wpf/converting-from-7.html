@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Prism Assembly Versioning | Prism </title>
+    <title>Converting Your App From Prism 7.x | Prism </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Prism Assembly Versioning | Prism ">
+    <meta name="title" content="Converting Your App From Prism 7.x | Prism ">
     <meta name="generator" content="docfx 2.56.5.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -145,8 +145,8 @@
                           <li class="">
                             <a href="../wpf/getting-started.html" title="Getting Started" class="">Getting Started</a>
                           </li>
-                          <li class="">
-                            <a href="../wpf/converting-from-7.html" title="Converting From Prism 7.x" class="">Converting From Prism 7.x</a>
+                          <li class="active">
+                            <a href="../wpf/converting-from-7.html" title="Converting From Prism 7.x" class="active">Converting From Prism 7.x</a>
                           </li>
                           <li class="">
                             <a href="../wpf/converting-from-6.html" title="Converting From Prism 6.x" class="">Converting From Prism 6.x</a>
@@ -355,32 +355,42 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="prism-assembly-versioning">Prism Assembly Versioning</h1>
+<h1 id="converting-your-app-from-prism-7x">Converting Your App From Prism 7.x</h1>
 
-<p>Assembly versioning is an important, and often ignored, aspect of a project.  There are three assembly attributes defined in the AssemblyInfo.cs file of each project of Prism.  These attribute are the <strong>AssemblyAttribute</strong>, the <strong>AssemblyFileAttribute</strong>, and the <strong>AssemblyInformationAttribute</strong>.</p>
-<pre><code>[assembly: AssemblyVersion(&quot;1.0.0.0&quot;)]
-[assembly: AssemblyFileVersion(&quot;1.0.0.0&quot;)]
-[assembly: AssemblyInformationalVersion(&quot;1.0.0.0&quot;)]
-</code></pre><p>By convention, the four parts of each version are referred to as the <strong>Major</strong> Version, <strong>Minor</strong> Version, <strong>Build</strong>, and <strong>Revision</strong>.</p>
-<p>This document decribes how Prism unitilizes each of these attributes to version its assemblies, and what numbering convention each attribute follows.</p>
-<h2 id="assemblyversion">AssemblyVersion</h2>
-<p>The <strong>AssemblyVersion</strong> is used by the CLR to bind to strongly named assemblies. It is stored in the AssemblyDef manifest metadata table of the built assembly, and in the AssemblyRef table of any assembly that references it. When you reference a strongly named assembly, which Prism is strongly named, you are tightly bound to that specific AssemblyVersion of that assembly.</p>
-<p>For example; assume you referenced version 1.0.0.0 of an assembly and then built and released your application to your users.  Then, an updated version of 1.0.2.0 which fixes a critical bug became available, and was dropped into the executing folder (possibly GAC) of your application. That binding would fail and your application would crash.  You would have to reference the new 1.0.2.0 version and rebuild and redeploy your application.</p>
-<p>To avoid this, Prism has adopted the following format for the <strong>AssemblyVersion</strong>:</p>
-<p><strong>[Major].[Minor]</strong></p>
-<p>We will only update the <strong>AssemblyVersion</strong> when there is a major or minor change in the functionality of the assembly.  We will not update the <strong>AssemblyVersion</strong> when releasing bug fixes and updates.</p>
-<h2 id="assemblyfileversion">AssemblyFileVersion</h2>
-<p>The <strong>AssemblyFileVersion</strong> is intended to uniquely identify the build of an assembly.  When patches and bug fixes are released, the <strong>AssemblyFileVersion</strong> is incremented to reflect those changes.</p>
-<p>Prism has standardized on the following format for <strong>AssemblyFileVersion</strong>:</p>
-<p><strong>[Major].[Minor].[Revision]</strong></p>
-<p>This will allow Prism to release bug fixes and updates without having to increment the <strong>AssemblyVersion</strong>.  This enables you as a developer to patch your applications without having to re-reference Prism assemblies or recompile and re-release your application.</p>
-<h2 id="assemblyinformationversion">AssemblyInformationVersion</h2>
-<p>The <strong>AssemblyInformationalVersion</strong> is intended to allow coherent versioning of the entire product, which may consist of many assemblies that are independently versioned, and potentially developed by disparate teams. The <strong>AssemblyInformationAttribute</strong> is used to communicate to the community, or customers, what version of Prism is the current release.</p>
-<p>For example; Assume we release a product with an <strong>AssemblyInformationAttribute</strong> of 2.0.0.0.  This product may be made up of many assemblies with their <strong>AssemblyVersion</strong> ranging from 1.0.0.0 to 1.9.9.9.  Although the individual assemblies are not versioned at 2.0.0.0, the product itself is a 2.0 release.  </p>
-<p>The <strong>AssemblyInformationAttribute</strong> lets us market Prism as an overall product made up of several related assemblies that have different assembly versions.</p>
-<p>Prism has standardize on the following format for <strong>AssemblyInformationVersioning</strong>:</p>
-<p><strong>[Major].[Minor].[Revision]</strong></p>
-<p><em>Note: This is the version that the Prism NuGet packages will match</em></p>
+<p>Moving your application from Prism 7.x to 8.x should be pretty straight-forward, but there are a couple of exceptions that you should be aware of, exceptions that could have an effect on your app functionality.</p>
+<h2 id="autowireviewmodel-changes">AutoWireViewModel Changes</h2>
+<p>In the past, you probably repeated this pattern on all your views:</p>
+<pre><code class="lang-xml">&lt;Window
+    x:Class=&quot;Application1.Views.AppWindow&quot;
+    xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+    xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/2008&quot;
+    xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;
+    xmlns:local=&quot;clr-namespace:Bbsw.VaultToForge.Ux.Views&quot;
+    xmlns:prism=&quot;http://prismlibrary.com/&quot;
+    prism:ViewModelLocator.AutoWireViewModel=&quot;True&quot;
+&gt;
+...
+&lt;/Window&gt;
+</code></pre><p>The AutoWireViewModel is now true by default. If you are using the ViewModelLocator as above, there shouldn&#39;t be any changes. If you are doing something different with your view models, perhaps adding them as a dependency in the constructor, you will need to turn off the AutoWireViewModel. </p>
+<pre><code class="lang-xml">&lt;Window
+    x:Class=&quot;Application1.Views.AppWindow&quot;
+    xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+    xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/2008&quot;
+    xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;
+    xmlns:local=&quot;clr-namespace:Bbsw.VaultToForge.Ux.Views&quot;
+    xmlns:prism=&quot;http://prismlibrary.com/&quot;
+    prism:ViewModelLocator.AutoWireViewModel=&quot;False&quot;
+&gt;
+...
+&lt;/Window&gt;
+</code></pre><h2 id="iloggerfacade-removed-from-prismcore">ILoggerFacade Removed from Prism.Core</h2>
+<p>All of the logging has been removed from <code>Prism.Core</code>. The recommended migration is to use <code>Prism.Plugin.Logging</code> or whatever 3rd party logging framework you prefer. Information on getting started with <code>Prism.Plugin.Logging</code> can be found <a href="https://logging.prismplugins.com/">here</a>.</p>
+<h2 id="container-service-locator">Container Service Locator</h2>
+<p>New <code>ContainerLocator</code> has been added to <code>Prism.Core</code> and it replaces <code>Common Service Locator</code> in <code>Prism.Wpf</code>.</p>
+<h2 id="all-release-notes">All Release Notes</h2>
+<p>All of the release notes for Prism version 8 can be found <a href="https://github.com/PrismLibrary/Prism/releases/tag/v8.0.0.1909">here</a>.</p>
 </article>
           </div>
           
@@ -389,7 +399,7 @@
               <div class="connect-widget">
                 <ul class="connect-links">
           		<li id="connect-github">
-          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/getting-started/Assembly-Versioning.md/#L1" target="_blank">
+          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/wpf/converting-from-7.md/#L1" target="_blank">
           				<div class="image github"></div>Edit on GitHub
           			</a>
                   </li>
