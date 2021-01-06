@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Navigation Journal | Prism </title>
+    <title>Using the Navigation Journal | Prism </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Navigation Journal | Prism ">
+    <meta name="title" content="Using the Navigation Journal | Prism ">
     <meta name="generator" content="docfx 2.56.6.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
@@ -358,9 +358,72 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="navigation-journal">Navigation Journal</h1>
+<h1 id="using-the-navigation-journal">Using the Navigation Journal</h1>
 
-</article>
+<p>The <strong>NavigationContext</strong> class provides access to the region navigation service, which is responsible for coordinating the sequence of operations during navigation within a region. It provides access to the region in which navigation is taking place, and to the navigation journal associated with that region. The region navigation service implements the <strong>IRegionNavigationService</strong>, which is defined as follows.</p>
+<pre><code class="lang-cs">public interface IRegionNavigationService : INavigateAsync
+{
+    IRegion Region {get; set;}
+    IRegionNavigationJournal Journal {get;}
+    event EventHandler&lt;RegionNavigationEventArgs&gt; Navigating;
+    event EventHandler&lt;RegionNavigationEventArgs&gt; Navigated;
+    event EventHandler&lt;RegionNavigationFailedEventArgs&gt; NavigationFailed;
+}
+</code></pre><p>Because the region navigation service implements the <strong>INavigateAsync</strong> interface, you can initiate navigation within the parent region by calling its <strong>RequestNavigate</strong> method. The <strong>Navigating</strong> event is raised when a navigation operation is initiated. The <strong>Navigated</strong> event is raised when navigation within a region is completed. The <strong>NavigationFailed</strong> is raised if an error was encountered during navigation.</p>
+<p>The <strong>Journal</strong> property provides access to the navigation journal associated with the region. The navigation journal implements the <strong>IRegionNavigationJournal</strong> interface, which is defined as follows.</p>
+<pre><code class="lang-cs">public interface IRegionNavigationJournal
+{
+    bool CanGoBack { get; }
+    bool CanGoForward { get; }
+    IRegionNavigationJournalEntry CurrentEntry { get; }
+    INavigateAsync NavigationTarget { get; set; }
+    void Clear();
+    void GoBack();
+    void GoForward();
+    void RecordNavigation(IRegionNavigationJournalEntry entry);
+}
+</code></pre><p>You can obtain and store a reference to the region navigation service within a view during navigation via the <strong>OnNavigatedTo</strong> method call. By default, Prism provides a simple stack-based journal that allows you to navigate forward or backward within a region.</p>
+<p>You can use the navigation journal to allow the user to navigate from within the view itself. In the following example, the view model implements a <strong>GoBack</strong> command, which uses the navigation journal within the host region. Therefore, the view can display a <strong>Back</strong> button that allows the user to easily navigate back to the previous view within the region. Similarly, you can implement a <strong>GoForward</strong> command to implement a wizard style workflow.</p>
+<pre><code class="lang-cs">public class EmployeeDetailsViewModel : INavigationAware
+{
+    ...
+    private IRegionNavigationService navigationService;
+
+    public void OnNavigatedTo(NavigationContext navigationContext)
+    {
+        navigationService = navigationContext.NavigationService;
+    }
+
+    public DelegateCommand&lt;object&gt; GoBackCommand { get; private set; }
+
+    private void GoBack(object commandArg)
+    {
+        if (navigationService.Journal.CanGoBack)
+        {
+            navigationService.Journal.GoBack();
+        }
+    }
+
+    private bool CanGoBack(object commandArg)
+    {
+        return navigationService.Journal.CanGoBack;
+    }
+}
+</code></pre><p>You can implement a custom journal for a region if you need to implement a specific workflow pattern within that region.</p>
+<blockquote><p><strong>Note:</strong> The navigation journal can only be used for region-based navigation operations that are coordinated by the region navigation service. If you use view discovery or view injection to implement navigation within a region, the navigation journal will not be updated during navigation and cannot be used to navigate forward or backward within that region.</p>
+</blockquote>
+<h2 id="opting-out-of-the-navigation-journal">Opting out of the Navigation Journal</h2>
+<p>When using the Navigation Journal, it can be useful to display intermediary pages like splash screens, loading pages or dialogs. It is desirable that these pages should not be revisited via calls to <strong>IRegionNavigationJournal.GoForward()</strong> or <strong>IRegionNavigationJournal.GoBack()</strong>. This behavior can be achieved by implementing the <strong>IJournalAware</strong> interface.</p>
+<pre><code class="lang-cs">public interface IJournalAware
+{
+    bool PersistInHistory();
+}
+</code></pre><p>Pages can opt-out of being added to the journal history by implementing <strong>IJournalAware</strong> on the <strong>View</strong> or <strong>View Model</strong> and returning false from <strong>PersistInHistory()</strong>.</p>
+<pre><code class="lang-cs">public class IntermediaryPage : IJournalAware
+{
+    public bool PersistInHistory() =&gt; false;
+}
+</code></pre></article>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">
