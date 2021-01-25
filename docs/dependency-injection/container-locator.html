@@ -365,16 +365,14 @@
 
 <p>The ContainerLocator is new in Prism 8.0. This was introduced to help Prism get rid of a dependency on the CommonServiceLocator, and solve a number of internal issues where we must fallback to a ServiceLocator pattern such as within XAML Extensions.</p>
 <p>The ContainerLocator also has some additional benefits for Prism, particularly for those developers working on Cross Platform applications such as Xamarin.Forms or Uno Platform. In these cases it may sometimes be necessary to initialize the container prior to initializing your PrismApplication. A common example of this would be apps that are leveraging Shiny. For such apps you may want to add the ServiceCollection to your Prism container and then return the ServiceProvider to Shiny. This allows both Prism and Shiny to maintain a single container rather than have multiple containers.</p>
-<blockquote><p>[NOTE]
-For those developers sponsoring <a href="https://xam.dev/sponsor-prism-dan">Dan Siegel</a> it is recommended that you use the Prism.Magician for this.</p>
-</blockquote>
+<div class="NOTE"><h5>Note</h5><p>For those developers sponsoring <a href="https://xam.dev/sponsor-prism-dan">Dan Siegel</a> it is recommended that you use the Prism.Magician for this.</p>
+</div>
 <h2 id="how-to-use-the-containerlocator">How to use the ContainerLocator</h2>
 <p>Note that the ContainerLocator can set the container instance lazily by taking a delegate to create the container. It will NOT create the container until ContainerLocator.Container is called.</p>
 <pre><code class="lang-csharp">var createContainerExtension = () =&gt; new DryIocContainerExtension();
 ContainerLocator.SetContainerExtension(createContainerExtension);
-</code></pre><blockquote><p>[WARNING]
-If you do not call <code>ContainerLocator.Current</code> or <code>ContainerLocator.Container</code> after setting the creation delegate, subsequent calls to <code>SetContainerExtension</code> will override your initial delegate.</p>
-</blockquote>
+</code></pre><div class="WARNING"><h5>Warning</h5><p>If you do not call <code>ContainerLocator.Current</code> or <code>ContainerLocator.Container</code> after setting the creation delegate, subsequent calls to <code>SetContainerExtension</code> will override your initial delegate.</p>
+</div>
 <h2 id="advanced-usage">Advanced Usage</h2>
 <p>Please note that the information here is for advanced users only. These API&#39;s are intentionally hidden from intellisense because they are not for common consumption. Use these at your own risk, and only under the right circumstances.</p>
 <p>In the event that you need to access the raw IContainerExtension you can do so by accessing <code>ContainerLocator.Current</code>.</p>

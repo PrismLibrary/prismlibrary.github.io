@@ -402,9 +402,8 @@ containerRegistry.RegisterInstance&lt;IBarrel&gt;(Barrel.Current);
     {
     }
 }
-</code></pre><blockquote><p>[NOTE]
-Take note of the service registration type. It generally does NOT make sense to use <code>Lazy&lt;T&gt;</code> or <code>Func&lt;T&gt;</code> resolutions when you are working with a Singleton Service. For instance the <code>IEventAggregator</code> is a singleton. This means that you get a single instance of the Event Aggregator that is used through the entire application. By using <code>Lazy&lt;T&gt;</code> or <code>Func&lt;T&gt;</code> you ultimately use more memory and may take performance hits instead of just requesting the service outright.</p>
-</blockquote>
+</code></pre><div class="NOTE"><h5>Note</h5><p>Take note of the service registration type. It generally does NOT make sense to use <code>Lazy&lt;T&gt;</code> or <code>Func&lt;T&gt;</code> resolutions when you are working with a Singleton Service. For instance the <code>IEventAggregator</code> is a singleton. This means that you get a single instance of the Event Aggregator that is used through the entire application. By using <code>Lazy&lt;T&gt;</code> or <code>Func&lt;T&gt;</code> you ultimately use more memory and may take performance hits instead of just requesting the service outright.</p>
+</div>
 <h2 id="resolve-all">Resolve All</h2>
 <p>Some Developers may find the need to Register multiple implementations of the same service contract with an expectation of resolving all of them. As a common use case, Shiny uses this pattern with some of its delegate interfaces. This can allow you to build more modular code by responding to the same event in bite sized chunks. Again there is nothing special that you need to do with the registration. To use this feature you simply need to inject <code>IEnumerable&lt;T&gt;</code> into your constructor as show here.</p>
 <pre><code class="lang-cs">public class SomeService
@@ -413,9 +412,8 @@ Take note of the service registration type. It generally does NOT make sense to 
     {
     }
 }
-</code></pre><blockquote><p>[NOTE]
-This feature is only supported in DryIoc at this time. This may become available to those using Unity Container once version 6 releases.</p>
-</blockquote>
+</code></pre><div class="NOTE"><h5>Note</h5><p>This feature is only supported in DryIoc at this time. This may become available to those using Unity Container once version 6 releases.</p>
+</div>
 </article>
           </div>
           
