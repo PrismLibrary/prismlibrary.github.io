@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Dependency Injection with Xamarin.Forms | Prism </title>
+    <title>The ContainerLocator | Prism </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Dependency Injection with Xamarin.Forms | Prism ">
+    <meta name="title" content="The ContainerLocator | Prism ">
     <meta name="generator" content="docfx 2.56.6.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -114,6 +114,9 @@
                           </li>
                           <li class="">
                             <a href="../dependency-injection/resolution-errors.html" title="Exception Handling" class="">Exception Handling</a>
+                          </li>
+                          <li class="active">
+                            <a href="../dependency-injection/container-locator.html" title="ContainerLocator" class="active">ContainerLocator</a>
                           </li>
                           <li class="">
                             <a href="../dependency-injection/add-custom-container.html" title="Adding a Custom Container" class="">Adding a Custom Container</a>
@@ -358,24 +361,64 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="dependency-injection-with-xamarinforms">Dependency Injection with Xamarin.Forms</h1>
+<h1 id="the-containerlocator">The ContainerLocator</h1>
 
-<p>A little known feature in Xamarin.Forms is that we actually have the ability to use Dependency Injection for all of our custom services within Xamarin.Forms. This includes but is by no means limited to Renderers and Platform Effects. While this feature is disabled by default you can if you so choose, decide to set the Xamarin.Forms Dependency Resolver at app startup. When you set the flag to true, we will automatically take care of configuring Xamarin.Forms to use Prism&#39;s Dependency Injection container to resolve any service which it or any of your plugins may try to resolve with the Xamarin.Forms DependencyService. As mentioned this includes all of your Renderers.</p>
-<h2 id="how-to-use-the-container-for-xamarinforms">How to use the Container for Xamarin.Forms</h2>
-<p>It couldn&#39;t be easier. In order to enable this feature you simply need to pass <code>true</code> to the base constructor&#39;s argument for <code>setFormsDependencyResolver</code>.</p>
-<pre><code class="lang-cs">public App(IPlatformInitializer initializer = null)
-    : base(initializer, setFormsDependencyResolver: true)
+<p>The ContainerLocator is new in Prism 8.0. This was introduced to help Prism get rid of a dependency on the CommonServiceLocator, and solve a number of internal issues where we must fallback to a ServiceLocator pattern such as within XAML Extensions.</p>
+<p>The ContainerLocator also has some additional benefits for Prism, particularly for those developers working on Cross Platform applications such as Xamarin.Forms or Uno Platform. In these cases it may sometimes be necessary to initialize the container prior to initializing your PrismApplication. A common example of this would be apps that are leveraging Shiny. For such apps you may want to add the ServiceCollection to your Prism container and then return the ServiceProvider to Shiny. This allows both Prism and Shiny to maintain a single container rather than have multiple containers.</p>
+<blockquote><p>[NOTE]
+For those developers sponsoring <a href="https://xam.dev/sponsor-prism-dan">Dan Siegel</a> it is recommended that you use the Prism.Magician for this.</p>
+</blockquote>
+<h2 id="how-to-use-the-containerlocator">How to use the ContainerLocator</h2>
+<p>Note that the ContainerLocator can set the container instance lazily by taking a delegate to create the container. It will NOT create the container until ContainerLocator.Container is called.</p>
+<pre><code class="lang-csharp">var createContainerExtension = () =&gt; new DryIocContainerExtension();
+ContainerLocator.SetContainerExtension(createContainerExtension);
+</code></pre><blockquote><p>[WARNING]
+If you do not call <code>ContainerLocator.Current</code> or <code>ContainerLocator.Container</code> after setting the creation delegate, subsequent calls to <code>SetContainerExtension</code> will override your initial delegate.</p>
+</blockquote>
+<h2 id="advanced-usage">Advanced Usage</h2>
+<p>Please note that the information here is for advanced users only. These API&#39;s are intentionally hidden from intellisense because they are not for common consumption. Use these at your own risk, and only under the right circumstances.</p>
+<p>In the event that you need to access the raw IContainerExtension you can do so by accessing <code>ContainerLocator.Current</code>.</p>
+<h3 id="testing">Testing</h3>
+<p>While not entirely an uncommon issue, while unit testing it is commonly recommended that you reset the ContainerLocator. This ensures container is disposed and that the container instance is cleared along with the delegate to create a new instance.</p>
+<pre><code class="lang-csharp">public class SomeTests : IDisposible
 {
-}
-</code></pre><h2 id="why-use-it">Why Use It</h2>
-<p>There may be times which you want to implement a custom renderer for which you want to use a service that is registered with your container. As an example let&#39;s assume that you are using the Event Aggregator and you want to publish an event when something happens from a platform level:</p>
-<pre><code class="lang-cs">public class MyCustomRenderer : PageRenderer
-{
-    private IEventAggregator _eventAggregator { get; }
-
-    public MyCustomRenderer(IEventAggregator eventAggregator)
+    public void Dispose()
     {
-        _eventAggregator = eventAggregator;
+        ContainerLocator.ResetContainer();
+    }
+}
+</code></pre><h2 id="example-usage">Example Usage</h2>
+<p>In a ShinyStartup you might have something like:</p>
+<pre><code class="lang-csharp">public class MyStartup : ShinyStartup
+{
+    private void RegisterTypes(IContainerRegistry container)
+    {
+        // Your normal registrations here...
+    }
+
+    private IContainerExtension CreateContainerExtension() =&gt;
+        new DryIocContainerExtension();
+
+    public override IServiceProvider CreateServiceProvider(IServiceCollection services)
+    {
+        ContainerLocator.SetContainerExtension(CreateContainerExtension);
+        var container = ContainerLocator.Container;
+        container.RegisterServices(services);
+        RegisterTypes(container);
+        return container.GetContainer();
+    }
+}
+</code></pre><p>In a XAML Extension</p>
+<pre><code class="lang-csharp">public class SomeMarkupExtension : IMarkupExtension
+{
+    private static readonly Lazy&lt;IEventAggregator&gt; _lazyEventAggregator =
+        new Lazy&lt;IEventAggregator&gt;(() =&gt; ContainerLocator.Container.Resolve&lt;IEventAggregator&gt;());
+
+    private IEventAggregator EventAggregator =&gt; _lazyEventAggregator.Value;
+
+    public object ProvideValue(IServiceProvider provider)
+    {
+        // your logic here...
     }
 }
 </code></pre></article>
@@ -386,7 +429,7 @@
               <div class="connect-widget">
                 <ul class="connect-links">
           		<li id="connect-github">
-          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/dependency-injection/custom-renderers.md/#L1" target="_blank">
+          			<a href="https://github.com/PrismLibrary/Prism-Documentation/blob/master/docs/dependency-injection/container-locator.md/#L1" target="_blank">
           				<div class="image github"></div>Edit on GitHub
           			</a>
                   </li>

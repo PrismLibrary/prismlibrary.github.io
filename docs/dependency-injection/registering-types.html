@@ -116,6 +116,9 @@
                             <a href="../dependency-injection/resolution-errors.html" title="Exception Handling" class="">Exception Handling</a>
                           </li>
                           <li class="">
+                            <a href="../dependency-injection/container-locator.html" title="ContainerLocator" class="">ContainerLocator</a>
+                          </li>
+                          <li class="">
                             <a href="../dependency-injection/add-custom-container.html" title="Adding a Custom Container" class="">Adding a Custom Container</a>
                           </li>
                           <li class="">
@@ -391,7 +394,29 @@ containerRegistry.RegisterInstance&lt;IBarrel&gt;(Barrel.Current);
 {
     // Do something...
 }
-</code></pre></article>
+</code></pre><h2 id="lazy-resolution">Lazy Resolution</h2>
+<p>As shown previously you can register your services like <code>containerRegistry.Register&lt;IFoo, Foo&gt;()</code>. Many developers may have use cases where they want to conserve memory and lazy load services either as <code>Func&lt;IFoo&gt;</code> or <code>Lazy&lt;IFoo&gt;</code>. Prism 8 supports this out of the box. In order to do this you simply need to add the parameter to your ViewModel or Service as shown below.</p>
+<pre><code class="lang-cs">public class ViewAViewModel
+{
+    public ViewAViewModel(Func&lt;IFoo&gt; fooFactory, Lazy&lt;IBar&gt; lazyBar)
+    {
+    }
+}
+</code></pre><blockquote><p>[NOTE]
+Take note of the service registration type. It generally does NOT make sense to use <code>Lazy&lt;T&gt;</code> or <code>Func&lt;T&gt;</code> resolutions when you are working with a Singleton Service. For instance the <code>IEventAggregator</code> is a singleton. This means that you get a single instance of the Event Aggregator that is used through the entire application. By using <code>Lazy&lt;T&gt;</code> or <code>Func&lt;T&gt;</code> you ultimately use more memory and may take performance hits instead of just requesting the service outright.</p>
+</blockquote>
+<h2 id="resolve-all">Resolve All</h2>
+<p>Some Developers may find the need to Register multiple implementations of the same service contract with an expectation of resolving all of them. As a common use case, Shiny uses this pattern with some of its delegate interfaces. This can allow you to build more modular code by responding to the same event in bite sized chunks. Again there is nothing special that you need to do with the registration. To use this feature you simply need to inject <code>IEnumerable&lt;T&gt;</code> into your constructor as show here.</p>
+<pre><code class="lang-cs">public class SomeService
+{
+    public SomeService(IEnumerable&lt;IFoo&gt; fooCollection)
+    {
+    }
+}
+</code></pre><blockquote><p>[NOTE]
+This feature is only supported in DryIoc at this time. This may become available to those using Unity Container once version 6 releases.</p>
+</blockquote>
+</article>
           </div>
           
           <div class="hidden-sm col-md-2" role="complementary">

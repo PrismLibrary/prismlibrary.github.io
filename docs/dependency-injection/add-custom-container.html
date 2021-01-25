@@ -115,6 +115,9 @@
                           <li class="">
                             <a href="../dependency-injection/resolution-errors.html" title="Exception Handling" class="">Exception Handling</a>
                           </li>
+                          <li class="">
+                            <a href="../dependency-injection/container-locator.html" title="ContainerLocator" class="">ContainerLocator</a>
+                          </li>
                           <li class="active">
                             <a href="../dependency-injection/add-custom-container.html" title="Adding a Custom Container" class="active">Adding a Custom Container</a>
                           </li>
@@ -377,6 +380,8 @@
 </code></pre><p>Next you&#39;ll want to add a Reference to the Prism.Core and your container of choice</p>
 <h2 id="adding-a-container-extension">Adding a Container Extension</h2>
 <p>Next, add a new class to your project and implement the <code>IContainerExtension</code> interface.  The <code>IContainerExtension</code> interface is used to create a mapping for the most common registration and resolution methods.</p>
+<div class="NOTE"><h5>Note</h5><p>The implementation shown here is not maintained. Note that there are differences in the Prism 8 Ioc abstractions from what is shown here, and there may additionally be changes in the GraceIoc API. This is provided only as an example.</p>
+</div>
 <p>In the case of the Grace DI container we simply need to add this single class:</p>
 <pre><code class="lang-cs">public class GraceContainerExtension : IContainerExtension&lt;IInjectionScope&gt;
 {
@@ -391,8 +396,6 @@
     }
 
     public IInjectionScope Instance { get; }
-
-    public bool SupportsModules =&gt; true;
 
     public void FinalizeExtension() { }
 
