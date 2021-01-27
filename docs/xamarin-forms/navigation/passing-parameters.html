@@ -367,8 +367,10 @@
 <div class="embeddedvideo"><iframe src="https://www.youtube.com/embed/inxl6Xfqsjs" frameborder="0" allowfullscreen="true"></iframe></div>
 <h2 id="creating-parameters">Creating Parameters</h2>
 <p>Creating parameters can be done in a variety of ways.</p>
-<pre><code class="lang-cs">var navigationParams = new NavigationParameters();
-navigationParams.Add(&quot;model&quot;, new Contact());
+<pre><code class="lang-cs">var navigationParams = new NavigationParameters
+{
+    { &quot;model&quot;, new Contact() }
+};
 _navigationService.NavigateAsync(&quot;MainPage&quot;, navigationParams);
 </code></pre><p>You can also create an HTML query string to generate your parameter collection.</p>
 <pre><code class="lang-cs">var queryString = &quot;code=CR&amp;desc=Red&quot;;
@@ -382,8 +384,10 @@ _navigationService.NavigateAsync(&quot;MainPage?id=3&amp;name=brian&quot;);
 _navigationService.NavigateAsync(&quot;MainPage&quot; + navParameters.ToString());
 
 //using both short-syntax parameters and NavigationParameters
-var navParameters = new NavigationParameters();
-navParameters.Add(&quot;name&quot;, &quot;brian&quot;);
+var navParameters = new NavigationParameters
+{
+    { &quot;name&quot;, &quot;brian&quot; }
+};
 _navigationService.NavigateAsync(&quot;MainPage?id=3&quot;, navParameters);
 </code></pre><p>When using a Uri-syntax to navigate, you may append the Uri with parameters, which will be used as the navigation parameters.</p>
 <pre><code class="lang-cs">//query string
@@ -393,17 +397,19 @@ _navigationService.NavigateAsync(new Uri(&quot;MainPage?id=3&amp;name=brian&quot
 _navigationService.NavigateAsync(new Uri(&quot;MainPage&quot; + navParameters.ToString(), UriKind.Relative));
 
 //using both Uri parameters and NavigationParameters
-var navParameters = new NavigationParameters ();
-navParameters.Add(&quot;name&quot;, &quot;brian&quot;);
+var navParameters = new NavigationParameters
+{
+    { &quot;name&quot;, &quot;brian&quot; }
+};
 _navigationService.NavigateAsync(new Uri(&quot;MainPage?id=3&quot;, UriKind.Relative), navParameters);
 </code></pre><h2 id="getting-parameters">Getting Parameters</h2>
 <p>Getting the parameters that were passed to the target View being navigated to can be achieved by using the <code>INavigationAware</code> interface on the corresponding ViewModel.</p>
 <h3 id="inavigationaware">INavigationAware</h3>
-<p>The ViewModel of the target navigation Page can participate in the navigation process by implementing the <code>INavigationAware</code> interface.  This interface adds three methods to your ViewModel so you can intercept before the View is navigated to <strong>(OnNavigatingTo)</strong>, once it is navigated to <strong>(OnNavigatedTo)</strong>, and once it is navigated away from <strong>(OnNavigatedFrom)</strong>.  These methods make the <code>NavigationParameters</code> accessible from either the View being navigated to, or the View being navigated away from.</p>
+<p>The ViewModel of the target navigation Page can participate in the navigation process by implementing the <code>INavigationAware</code> interface.  This interface adds two methods to your ViewModel so you can intercept once it is navigated to <strong>(OnNavigatedTo)</strong>, and once it is navigated away from <strong>(OnNavigatedFrom)</strong>.  These methods make the <code>NavigationParameters</code> accessible from either the View being navigated to, or the View being navigated away from.</p>
 <p><em>Note: You can implement <code>INavigationAware</code> on either the View or ViewModel</em></p>
 <p>Example:</p>
 <pre><code class="lang-cs">public class ContactPageViewModel : INavigationAware
-{  
+{
     public void OnNavigatedTo(INavigationParameters parameters)
     {
 
@@ -414,44 +420,25 @@ _navigationService.NavigateAsync(new Uri(&quot;MainPage?id=3&quot;, UriKind.Rela
 
     }
 }
-</code></pre><p>For more granular control, or if you wish to only implement very specific methods, you may choose to implement <code>INavigatedAware</code> or <code>INavigatingAware</code> interfaces.  These interfaces provide you the ability to choose exactly which navigation methods you wish to participate in.</p>
-<pre><code class="lang-cs">public interface INavigatedAware
+</code></pre><h3 id="viewmodel-initialization">ViewModel Initialization</h3>
+<p>Prism.Forms has two options for handling ViewModel initialization. This is the processing of NavigationParameters <strong>BEFORE</strong> the View is navigated to. It is important to remember that Initialization only occurs once when the View is being navigated to for the first time.</p>
+<p>For most use cases you will want to use <code>IInitailize</code> to ready your ViewModel as it is navigated to.</p>
+<pre><code class="lang-cs">public interface IInitialize
 {
-    /// &lt;summary&gt;
-    /// Called when the implementer has been navigated away from.
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;parameters&quot;&gt;The navigation parameters.&lt;/param&gt;
-    void OnNavigatedFrom(INavigationParameters parameters);
-
-    /// &lt;summary&gt;
-    /// Called when the implementer has been navigated to.
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;parameters&quot;&gt;The navigation parameters.&lt;/param&gt;
-    void OnNavigatedTo(INavigationParameters parameters);
+    void Initialize(INavigationParameters parameters);
 }
-</code></pre><pre><code class="lang-cs">public interface INavigatingAware
+</code></pre><p>Similar to <code>INavigationAware</code> we will pass in the NavigationParameters to be evaluated and make our ViewModel ready.</p>
+<p>Many times you may however find that you need to do something asynchronously. This could be an API call, or you may be using an async API to access a Sqlite Database locally. Whatever your issue is it can sometimes be desireable to have an async API to work with. For this reason Prism also has added the <code>IInitializeAsync</code> interface.</p>
+<pre><code class="lang-cs">public interface IInitializeAsync
 {
-    /// &lt;summary&gt;
-    /// Called before the implementor has been navigated to.
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;parameters&quot;&gt;The navigation parameters.&lt;/param&gt;
-    /// &lt;remarks&gt;Not called when using device hardware or software back buttons&lt;/remarks&gt;
-    void OnNavigatingTo(INavigationParameters parameters);
+    Task InitializeAsync(INavigationParameters parameters);
 }
-</code></pre><p>In fact, the <code>INavigationAware</code> interface simply implements both the <code>INavigatedAware</code> and <code>INavigatingAware</code> interfaces.</p>
-<pre><code class="lang-cs">public interface INavigationAware : INavigatedAware, INavigatingAware
-{
-
-}
-</code></pre><div class="NOTE"><h5>Note</h5><p><strong>OnNavigatingTo</strong> is not called when using device hardware or software back button.</p>
+</code></pre><div class="WARNING"><h5>Warning</h5><p>.NET Developers have an over reliance on async Task without understanding what that will mean. Any delay caused by the Navigation Service awaiting InitializeAsync <strong>WILL</strong> result in delay in UI Navigation. While this may be the desired effect, if you do not architect your app properly this will result in a poor user experience as it may appear that the UI is unresponsive. You should <strong>NEVER</strong> use this on the initial navigation when your app starts.</p>
 </div>
 <h2 id="reading-parameters">Reading Parameters</h2>
 <p>Now that you have access to the parameters, you must read the parameters from the available <code>NavigationParameters</code> instance.  There are two ways to read parameters; by using the parameter key as an indexer on the parameters instance, or by using the <code>GetValue</code>/<code>GetValues</code> method on the parameters instance.</p>
 <pre><code class="lang-cs">public void OnNavigatedTo(INavigationParameters parameters)
 {
-  //get a single parameter as type object, which must be cast
-  var color = parameters[&quot;color&quot;] as Color;
-
   //get a single typed parameter
   var color = parameters.GetValue&lt;Color&gt;(&quot;color&quot;);
 
@@ -469,11 +456,11 @@ _navigationService.NavigateAsync(new Uri(&quot;MainPage?id=3&quot;, UriKind.Rela
 <pre><code class="lang-cs">    public enum NavigationMode
     {
         /// &lt;summary&gt;
-        /// Indicates that a navigation operation occured that resulted in navigating backwards in the navigation stack.
+        /// Indicates that a navigation operation occurred that resulted in navigating backwards in the navigation stack.
         /// &lt;/summary&gt;
         Back,
         /// &lt;summary&gt;
-        /// Indicates that a new navigaton operaton has occured and a new page has been added to the navigation stack.
+        /// Indicates that a new navigation operation has occurred and a new page has been added to the navigation stack.
         /// &lt;/summary&gt;
         New,
     }
