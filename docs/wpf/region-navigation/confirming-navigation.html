@@ -8,7 +8,7 @@
     <title>Confirming Navigation | Prism </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Confirming Navigation | Prism ">
-    <meta name="generator" content="docfx 2.56.6.0">
+    <meta name="generator" content="docfx 2.56.7.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -363,6 +363,53 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="confirming-navigation">Confirming Navigation</h1>
 
+<p>You will often find that you will need to interact with the user during a navigation operation, so that the user can confirm or cancel it. In many applications, for example, the user may try to navigate while in the middle of entering or editing data. In these situations, you may want to ask the user whether he or she wants to save or discard the data that has been entered before continuing to navigate away from the page, or whether the user wants to cancel the navigation operation altogether. Prism supports these scenarios via the <strong>IConfirmNavigationRequest</strong> interface.</p>
+<p>The <strong>IConfirmNavigationRequest</strong> interface derives from the <strong>INavigationAware</strong> interface and adds the <strong>ConfirmNavigationRequest</strong> method. By implementing this interface on your view or view model class, you allow them to participate in the navigation sequence in a way that allows them to interact with the user so that the user can confirm or cancel the navigation. One way of displaying a confirmation is to use a simple windows message box. For something more complex, the <strong>Dialog Service</strong>, as described in <a href="../dialog-service.html">Dialog Service</a> could be used.</p>
+<p>The <strong>ConfirmNavigationRequest</strong> method provides two parameters, a reference to the current navigation context as described earlier, and a callback method that you can call when you want navigation to continue.</p>
+<p>The following steps summarize the process of confirming navigation using an <strong>InteractionRequest</strong> object:</p>
+<ol>
+<li>Navigation operation is initiated via a <strong>RequestNavigate</strong> call.</li>
+<li>If the view or view model of the current view implements <strong>IConfirmNavigation</strong>, <strong>ConfirmNavigationRequest</strong> is called.</li>
+<li>The view displays the confirmation UI and awaits the user&#39;s response.</li>
+<li>Continuation callback is invoked to continue or cancel the pending navigation operation.</li>
+<li>The navigation operation is completed or canceled.</li>
+</ol>
+<p>To illustrate this, check out the sample app at <a href="https://github.com/PrismLibrary/Prism-Samples-Wpf/tree/master/22-ConfirmCancelNavigation">22-ConfirmCancelNavigation</a>.</p>
+<pre><code class="lang-cs">public class ViewAViewModel : BindableBase, IConfirmNavigationRequest
+{
+    public ViewAViewModel()
+    {
+    }
+
+    public void ConfirmNavigationRequest(NavigationContext navigationContext, Action&lt;bool&gt; continuationCallback)
+    {
+        bool result = true;
+
+        // this is demo code only and not suitable for production. It is generally
+        // poor practice to reference your UI in the view model. Use the Prism
+        // IDialogService to help with this.
+        if (MessageBox.Show(&quot;Do you to navigate?&quot;, &quot;Navigate?&quot;, MessageBoxButton.YesNo) == MessageBoxResult.No)
+            result = false;
+
+        continuationCallback(result);
+    }
+
+    public bool IsNavigationTarget(NavigationContext navigationContext)
+    {
+        return true;
+    }
+
+    public void OnNavigatedFrom(NavigationContext navigationContext)
+    {
+    }
+
+    public void OnNavigatedTo(NavigationContext navigationContext)
+    {
+    }
+}
+</code></pre><p>In the above example, when the ConfirmNavigationRequest is called, a simple windows message box is popped up for the user to say yes or no to. If the user picks the &quot;No&quot; button the navigation is then canceled.</p>
+<p>All of this happens on the UI thread. But it is still possible to call async methods (such as REST API calls) to help determine navigation status. In that case, depending on implementation, you may need to store a reference to the callback so that you can call it from another location.</p>
+<p>If there is a long running implementation, it may be possible for the user to call another navigation operation. If that were to happen, the previous navigation would be canceled and invoking the callback for the previous navigation will have no effect as it is no longer the current navigation.</p>
 </article>
           </div>
           
