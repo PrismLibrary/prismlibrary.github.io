@@ -363,8 +363,23 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="controlling-view-lifetime">Controlling View Lifetime</h1>
 
-<p>RegionMemberLifetimeAttribute
-IRegionMemberLifetime</p>
+<h2 id="iregionmemberlifetime">IRegionMemberLifetime</h2>
+<p>After the new view is instantiated, initialized, and added to the target region, it then becomes the active view, and the previous view is deactivated. Sometimes you will want the deactivated view to be removed from the region. Prism provides the <strong>IRegionMemberLifetime</strong> interface, which allows you to control the lifetime of views within regions by allowing you to specify whether deactivated views are to be removed from the region or simply marked as deactivated.</p>
+<pre><code class="lang-cs">public class EmployeeDetailsViewModel : BindableBase, IRegionMemberLifetime
+{
+    public bool KeepAlive
+    {
+        get { return true; }
+    }
+}
+</code></pre><p>The <strong>IRegionMemberLifetime</strong> interface defines a single read-only property, <strong>KeepAlive</strong>. If this property returns <strong>false</strong>, the view is removed from the region when it is deactivated. Because the region no longer has a reference to the view, it then becomes eligible for garbage collection (unless some other component in your application maintains a reference to it). You can implement this interface on your view or your view model classes. Although the <strong>IRegionMemberLifetime</strong> interface is primarily intended to allow you to manage the lifetime of views within regions during activation and deactivation, the <strong>KeepAlive</strong> property is also considered during navigation after the new view is activated in the target region.</p>
+<h2 id="regionmemberlifetimeattribute">RegionMemberLifetimeAttribute</h2>
+<p>You can accomplish the same thing using an attribute instead.</p>
+<pre><code class="lang-cs">[RegionMemberLifetime(KeepAlive = true)]
+public class EmployeeDetailViewModel : BindableBase
+{
+}
+</code></pre><p><strong>Note:</strong> Regions that can display multiple views, such as those that use an <strong>ItemsControl</strong> or a <strong>TabControl</strong>, will display both non-active and active views. Removal of a non-active view from these types of regions will result in the view being removed from the UI.</p>
 </article>
           </div>
           
