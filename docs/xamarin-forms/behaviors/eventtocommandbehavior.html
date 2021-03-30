@@ -363,8 +363,8 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="using-the-eventtocommandbehavior">Using the EventToCommandBehavior</h1>
 
-<p>The <code>EventToCommandBehavior</code> class provide a convenient way to, in XAML, &quot;bind&quot; events to <code>ICommand</code> according to MVVM paradigm to avoid code behind.</p>
-<h3 id="usage">Usage</h3>
+<p>The <code>EventToCommandBehavior</code> class provides a convenient way to, in XAML, &quot;bind&quot; events to <code>ICommand</code> according to MVVM paradigm to avoid code behind.</p>
+<h2 id="properties">Properties</h2>
 <p>The <code>EventToCommandBehavior</code> expose the following properties</p>
 <ul>
 <li><strong>EventName</strong> The name of the event to listen to. For example <em>ItemTapped</em></li>
@@ -374,6 +374,7 @@
 <li><strong>EventArgsConverterParameter</strong> The parameter that will be sent as the <em>parameter</em> argument to <code>IValueConverter.Convert</code> method</li>
 <li><strong>EventArgsParameterPath</strong> Parameter path to extract property from <code>EventArgs</code> that will be passed to <code>ICommand.Execute(object)</code></li>
 </ul>
+<h2 id="usage">Usage</h2>
 <p>First declare the namespace and assembly in where <code>EventToCommandBehavior</code> is declared and declare a XML-namespace.</p>
 <p><code>xmlns:prism=&quot;http://prismlibrary.com&quot;</code></p>
 <h3 id="commandparameter">CommandParameter</h3>
