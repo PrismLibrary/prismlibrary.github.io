@@ -371,7 +371,7 @@
 <blockquote><p><strong>Note:</strong> For Prism to determine the type of the target view, the view&#39;s name in the navigation URI should be the same as the actual target type&#39;s short type name. For example, if your view is implemented by the <strong>MyApp.Views.EmployeeDetailsView</strong> class, the view name specified in the navigation URI should be <strong>EmployeeDetailsView</strong>. This is the default behavior provided by Prism. You can customize this behavior by implementing a custom content loader class: do this by implementing the <strong>IRegionNavigationContentLoader</strong> interface or by deriving from the <strong>RegionNavigationContentLoader</strong> class.</p>
 </blockquote>
 <p>The implementation of the <strong>IsNavigationTarget</strong> method can use the <strong>NavigationContext</strong> parameter to determine whether it can handle the navigation request. The <strong>NavigationContext</strong> object provides access to the navigation URI and the navigation parameters. In the preceding examples, the implementation of this method in the <strong>EditCustomer</strong> view model compares the current customer ID to the ID specified in the navigation request, and it returns <strong>true</strong> if they match.</p>
-<pre><code class="lang-cs">public bool EmployeeDetailsViewModel : BindableBase, INavigationAware
+<pre><code class="lang-cs">public class EmployeeDetailsViewModel : BindableBase, INavigationAware
 {
     public bool IsNavigationTarget(NavigationContext navigationContext)
     {
