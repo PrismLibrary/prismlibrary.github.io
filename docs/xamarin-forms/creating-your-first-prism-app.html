@@ -8,7 +8,7 @@
     <title>Creating Your First Prism App | Prism </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Creating Your First Prism App | Prism ">
-    <meta name="generator" content="docfx 2.57.2.0">
+    <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -430,7 +430,7 @@
     }
 </code></pre><p>The <code>RegisterTypes</code> method is used to register any services that you will be using in your ViewModels throughout your applications and any of its modules. Any page you wish to navigate to using the <code>NavigationService</code> should be registered with the Prism navigation system using the <code>IContainerRegistry.RegisterForNavigation</code> method in the <code>RegisterTypes</code> method. See the <a href="navigation/navigation-basics.html">Navigation topic</a> for more information.</p>
 <p>You define which View you want to navigate to when the app loads in the <code>OnInitialized</code> method using the <code>NavigationService</code> property. In this example, we are setting the root page to a <code>NavigationPage</code> and immediately pushing the <code>MainPage</code> onto the navigation stack.  Basically, we are wrapping our <code>MainPage</code> in a <code>NavigationPage</code> and setting it as the root page of the application when it launches.</p>
-<div class="IMPORTANT"><h5>Important</h5><p>You must call the <code>InitializeComponent</code> method in the <code>OnInitialized</code> method <strong>before</strong> you make a call to the <code>NavigationService</code>. You risk the application crashing on starup if you fail to do this.</p>
+<div class="IMPORTANT"><h5>Important</h5><p>You must call the <code>InitializeComponent</code> method in the <code>OnInitialized</code> method <strong>before</strong> you make a call to the <code>NavigationService</code>. You risk the application crashing on startup if you fail to do this.</p>
 </div>
 <h3 id="views">Views</h3>
 <p>Within the shared project head there is a <code>Views</code> folder which contains all of your view related code. The template created a <a href="https://developer.xamarin.com/guides/xamarin-forms/controls/pages/">Content Page</a> called <code>MainPage.xaml</code> in this folder.  Lets take a look at this file.</p>
