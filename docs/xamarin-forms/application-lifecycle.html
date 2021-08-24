@@ -8,7 +8,7 @@
     <title>Application Lifecycle Management | Prism </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Application Lifecycle Management | Prism ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.2.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -372,7 +372,7 @@
 <li><strong>Resuming</strong>. This happens every time we restore the app from the background after it has been suspended.</li>
 <li><strong>Sleeping</strong>. This happens when the OS decides to freeze our app after it has gone in background.</li>
 </ul>
-<p>The management of these events can be tricky in an MVVM app but Prism provides the <a href="https://github.com/PrismLibrary/Prism/blob/master/Source/Xamarin/Prism.Forms/AppModel/IApplicationLifecycleAware.cs">IApplicationLifecycleAware</a> interface to make your life easier.</p>
+<p>The management of these events can be tricky in an MVVM app but Prism provides the <a href="https://github.com/PrismLibrary/Prism/blob/master/src/Forms/Prism.Forms/AppModel/IApplicationLifecycleAware.cs">IApplicationLifecycleAware</a> interface to make your life easier.</p>
 <h2 id="how-to-handle-alm-in-your-viewmodels">How to handle ALM in your ViewModels</h2>
 <p>The first thing you have to do to is to implement the <code>IApplicationLifecycleAware</code> interface in your <strong>ViewModel</strong> class. Implemening this interface means that you have to provide an implementation of the <code>OnResume()</code> and <code>OnSleep()</code> method that are called by the framework when the app is resuming and going to sleep respectively. The typical operation you&#39;ll do in the <code>OnSleep()</code> method is to <strong>save</strong> the state of your ViewModel to later <strong>restore</strong> it during the execution of the <code>OnResume()</code> method.</p>
 <p>The following is an example of a ViewModel that implements <code>IApplicationLifecycleAware</code>.</p>
@@ -444,7 +444,7 @@ The following is an example of an <code>App</code> class with ALM management.</p
 </li>
 <li><p><a href="https://xamarin.azureedge.net/developer/xamarin-forms-book/XamarinFormsBook-Ch06-Apr2016.pdf">Xamarin Forms Book</a></p>
 </li>
-<li><p><a href="https://github.com/PrismLibrary/Prism/blob/36dc541274edb3e1d1ee2957e1ae65aafbf6c0a1/Source/Xamarin/Prism.Forms/PrismApplicationBase.cs">PrismApplicationBase source code</a></p>
+<li><p><a href="https://github.com/PrismLibrary/Prism/blob/master/src/Forms/Prism.Forms/PrismApplicationBase.cs">PrismApplicationBase source code</a></p>
 </li>
 </ul>
 </article>
