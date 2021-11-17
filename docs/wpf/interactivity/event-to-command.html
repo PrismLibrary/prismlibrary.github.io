@@ -8,7 +8,7 @@
     <title>Binding Events to Commands | Prism </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Binding Events to Commands | Prism ">
-    <meta name="generator" content="docfx 2.58.2.0">
+    <meta name="generator" content="docfx 2.58.9.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -388,12 +388,12 @@
         Title=&quot;{Binding Title}&quot; Height=&quot;350&quot; Width=&quot;525&quot;&gt;
     &lt;Grid&gt;
         &lt;ListBox ItemsSource=&quot;{Binding Items}&quot; SelectionMode=&quot;Single&quot;&gt;
-            &lt;i:InteractionTriggers&gt;
+            &lt;i:Interaction.Triggers&gt;
                 &lt;i:EventTrigger EventName=&quot;SelectionChanged&quot;&gt;
                     &lt;prism:InvokeCommandAction Command=&quot;{Binding SelectedCommand}&quot;
                                                CommandParameter=&quot;{Binding MyParameter}&quot; /&gt;
                 &lt;/i:EventTrigger&gt;
-            &lt;/i:InteractionTriggers&gt;
+            &lt;/i:Interaction.Triggers&gt;
         &lt;/ListBox&gt;
     &lt;/Grid&gt;
 &lt;/Window&gt;
@@ -408,13 +408,13 @@
         Title=&quot;{Binding Title}&quot; Height=&quot;350&quot; Width=&quot;525&quot;&gt;
     &lt;Grid&gt;
         &lt;ListBox ItemsSource=&quot;{Binding Items}&quot; SelectionMode=&quot;Single&quot;&gt;
-            &lt;i:InteractionTriggers&gt;
+            &lt;i:Interaction.Triggers&gt;
                 &lt;i:EventTrigger EventName=&quot;SelectionChanged&quot;&gt;
                     &lt;prism:InvokeCommandAction Command=&quot;{Binding SelectedCommand}&quot;
                                                CommandParameter=&quot;{Binding MyParameter}&quot;
                                                TriggerParameterPath=&quot;AddedItems&quot; /&gt;
                 &lt;/i:EventTrigger&gt;
-            &lt;/i:InteractionTriggers&gt;
+            &lt;/i:Interaction.Triggers&gt;
         &lt;/ListBox&gt;
     &lt;/Grid&gt;
 &lt;/Window&gt;
@@ -429,14 +429,14 @@
         Title=&quot;{Binding Title}&quot; Height=&quot;350&quot; Width=&quot;525&quot;&gt;
     &lt;Grid&gt;
         &lt;ListBox ItemsSource=&quot;{Binding Items}&quot; SelectionMode=&quot;Single&quot;&gt;
-            &lt;i:InteractionTriggers&gt;
+            &lt;i:Interaction.Triggers&gt;
                 &lt;i:EventTrigger EventName=&quot;SelectionChanged&quot;&gt;
                     &lt;prism:InvokeCommandAction Command=&quot;{Binding SelectedCommand}&quot;
                                                CommandParameter=&quot;{Binding MyParameter}&quot;
                                                TriggerParameterPath=&quot;AddedItems&quot;
                                                AutoEnable=&quot;true&quot; /&gt;
                 &lt;/i:EventTrigger&gt;
-            &lt;/i:InteractionTriggers&gt;
+            &lt;/i:Interaction.Triggers&gt;
         &lt;/ListBox&gt;
     &lt;/Grid&gt;
 &lt;/Window&gt;
